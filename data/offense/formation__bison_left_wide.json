@@ -1,0 +1,71 @@
+    {
+        "formationName": "Bison Left Wide",
+        "positions": [
+            {
+                "id": 1,
+                "positionName": "QB",
+                "positionX": 20,
+                "positionY": "shotgun"
+            },
+            {
+                "id": 2,
+                "positionName": "RB",
+                "positionX": 13,
+                "positionY": "off"
+            },
+            {
+                "id": 3,
+                "positionName": "FB",
+                "positionX": 11,
+                "positionY": "off"
+            },
+            {
+                "id": 4,
+                "positionName": "WR",
+                "positionX": 9,
+                "positionY": "off"
+            },
+            {
+                "id": 5,
+                "positionName": "C",
+                "positionX": 20,
+                "positionY": "los"
+            },
+            {
+                "id": 6,
+                "positionName": "RG",
+                "positionX": 22,
+                "positionY": "los"
+            },
+            {
+                "id": 7,
+                "positionName": "RT",
+                "positionX": 24,
+                "positionY": "los"
+            },
+            {
+                "id": 8,
+                "positionName": "RTE",
+                "positionX": 26,
+                "positionY": "los"
+            },
+            {
+                "id": 9,
+                "positionName": "LG",
+                "positionX": 18,
+                "positionY": "los"
+            },
+            {
+                "id": 10,
+                "positionName": "LT",
+                "positionX": 16,
+                "positionY": "los"
+            },
+            {
+                "id": 11,
+                "positionName": "LTE",
+                "positionX": 14,
+                "positionY": "los"
+            }
+        ]
+    }

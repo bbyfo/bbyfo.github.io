@@ -1,0 +1,145 @@
+    {
+        "formationName": "5-3",
+        "positions": [
+            {
+                "id": 1,
+                "depth": "los",
+                "positionName": "LDE",
+                "anchors": [
+                    "RTE",
+                    "RT",
+                    "RG"
+                ],
+                "alignment": {
+                    "direction": "outside",
+                    "distance": 1
+                }
+            },
+            {
+                "id": 2,
+                "depth": "los",
+                "positionName": "LWT",
+                "anchors": [
+                    "LT",
+                    "LG",
+                    "C"
+                ],
+                "alignment": {
+                    "direction": "outside",
+                    "distance": 1
+                }
+            },
+            {
+                "id": 3,
+                "depth": "los",
+                "positionName": "RWT",
+                "anchors": [
+                    "RT",
+                    "RG",
+                    "C"
+                ],
+                "alignment": {
+                    "direction": "outside",
+                    "distance": 1
+                }
+            },
+            {
+                "id": 4,
+                "depth": "los",
+                "positionName": "RDE",
+                "anchors": [
+                    "D7",
+                    "LT",
+                    "LG"
+                ],
+                "alignment": {
+                    "direction": "outside",
+                    "distance": 1
+                }
+            },
+            {
+                "id": 5,
+                "depth": "los",
+                "positionName": "NT",
+                "anchors": [
+                    "C"
+                ],
+                "alignment": {
+                    "direction": "on",
+                    "distance": 0
+                }
+            },
+            {
+                "id": 6,
+                "depth": "mid",
+                "positionName": "RLB",
+                "anchors": [
+                    "B3"
+                ],
+                "alignment": {
+                    "direction": "on",
+                    "distance": 0
+                }
+            },
+            {
+                "id": 7,
+                "depth": "mid",
+                "positionName": "LLB",
+                "anchors": [
+                    "B4"
+                ],
+                "alignment": {
+                    "direction": "on",
+                    "distance": 0
+                }
+            },
+            {
+                "id": 8,
+                "depth": "mid",
+                "positionName": "MLB",
+                "anchors": [
+                    "C"
+                ],
+                "alignment": {
+                    "direction": "on",
+                    "distance": 0
+                }
+            },
+            {
+                "id": 9,
+                "depth": "deep",
+                "positionName": "S",
+                "anchors": [
+                    "C"
+                ],
+                "alignment": {
+                    "direction": "on",
+                    "distance": 0
+                }
+            },
+            {
+                "id": 10,
+                "depth": "los",
+                "positionName": "RC",
+                "anchors": [
+                    "RDE"
+                ],
+                "alignment": {
+                    "direction": "outside",
+                    "distance": 2
+                }
+            },
+            {
+                "id": 11,
+                "depth": "los",
+                "positionName": "LC",
+                "anchors": [
+                    "LDE"
+                ],
+                "alignment": {
+                    "direction": "outside",
+                    "distance": 2
+                }
+            }
+        ]
+    }

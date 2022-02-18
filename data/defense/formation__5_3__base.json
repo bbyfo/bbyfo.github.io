@@ -1,0 +1,145 @@
+    {
+        "formationName": "5-3 Base",
+        "positions": [
+            {
+                "id": 1,
+                "depth": "defensive_los",
+                "positionName": "LDE",
+                "anchors": [
+                    "D8",
+                    "RT",
+                    "RG"
+                ],
+                "alignment": {
+                    "direction": "outside",
+                    "distance": 1
+                }
+            },
+            {
+                "id": 2,
+                "depth": "defensive_los",
+                "positionName": "LWT",
+                "anchors": [
+                    "B3",
+                    "LG",
+                    "C"
+                ],
+                "alignment": {
+                    "direction": "on",
+                    "distance": 0
+                }
+            },
+            {
+                "id": 3,
+                "depth": "defensive_los",
+                "positionName": "RWT",
+                "anchors": [
+                    "RT",
+                    "RG",
+                    "C"
+                ],
+                "alignment": {
+                    "direction": "on",
+                    "distance": 1
+                }
+            },
+            {
+                "id": 4,
+                "depth": "defensive_los",
+                "positionName": "RDE",
+                "anchors": [
+                    "D7",
+                    "LT",
+                    "LG"
+                ],
+                "alignment": {
+                    "direction": "inside",
+                    "distance": 1
+                }
+            },
+            {
+                "id": 5,
+                "depth": "defensive_los",
+                "positionName": "NT",
+                "anchors": [
+                    "A2"
+                ],
+                "alignment": {
+                    "direction": "on",
+                    "distance": 0
+                }
+            },
+            {
+                "id": 6,
+                "depth": "linebacker",
+                "positionName": "RLB",
+                "anchors": [
+                    "B3"
+                ],
+                "alignment": {
+                    "direction": "on",
+                    "distance": 0
+                }
+            },
+            {
+                "id": 7,
+                "depth": "linebacker",
+                "positionName": "LLB",
+                "anchors": [
+                    "B4"
+                ],
+                "alignment": {
+                    "direction": "on",
+                    "distance": 0
+                }
+            },
+            {
+                "id": 8,
+                "depth": "linebacker",
+                "positionName": "MLB",
+                "anchors": [
+                    "C"
+                ],
+                "alignment": {
+                    "direction": "on",
+                    "distance": 0
+                }
+            },
+            {
+                "id": 9,
+                "depth": "safety",
+                "positionName": "SAF",
+                "anchors": [
+                    "C"
+                ],
+                "alignment": {
+                    "direction": "on",
+                    "distance": 0
+                }
+            },
+            {
+                "id": 10,
+                "depth": "defensive_los",
+                "positionName": "RC",
+                "anchors": [
+                    "RDE"
+                ],
+                "alignment": {
+                    "direction": "outside",
+                    "distance": 2
+                }
+            },
+            {
+                "id": 11,
+                "depth": "defensive_los",
+                "positionName": "LC",
+                "anchors": [
+                    "LDE"
+                ],
+                "alignment": {
+                    "direction": "outside",
+                    "distance": 1
+                }
+            }
+        ]
+    }

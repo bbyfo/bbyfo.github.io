@@ -1,0 +1,10 @@
+{
+    "blockingCallName": "G.O.L.D",
+    "blockingCallAppliesTo": [".lineman", ".tight-end"],
+    "blockingCallRules": [
+        "gap_inside",
+        "xon_me",
+        "linebacker",
+        "destroy_nearest"
+    ]
+}
