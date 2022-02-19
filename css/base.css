@@ -46,7 +46,7 @@
   background-color: white;
   color: black;
   align-items: center;
-  grid-template-rows: [los] 2vh;
+  grid-template-rows: [los] 3vh;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
 }

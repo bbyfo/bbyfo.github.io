@@ -18,11 +18,18 @@
       this.handleBallClick.bind(this)
     );
 
-    // Event Handler for Picking a Formation
+    // Event Handler for Picking an Offensive Formation
     this.$wrapper.on(
       'change',
       '#picker_offense_formation',
       this.handlePickOffenseFormation.bind(this)
+    );
+
+    // Event Handler for Picking a Defensive Formation
+    this.$wrapper.on(
+      'change',
+      '#picker_defense_formation',
+      this.handlePickDefenseFormation.bind(this)
     );
 
 
@@ -136,7 +143,7 @@
       $(".position-offense").fadeOut('slow', function () {
         this.remove();
       });
-
+      $("#pick_offense_first").hide();
 
       // If an Offensive Formation was just selected, build and display the Offenseive Players.
       let $formationId = $(e.currentTarget).val();
@@ -169,6 +176,30 @@
 
 
       }
+
+    },
+    /////////////////////////////////////////  
+    // Defensive Formation has been picked //
+    /////////////////////////////////////////  
+    handlePickDefenseFormation: function (e) {
+      console.log("handlePickDefenseFormation()");
+      // Make sure that offense has beenn placed...many defensive positions are relative to offensive positions.
+      if ($("#offense .position-node.position-offense").length == 11) {
+        console.log("Yes, there are 11 offensive players on the field. Proceed to set the Defensive Positions");
+        $("#pick_offense_first").hide();
+
+        // Get rid of any existing offensive positions
+        $(".position-defense").fadeOut('slow', function () {
+          this.remove();
+        });
+      } else {
+        console.log("Nope, there aren't 11 offenseive players on the field.");
+        $("#pick_offense_first").show();
+        let $self = $(e.currentTarget);
+        $self.val('--default--');
+        console.log($self);
+      }
+
 
     }
 

@@ -39,12 +39,13 @@
       </select>
       <br />
       <label>Pick Defensive Package</label>
-      <select id="picker_defense" class="form-control">
-        <option>Pick Defensive Package</option>
+      <select id="picker_defense_formation" class="form-control">
+        <option value="--default--">Pick Defensive Formation</option>
         <option value="formation__5_3__base">5-3 Base</option>
         <option value="formation__5_3__man">5-3 Man</option>
         <option value="formation__6_2__base">6-2 Base</option>
       </select>
+      <div id="pick_offense_first" class="alert-danger" style="display:none;">Make sure an Offensive Formation is selected</div>
       <br />
       <input type="button" name="Build It" id="builderSubmit" value="Build It, yo">
     </form>
