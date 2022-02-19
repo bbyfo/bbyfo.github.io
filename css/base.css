@@ -1,156 +1,130 @@
 #field {
-    font-family: 'Courier New', Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
 }
-
-#field,
-#defense,
-#los,
-#offense {
-    display: grid;
-    grid-template-columns: repeat(33, 3vw [col-start]);
-    align-items: stretch;
-    justify-items: stretch;
-
+#field, #defense, #los, #offense {
+  display: grid;
+  grid-template-columns: repeat(24, 4vw [col-start]);
+  align-items: stretch;
+  justify-items: stretch;
 }
-
 #field {
-    grid-template-rows: auto;
+  grid-template-rows: auto;
 }
-
-#defense,
-#offense,
-#los {
-    grid-column-start: 1;
-    grid-column-end: -1;
-    grid-auto-rows: auto;
+#defense, #offense, #los {
+  grid-column-start: 1;
+  grid-column-end: -1;
+  grid-auto-rows: auto;
 }
-
 #defense {
-    /* grid-template-rows: repeat(3, 5vh [row-start]); */
-    grid-template-rows: [safety] 5vh [linebacker] 5vh [defensive_los] 5vh;
-    grid-row-start: 1;
-    grid-row-end: 4;
-    grid-auto-rows: auto;
-
+  /* grid-template-rows: repeat(3, 5vh [row-start]); */
+  grid-template-rows: [safety] 5vh [linebacker] 5vh [defensive_los] 5vh;
+  grid-row-start: 1;
+  grid-row-end: 4;
+  grid-auto-rows: auto;
 }
-
-#defense>#label_defense,
-#offense>#label_offense {
-    place-self: start;
+#defense > #label_defense, #offense > #label_offense {
+  place-self: start;
 }
-
-#defense>div {
-    place-self: center;
+#defense > div {
+  place-self: center;
 }
-
-#offense>div {
-    place-self: stretch;
+#offense > div {
+  place-self: stretch;
 }
-
+#offense, #defense {
+  background-color: darkgreen;
+}
 #los {
-    grid-row-start: 4;
-    grid-row-end: 5;
-    background-color: darkgreen;
-    color: white;
-    align-items: center;
-    grid-template-rows: [los] 4vh;
-    padding-top: 0.25em;
-    padding-bottom: 0.25em;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  background-color: white;
+  color: black;
+  align-items: center;
+  grid-template-rows: [los] 2vh;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
 }
-
 #offense {
-    /* grid-template-rows: repeat(3, 5vh [row-start]); */
-    grid-template-rows: [offensive_los] 5vh [off] 5vh [shotgun] 5vh [deep] 5vh;
-    grid-auto-rows: auto;
-    grid-row-start: 5;
-    grid-row-end: 8;
-
+  /* grid-template-rows: repeat(3, 5vh [row-start]); */
+  grid-template-rows: [offensive_los] 5vh [off] 5vh [shotgun] 5vh [deep] 5vh;
+  grid-auto-rows: auto;
+  grid-row-start: 5;
+  grid-row-end: 8;
 }
-
-#defense>div:hover {
-    background-color: cyan;
+#defense > div:hover {
+  background-color: cyan;
 }
-
-#offense>div:hover {
-    background-color: magenta;
+#offense > div:hover {
+  background-color: magenta;
 }
-
 #ball {
-    grid-column-start: 20;
-    grid-row-start: los;
+  grid-column-start: 13;
+  grid-row-start: los;
+  background: url("../images/football.svg");
+  background-repeat: no-repeat;
+  background-position: center;
 }
-
-#field>div>div {
-    /* justify-self: center;
-    align-self: center; */
-    text-align: center;
-
+#field > div > div {
+  /* justify-self: center;
+    align-self: center;
+	  text-align: center;*/
 }
-
+#field > div > div.position-node {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: lightgrey;
+  background: url("../images/helmet.svg")
+}
 .gap-text {
-    font-size: 80%;
-    line-height: 70%;
+  font-size: 80%;
+  line-height: 70%;
 }
-
 #pos-d-1 {
-    grid-column-start: 13;
-    grid-row-start: 3;
+  grid-column-start: 13;
+  grid-row-start: 3;
 }
-
 #pos-d-2 {
-    grid-column-start: 15;
-    grid-row-start: 3;
+  grid-column-start: 15;
+  grid-row-start: 3;
 }
-
 #pos-d-3 {
-    grid-column-start: 19;
-    grid-row-start: 3;
+  grid-column-start: 19;
+  grid-row-start: 3;
 }
-
 #pos-d-4 {
-    grid-column-start: 21;
-    grid-row-start: 3;
+  grid-column-start: 21;
+  grid-row-start: 3;
 }
-
 #pos-d-5 {
-    grid-column-start: 25;
-    grid-row-start: 3;
+  grid-column-start: 25;
+  grid-row-start: 3;
 }
-
 #pos-d-6 {
-    grid-column-start: 27;
-    grid-row-start: 3;
+  grid-column-start: 27;
+  grid-row-start: 3;
 }
-
-
 #pos-d-7 {
-    grid-column-start: 17;
-    grid-row-start: 2;
+  grid-column-start: 17;
+  grid-row-start: 2;
 }
-
 #pos-d-8 {
-    grid-column-start: 23;
-    grid-row-start: 2;
+  grid-column-start: 23;
+  grid-row-start: 2;
 }
-
 #pos-d-9 {
-    grid-column-start: 12;
-    grid-row-start: 2;
+  grid-column-start: 12;
+  grid-row-start: 2;
 }
-
 #pos-d-10 {
-    grid-column-start: 29;
-    grid-row-start: 2;
+  grid-column-start: 29;
+  grid-row-start: 2;
 }
-
 #pos-d-11 {
-    grid-column-start: 20;
-
-    grid-row-start: 1;
+  grid-column-start: 20;
+  grid-row-start: 1;
 }
-
 /* Blocking Identifier Styles */
-
 /**
     // @todo BLOCK_COLOR_MATCHING I think that these should be moved to the CSS file and handle the styling by assigning classes below.
     let blockingIndicatorStyles = [
@@ -169,24 +143,22 @@
 
 */
 .blocking-identifier-1 {
-    border: 2px solid black;
-    background-color: red;
-    color: black;
+  border: 2px solid black;
+  background-color: red;
+  color: black;
 }
-
 .blocking-identifier-2 {
-    border: 2px dashed black;
-    background-color: orange;
-    color: black;
+  border: 2px dashed black;
+  background-color: orange;
+  color: black;
 }
-
 .blocking-identifier-3 {
-    border: 2px dashed black;
-    background-color: yellow;
-    color: black;
+  border: 2px dashed black;
+  background-color: yellow;
+  color: black;
 }
 .blocking-identifier-4 {
-    border: 2px dashed black;
-    background-color: rgb(0, 204, 255);
-    color: black;
+  border: 2px dashed black;
+  background-color: rgb(0, 204, 255);
+  color: black;
 }

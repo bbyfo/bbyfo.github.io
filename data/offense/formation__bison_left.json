@@ -4,67 +4,67 @@
             {
                 "id": 1,
                 "positionName": "QB",
-                "positionX": 20,
+                "positionX": 13,
                 "positionY": "shotgun"
             },
             {
                 "id": 2,
                 "positionName": "RB",
-                "positionX": 18,
+                "positionX": 11,
                 "positionY": "shotgun"
             },
             {
                 "id": 3,
                 "positionName": "FB",
-                "positionX": 16,
+                "positionX": 9,
                 "positionY": "shotgun"
             },
             {
                 "id": 4,
                 "positionName": "WR",
-                "positionX": 14,
+                "positionX": 7,
                 "positionY": "shotgun"
             },
             {
                 "id": 5,
                 "positionName": "C",
-                "positionX": 20,
+                "positionX": 13,
                 "positionY": "los"
             },
             {
                 "id": 6,
                 "positionName": "RG",
-                "positionX": 22,
+                "positionX": 15,
                 "positionY": "los"
             },
             {
                 "id": 7,
                 "positionName": "RT",
-                "positionX": 24,
+                "positionX": 17,
                 "positionY": "los"
             },
             {
                 "id": 8,
                 "positionName": "RTE",
-                "positionX": 26,
+                "positionX": 19,
                 "positionY": "los"
             },
             {
                 "id": 9,
                 "positionName": "LG",
-                "positionX": 18,
+                "positionX": 11,
                 "positionY": "los"
             },
             {
                 "id": 10,
                 "positionName": "LT",
-                "positionX": 16,
+                "positionX": 9,
                 "positionY": "los"
             },
             {
                 "id": 11,
                 "positionName": "LTE",
-                "positionX": 14,
+                "positionX": 7,
                 "positionY": "los"
             }
         ]

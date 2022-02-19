@@ -67,7 +67,7 @@
             // Loop over the positions and create them on the grid
             formation.positions.forEach((position) => {
               const positionNode = document.createElement("div");
-              positionNode.innerText = position.positionName + '\n' + position.id;
+              positionNode.innerText = position.positionName + ' ' + position.id;
               positionNode.style.gridColumnStart = position.positionX;
               positionNode.style.gridRowStart = position.positionY;
               positionNode.id = position.positionName;
