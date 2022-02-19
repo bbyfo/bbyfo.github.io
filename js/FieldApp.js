@@ -23,10 +23,81 @@
       'change',
       '#picker_offense_formation',
       this.handlePickOffenseFormation.bind(this)
-
     );
 
-  };
+
+    // Write out the Field Grid Items
+
+    this.fieldSections = [
+      $('#defense'),
+      $('#los'),
+      $('#offense')
+    ];
+
+
+    this.fieldSections.forEach((fieldSection) => {
+
+
+      let thisFieldSection = fieldSection.attr("id");
+
+      console.log("thisFieldSection: ", thisFieldSection);
+      if (thisFieldSection === "defense") {
+        this.fieldRowNames = [
+          'safety',
+          'linebacker',
+          'defensive_los'
+        ];
+      } else if (thisFieldSection === "offense") {
+        this.fieldRowNames = [
+          'offensive_los',
+          'off',
+          'shotgun',
+          'deep'
+        ];
+
+      } else if (thisFieldSection === "los") {
+        this.fieldRowNames = [
+          'los'
+        ];
+      } else {
+        this.fieldRowNames = [];
+      }
+
+
+      this.fieldRowNames.forEach((fieldRowName) => {
+        //        console.log(fieldRowName);
+        this.fieldColumnCurrent = 1;
+        this.fieldColumnMax = 25;
+
+
+        while (this.fieldColumnCurrent <= this.fieldColumnMax) {
+          console.log(this.fieldColumnCurrent, fieldSection, fieldRowName);
+
+
+          let fieldGridItem = document.createElement("div");
+          fieldGridItem.style.gridColumnStart = this.fieldColumnCurrent;
+          fieldGridItem.style.gridRowStart = fieldRowName;
+          fieldGridItem.classList.add('js-empty-grid-item');
+          fieldGridItem.dataset.gridPosition = thisFieldSection + ' ' + this.fieldColumnCurrent + ' ' + fieldRowName;
+
+          if (this.fieldColumnCurrent % 2 == 0) {
+            fieldGridItem.classList.add('grid-item-gap');
+          } else {
+            fieldGridItem.classList.add('grid-item-position');
+          }
+
+          fieldSection.append(fieldGridItem);
+
+
+          this.fieldColumnCurrent++;
+        }
+      });
+
+    });
+
+
+  }; // end window.FieldApp
+
 
   $.extend(window.FieldApp.prototype, {
 
@@ -37,6 +108,7 @@
       let $ball = $(e.currentTarget);
       console.log("$ball", $ball);
       console.log("this", this);
+
     },
 
     //////////////////////////////////////////  
@@ -64,30 +136,34 @@
           .then(formation => {
 
 
-            // Loop over the positions and create them on the grid
+            // Loop over the positions and populate them on the grid
             formation.positions.forEach((position) => {
-              const positionNode = document.createElement("div");
-              positionNode.innerText = position.positionName + ' ' + position.id;
-              positionNode.style.gridColumnStart = position.positionX;
-              positionNode.style.gridRowStart = position.positionY;
-              positionNode.id = position.positionName;
-              positionNode.classList.add("offensive-position");
-              positionNode.classList.add("position-node");
-              // Add the Position Type class(es)
-              if (position.positionType) {
-                // console.log("positionType: ", position.positionType);
-                position.positionType.forEach((positionType) => {
-                  // console.log(positionType);
-                  positionNode.classList.add(positionType);
-                });
-              }
 
-              // Add the "coordinates" here.  Like the X's # and the Y's depth.
-              let coords = 'coords-' + positionNode.style.gridColumnStart + '-' + position.positionY;
-              positionNode.classList.add(coords);
-              // console.log("coords: ", coords);
+              console.log("position: ", position);
+              let gridItemSelected = $('.js-empty-grid-item').filter()
 
-              offense.appendChild(positionNode);
+              //              const positionNode = document.createElement("div");
+              //              positionNode.innerText = position.positionName + ' ' + position.id;
+              //              positionNode.style.gridColumnStart = position.positionX;
+              //              positionNode.style.gridRowStart = position.positionY;
+              //              positionNode.id = position.positionName;
+              //              positionNode.classList.add("offensive-position");
+              //              positionNode.classList.add("position-node");
+              //              // Add the Position Type class(es)
+              //              if (position.positionType) {
+              //                // console.log("positionType: ", position.positionType);
+              //                position.positionType.forEach((positionType) => {
+              //                  // console.log(positionType);
+              //                  positionNode.classList.add(positionType);
+              //                });
+              //              }
+              //
+              //              // Add the "coordinates" here.  Like the X's # and the Y's depth.
+              //              let coords = 'coords-' + positionNode.style.gridColumnStart + '-' + position.positionY;
+              //              positionNode.classList.add(coords);
+              //              // console.log("coords: ", coords);
+              //
+              //              offense.appendChild(positionNode);
             });
 
 

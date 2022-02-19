@@ -10,7 +10,7 @@
             {
                 "id": 1,
                 "positionName": "QB",
-                "positionX": 20,
+                "positionX": 21,
                 "positionY": "shotgun",
                 "positionType": [
                     "quarterback"
@@ -19,7 +19,7 @@
             {
                 "id": 2,
                 "positionName": "RB",
-                "positionX": 22,
+                "positionX": 23,
                 "positionY": "shotgun",
                 "positionType": [
                     "running-back",
@@ -29,7 +29,7 @@
             {
                 "id": 3,
                 "positionName": "FB",
-                "positionX": 24,
+                "positionX": 25,
                 "positionY": "shotgun",
                 "positionType": [
                     "running-back",

@@ -4,67 +4,67 @@
             {
                 "id": 1,
                 "positionName": "QB",
-                "positionX": 13,
+                "positionX": 14,
                 "positionY": "shotgun"
             },
             {
                 "id": 2,
                 "positionName": "RB",
-                "positionX": 5,
+                "positionX": 6,
                 "positionY": "off"
             },
             {
                 "id": 3,
                 "positionName": "FB",
-                "positionX": 3,
+                "positionX": 4,
                 "positionY": "off"
             },
             {
                 "id": 4,
                 "positionName": "WR",
-                "positionX": 1,
+                "positionX": 2,
                 "positionY": "off"
             },
             {
                 "id": 5,
                 "positionName": "C",
-                "positionX": 13,
+                "positionX": 14,
                 "positionY": "offensive_los"
             },
             {
                 "id": 6,
                 "positionName": "RG",
-                "positionX": 15,
+                "positionX": 16,
                 "positionY": "offensive_los"
             },
             {
                 "id": 7,
                 "positionName": "RT",
-                "positionX": 17,
+                "positionX": 18,
                 "positionY": "offensive_los"
             },
             {
                 "id": 8,
                 "positionName": "RTE",
-                "positionX": 19,
+                "positionX": 20,
                 "positionY": "offensive_los"
             },
             {
                 "id": 9,
                 "positionName": "LG",
-                "positionX": 11,
+                "positionX": 12,
                 "positionY": "offensive_los"
             },
             {
                 "id": 10,
                 "positionName": "LT",
-                "positionX": 9,
+                "positionX": 10,
                 "positionY": "offensive_los"
             },
             {
                 "id": 11,
                 "positionName": "LTE",
-                "positionX": 7,
+                "positionX": 8,
                 "positionY": "offensive_los"
             }
         ]
