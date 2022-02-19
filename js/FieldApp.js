@@ -26,7 +26,7 @@
     );
 
 
-    // Write out the Field Grid Items
+    // Write out the initial Field Grid Items
 
     this.fieldSections = [
       $('#defense'),
@@ -40,7 +40,7 @@
 
       let thisFieldSection = fieldSection.attr("id");
 
-      console.log("thisFieldSection: ", thisFieldSection);
+      //      console.log("thisFieldSection: ", thisFieldSection);
       if (thisFieldSection === "defense") {
         this.fieldRowNames = [
           'safety',
@@ -71,14 +71,23 @@
 
 
         while (this.fieldColumnCurrent <= this.fieldColumnMax) {
-          console.log(this.fieldColumnCurrent, fieldSection, fieldRowName);
+          //          console.log(this.fieldColumnCurrent, fieldSection, fieldRowName);
 
 
           let fieldGridItem = document.createElement("div");
           fieldGridItem.style.gridColumnStart = this.fieldColumnCurrent;
           fieldGridItem.style.gridRowStart = fieldRowName;
           fieldGridItem.classList.add('js-empty-grid-item');
-          fieldGridItem.dataset.gridPosition = thisFieldSection + ' ' + this.fieldColumnCurrent + ' ' + fieldRowName;
+
+          // Adding the grid coords to individual data-* atrtibutes
+          fieldGridItem.dataset.gridPositionSection = thisFieldSection;
+          fieldGridItem.dataset.gridPositionX = this.fieldColumnCurrent;
+          fieldGridItem.dataset.gridPositionY = fieldRowName;
+
+          // Adding the grid coords to a single data-* attribute...might be easier to select.
+          // should be like offense-14-offensive_los
+          fieldGridItem.dataset.gridCoords = thisFieldSection + '-' + this.fieldColumnCurrent + '-' + fieldRowName;
+
 
           if (this.fieldColumnCurrent % 2 == 0) {
             fieldGridItem.classList.add('grid-item-gap');
@@ -120,7 +129,10 @@
       //this.clearField.clearField($("#offense"));
 
       // Get rid of the offensive positions
-      $(".offensive-position").fadeOut('slow').remove();
+      $(".offensive-position").fadeOut('slow', function () {
+        this.remove();
+      });
+
 
       // If an Offensive Formation was just selected, build and display the Offenseive Players.
       let $formationId = $(e.currentTarget).val();
@@ -139,8 +151,11 @@
             // Loop over the positions and populate them on the grid
             formation.positions.forEach((position) => {
 
-              console.log("position: ", position);
-              let gridItemSelected = $('.js-empty-grid-item').filter()
+              // console.log("position in forEach(): ", position);
+              let gridItemSelected = $('#offense .grid-item-position');
+
+              // Positions place themselves, right?
+              let positionObj = new Position($('#offense'), position);
 
               //              const positionNode = document.createElement("div");
               //              positionNode.innerText = position.positionName + ' ' + position.id;
