@@ -26,7 +26,10 @@
     );
 
 
-    // Write out the initial Field Grid Items
+    ////////////////////////////////////////////  
+    // Write out the initial Field Grid Items //
+    ////////////////////////////////////////////
+
 
     this.fieldSections = [
       $('#defense'),
@@ -34,13 +37,12 @@
       $('#offense')
     ];
 
-
+    // Loop over the Field Sections
     this.fieldSections.forEach((fieldSection) => {
-
-
       let thisFieldSection = fieldSection.attr("id");
 
       //      console.log("thisFieldSection: ", thisFieldSection);
+      // Set the proper Field Section
       if (thisFieldSection === "defense") {
         this.fieldRowNames = [
           'safety',
@@ -63,15 +65,15 @@
         this.fieldRowNames = [];
       }
 
-
+      // Loop over the Row Names 
       this.fieldRowNames.forEach((fieldRowName) => {
         //        console.log(fieldRowName);
         this.fieldColumnCurrent = 1;
         this.fieldColumnMax = 25;
 
-
+        // this is where we finally build out the grid item placeholder divs
         while (this.fieldColumnCurrent <= this.fieldColumnMax) {
-          //          console.log(this.fieldColumnCurrent, fieldSection, fieldRowName);
+          // console.log(this.fieldColumnCurrent, fieldSection, fieldRowName);
 
 
           let fieldGridItem = document.createElement("div");
@@ -79,18 +81,20 @@
           fieldGridItem.style.gridRowStart = fieldRowName;
           fieldGridItem.classList.add('js-empty-grid-item');
 
-          // Adding the grid coords to individual data-* atrtibutes
+          // Adding the grid coords to individual data-* atrtibutes.
+          // Not sure we need this anymore, but not getting rid of it yet.
           fieldGridItem.dataset.gridPositionSection = thisFieldSection;
           fieldGridItem.dataset.gridPositionX = this.fieldColumnCurrent;
           fieldGridItem.dataset.gridPositionY = fieldRowName;
 
-          // Adding the grid coords to a single data-* attribute...might be easier to select.
-          // should be like offense-14-offensive_los
+          // Adding the grid coords to a single data-* attribute...easy to select.  See @file Position.js 
+          // Should be like offense-14-offensive_los
           fieldGridItem.dataset.gridCoords = thisFieldSection + '-' + this.fieldColumnCurrent + '-' + fieldRowName;
 
-
+          // Is the grid item a gap/hole or a position container?
           if (this.fieldColumnCurrent % 2 == 0) {
             fieldGridItem.classList.add('grid-item-gap');
+            $(fieldGridItem).html("<div>&nbsp;</div>");
           } else {
             fieldGridItem.classList.add('grid-item-position');
           }
@@ -128,8 +132,8 @@
       //this.clearField = new ClearField;
       //this.clearField.clearField($("#offense"));
 
-      // Get rid of the offensive positions
-      $(".offensive-position").fadeOut('slow', function () {
+      // Get rid of any existing offensive positions
+      $(".position-offense").fadeOut('slow', function () {
         this.remove();
       });
 
@@ -139,9 +143,7 @@
       //  console.log("$formationId", $formationId);
 
       if ($formationId != '--default--') {
-
-
-        let $offenseElm = $(".offensive-position");
+        let $offenseElm = $(".offense-position");
 
         fetch("data/offense/" + $formationId + ".json")
           .then(Response => Response.json())
@@ -157,28 +159,7 @@
               // Positions place themselves, right?
               let positionObj = new Position($('#offense'), position);
 
-              //              const positionNode = document.createElement("div");
-              //              positionNode.innerText = position.positionName + ' ' + position.id;
-              //              positionNode.style.gridColumnStart = position.positionX;
-              //              positionNode.style.gridRowStart = position.positionY;
-              //              positionNode.id = position.positionName;
-              //              positionNode.classList.add("offensive-position");
-              //              positionNode.classList.add("position-node");
-              //              // Add the Position Type class(es)
-              //              if (position.positionType) {
-              //                // console.log("positionType: ", position.positionType);
-              //                position.positionType.forEach((positionType) => {
-              //                  // console.log(positionType);
-              //                  positionNode.classList.add(positionType);
-              //                });
-              //              }
-              //
-              //              // Add the "coordinates" here.  Like the X's # and the Y's depth.
-              //              let coords = 'coords-' + positionNode.style.gridColumnStart + '-' + position.positionY;
-              //              positionNode.classList.add(coords);
-              //              // console.log("coords: ", coords);
-              //
-              //              offense.appendChild(positionNode);
+
             });
 
 

@@ -1,10 +1,12 @@
 #field {
   font-family: 'Courier New', Courier, monospace;
+  font-size: 2rem;
 }
 #field, #defense, #los, #offense {
   display: grid;
   /* @todo It'd be great if these columns were generated based on the number of columns via script. Instead of hard-coding here */
-  grid-template-columns: 4vw 1vw 4vw 1vw 4vw 1vw 4vw 1vw 4vw 1vw 4vw 1vw 4vw 1vw 4vw 1vw 4vw 1vw 4vw 1vw 4vw 1vw 4vw 1vw 4vw;
+  /*  grid-template-columns: 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw;*/
+  grid-template-columns: 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr;
   align-items: stretch;
   justify-items: stretch;
 }
@@ -87,6 +89,9 @@
   /*  width: 1vw;*/
   background-color: #333d39;
 }
+.grid-item-gap > div {
+  /*  line-height: 1;*/
+}
 .grid-item-position {
   background-color: #9f1e22;
   /*  width: 5vw;*/
@@ -97,6 +102,9 @@
 .gap-text {
   font-size: 80%;
   line-height: 70%;
+}
+.position-offense {
+  line-height: 1;
 }
 #pos-d-1 {
   grid-column-start: 13;

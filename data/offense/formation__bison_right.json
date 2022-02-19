@@ -1,114 +1,81 @@
     {
-        "formationName": "Bison Right",
-        "playSide": "R",
-        "shield": {
-            "blockingCall": "GOLD"
+      "formationName": "Bison Right",
+      "positions": [{
+          "id": 1,
+          "positionName": "QB",
+          "positionX": 13,
+          "positionY": "shotgun",
+          "positionTypes": ["quarterback"]
         },
-        "sword": {},
-        "action": {},
-        "positions": [
-            {
-                "id": 1,
-                "positionName": "QB",
-                "positionX": 21,
-                "positionY": "shotgun",
-                "positionType": [
-                    "quarterback"
-                ]
-            },
-            {
-                "id": 2,
-                "positionName": "RB",
-                "positionX": 23,
-                "positionY": "shotgun",
-                "positionType": [
-                    "running-back",
-                    "half-back"
-                ]
-            },
-            {
-                "id": 3,
-                "positionName": "FB",
-                "positionX": 25,
-                "positionY": "shotgun",
-                "positionType": [
-                    "running-back",
-                    "full-back"
-                ]
-            },
-            {
-                "id": 4,
-                "positionName": "WR",
-                "positionX": 26,
-                "positionY": "shotgun",
-                "positionType": [
-                    "wide-reciever"
-                ]
-            },
-            {
-                "id": 5,
-                "positionName": "C",
-                "positionX": 20,
-                "positionY": "offensive_los",
-                "positionType": [
-                    "lineman"
-                ]
-            },
-            {
-                "id": 6,
-                "positionName": "RG",
-                "positionX": 22,
-                "positionY": "offensive_los",
-                "positionType": [
-                    "lineman"
-                ]
-            },
-            {
-                "id": 7,
-                "positionName": "RT",
-                "positionX": 24,
-                "positionY": "offensive_los",
-                "positionType": [
-                    "lineman"
-                ]
-            },
-            {
-                "id": 8,
-                "positionName": "RTE",
-                "positionX": 26,
-                "positionY": "offensive_los",
-                "positionType": [
-                    "lineman",
-                    "tight-end"
-                ]
-            },
-            {
-                "id": 9,
-                "positionName": "LG",
-                "positionX": 18,
-                "positionY": "offensive_los",
-                "positionType": [
-                    "lineman"
-                ]
-            },
-            {
-                "id": 10,
-                "positionName": "LT",
-                "positionX": 16,
-                "positionY": "offensive_los",
-                "positionType": [
-                    "lineman"
-                ]
-            },
-            {
-                "id": 11,
-                "positionName": "LTE",
-                "positionX": 14,
-                "positionY": "offensive_los",
-                "positionType": [
-                    "lineman",
-                    "tight-end"
-                ]
-            }
-        ]
+        {
+          "id": 15,
+          "positionName": "RB",
+          "positionX": 15,
+          "positionY": "shotgun",
+          "positionTypes": ["running-back", "halfback"]
+        },
+        {
+          "id": 3,
+          "positionName": "FB",
+          "positionX": 17,
+          "positionY": "shotgun",
+          "positionTypes": ["running-back", "fullback"]
+        },
+        {
+          "id": 4,
+          "positionName": "WR",
+          "positionX": 19,
+          "positionY": "shotgun",
+          "positionTypes": ["wide-reciever"]
+        },
+        {
+          "id": 5,
+          "positionName": "C",
+          "positionX": 13,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman"]
+        },
+        {
+          "id": 6,
+          "positionName": "RG",
+          "positionX": 15,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman"]
+        },
+        {
+          "id": 7,
+          "positionName": "RT",
+          "positionX": 17,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman"]
+        },
+        {
+          "id": 8,
+          "positionName": "RTE",
+          "positionX": 19,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman", "tight-end"]
+        },
+        {
+          "id": 9,
+          "positionName": "LG",
+          "positionX": 11,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman"]
+        },
+        {
+          "id": 10,
+          "positionName": "LT",
+          "positionX": 9,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman"]
+        },
+        {
+          "id": 11,
+          "positionName": "LTE",
+          "positionX": 7,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman", "tight-end"]
+        }
+      ]
     }

@@ -1,71 +1,81 @@
     {
-        "formationName": "Bison Left Wide",
-        "positions": [
-            {
-                "id": 1,
-                "positionName": "QB",
-                "positionX": 13,
-                "positionY": "shotgun"
-            },
-            {
-                "id": 2,
-                "positionName": "RB",
-                "positionX": 5,
-                "positionY": "off"
-            },
-            {
-                "id": 3,
-                "positionName": "FB",
-                "positionX": 3,
-                "positionY": "off"
-            },
-            {
-                "id": 4,
-                "positionName": "WR",
-                "positionX": 1,
-                "positionY": "off"
-            },
-            {
-                "id": 5,
-                "positionName": "C",
-                "positionX": 13,
-                "positionY": "offensive_los"
-            },
-            {
-                "id": 6,
-                "positionName": "RG",
-                "positionX": 15,
-                "positionY": "offensive_los"
-            },
-            {
-                "id": 7,
-                "positionName": "RT",
-                "positionX": 17,
-                "positionY": "offensive_los"
-            },
-            {
-                "id": 8,
-                "positionName": "RTE",
-                "positionX": 19,
-                "positionY": "offensive_los"
-            },
-            {
-                "id": 9,
-                "positionName": "LG",
-                "positionX": 11,
-                "positionY": "offensive_los"
-            },
-            {
-                "id": 10,
-                "positionName": "LT",
-                "positionX": 9,
-                "positionY": "offensive_los"
-            },
-            {
-                "id": 11,
-                "positionName": "LTE",
-                "positionX": 7,
-                "positionY": "offensive_los"
-            }
-        ]
+      "formationName": "Bison Left Wide",
+      "positions": [{
+          "id": 1,
+          "positionName": "QB",
+          "positionX": 13,
+          "positionY": "shotgun",
+          "positionTypes": ["quarterback"]
+        },
+        {
+          "id": 2,
+          "positionName": "RB",
+          "positionX": 5,
+          "positionY": "off",
+          "positionTypes": ["running-back", "halfback"]
+        },
+        {
+          "id": 3,
+          "positionName": "FB",
+          "positionX": 3,
+          "positionY": "off",
+          "positionTypes": ["running-back", "fullback"]
+        },
+        {
+          "id": 4,
+          "positionName": "WR",
+          "positionX": 1,
+          "positionY": "off",
+          "positionTypes": ["wide-reciever"]
+        },
+        {
+          "id": 5,
+          "positionName": "C",
+          "positionX": 13,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman"]
+        },
+        {
+          "id": 6,
+          "positionName": "RG",
+          "positionX": 15,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman"]
+        },
+        {
+          "id": 7,
+          "positionName": "RT",
+          "positionX": 17,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman"]
+        },
+        {
+          "id": 8,
+          "positionName": "RTE",
+          "positionX": 19,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman", "tight-end"]
+        },
+        {
+          "id": 9,
+          "positionName": "LG",
+          "positionX": 11,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman"]
+        },
+        {
+          "id": 10,
+          "positionName": "LT",
+          "positionX": 9,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman"]
+        },
+        {
+          "id": 11,
+          "positionName": "LTE",
+          "positionX": 7,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman", "tight-end"]
+        }
+      ]
     }
