@@ -2,6 +2,10 @@
 'use strict';
 (function (window, $) {
 
+	/**
+	* I'm adding this comment to a branch.
+	*/
+	
   /**
    * This is like a "Class".
    * Use it like a __constructor() method.
