@@ -7,8 +7,8 @@
                 "positionName": "LDE",
                 "anchors": [
                     "D8",
-                    "RT",
-                    "RG"
+                    "RTE",
+                    "RT"
                 ],
                 "alignment": {
                     "direction": "outside",
@@ -62,7 +62,8 @@
                 "depth": "defensive_los",
                 "positionName": "NT",
                 "anchors": [
-                    "A2"
+                    "A2",
+					"RG"
                 ],
                 "alignment": {
                     "direction": "on",
@@ -74,11 +75,12 @@
                 "depth": "linebacker",
                 "positionName": "RLB",
                 "anchors": [
-                    "B3"
+                    "B3",
+					"LT"
                 ],
                 "alignment": {
-                    "direction": "on",
-                    "distance": 0
+                    "direction": "inside",
+                    "distance": 1
                 }
             },
             {
@@ -86,7 +88,8 @@
                 "depth": "linebacker",
                 "positionName": "LLB",
                 "anchors": [
-                    "B4"
+                    "B4",
+					"LG"
                 ],
                 "alignment": {
                     "direction": "on",
@@ -122,7 +125,7 @@
                 "depth": "defensive_los",
                 "positionName": "RC",
                 "anchors": [
-                    "RDE"
+                    "RTE"
                 ],
                 "alignment": {
                     "direction": "outside",
@@ -134,7 +137,7 @@
                 "depth": "defensive_los",
                 "positionName": "LC",
                 "anchors": [
-                    "LDE"
+                    "LTE"
                 ],
                 "alignment": {
                     "direction": "outside",

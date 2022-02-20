@@ -2,10 +2,10 @@
 'use strict';
 (function (window, $) {
 
-	/**
-	* I'm adding this comment to a branch.
-	*/
-	
+  /**
+   * I'm adding this comment to a branch.
+   */
+
   /**
    * This is like a "Class".
    * Use it like a __constructor() method.
@@ -143,6 +143,9 @@
       //this.clearField = new ClearField;
       //this.clearField.clearField($("#offense"));
 
+      console.log("do we get here?");
+
+
       // Get rid of any existing offensive positions
       $(".position-offense").fadeOut('slow', function () {
         this.remove();
@@ -164,7 +167,7 @@
             // Loop over the positions and populate them on the grid
             formation.positions.forEach((position) => {
 
-              // console.log("position in forEach(): ", position);
+              console.log("position in forEach(): ", position);
               let gridItemSelected = $('#offense .grid-item-position');
 
               // Positions place themselves, right?
@@ -192,7 +195,7 @@
         console.log("Yes, there are 11 offensive players on the field. Proceed to set the Defensive Positions");
         $("#pick_offense_first").hide();
 
-        // Get rid of any existing offensive positions
+        // Get rid of any existing defensive positions
         $(".position-defense").fadeOut('slow', function () {
           this.remove();
         });
@@ -202,6 +205,39 @@
         let $self = $(e.currentTarget);
         $self.val('--default--');
         console.log($self);
+      }
+
+
+      let $formationId = $(e.currentTarget).val();
+
+      console.log("Formation to work with: ", $formationId);
+
+      if ($formationId != '--default--') {
+
+
+        fetch("data/defense/" + $formationId + ".json")
+          .then(Response => Response.json())
+          .then(formation => {
+
+
+            // Loop over the positions and populate them on the grid
+            formation.positions.forEach((position) => {
+
+              // console.log("position in forEach(): ", position);
+              let gridItemSelected = $('#offense .grid-item-position');
+
+              // Positions place themselves, right?
+              let positionObj = new Position($('#defense'), position);
+
+
+            });
+
+
+            // We set gaps here to make sure that all the Offensive positions have been set.
+            //setGaps();
+          });
+
+
       }
 
 
