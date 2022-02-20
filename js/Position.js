@@ -70,46 +70,22 @@
         let myPositionHelper = new PositionHelper();
         let myInside = myPositionHelper.whereIsMyInside(myAnchorsX);
         let myAlignment = position.alignment.direction;
-        //        console.log("myInside: ", myInside);
-
 
         // Math the alignment and the anchor and get the positions' cordinates
-
-        //modify myGridPositionX
-        console.log("myGridPositionX (before): ", myGridPositionX);
-
-        if (myAlignment == 'outside' && myInside == 'higher') {
-          // If my alignment is OUTSIDE and my inside is HIGHER
-          console.log("++++ outside higher ++++");
-        } else if (myAlignment == 'outside' && myInside == 'lower') {
-          // if my alignment is OUTSIDE and my inside is LOWER
-          console.log("++++ outside lower ++++");
-          myGridPositionX = Number(myGridPositionX) + Number(position.alignment.distance);
+        let myModdedAlignmentX = myPositionHelper.modMyAlignment(myGridPositionX, myInside, myAlignment, position);
+        console.log("myModdedAlignment (after modding)", myModdedAlignmentX);
 
 
-        } else if (myAlignment == 'inside' && myInside == 'higher') {
-          // If my alignment is INSIDE and my inside is HIGHER
-          console.log("++++ inside higher ++++");
-        } else if (myAlignment == 'inside' && myInside == 'lower') {
-          // If my alignment is INSIDE and my inside is LOWER
-          console.log("++++ inside lower ++++");
-        } else if (myAlignment == 'on') {
-          // If my alignment is ON
-          console.log("++++ ON ++++");
-          myGridPositionX = myAnchorsX;
-        } else {
-          console.log("# WUT? NO COMBO");
-        }
-
-        console.log(positionName, myAlignment, $myAnchorElm.attr('id'));
+        console.log(positionName, position.alignment.distance, myAlignment, $myAnchorElm.attr('id'));
         //        console.log("myAlignment", myAlignment);
         console.log("myInside: ", myInside);
-        console.log("myGridPositionX (after): ", myGridPositionX);
+
         //        console.log("$myAnchorElm: ", $myAnchorElm.attr('id'));
 
-
-        gridPositionX = myGridPositionX;
-
+        // After all the mods, we finally set the "my" version of the X coord to the final, usabl X coord.
+        gridPositionX = myModdedAlignmentX;
+        console.log("gridPositionX (final, to be used): ", gridPositionX);
+        // Thankfully, the Y coord is just pulled from the position definition
         myGridPositionY = position.depth;
         gridPositionY = myGridPositionY;
 
@@ -117,7 +93,7 @@
 
     }
 
-
+    // Here we assign the coordinates
     let gridPositionSelector = gridPositionSection + '-' + gridPositionX + '-' + gridPositionY;
 
     //    console.log("Grid Positions in Position: ", gridPositionSection, gridPositionX, gridPositionY, gridPositionSelector, position.positionTypes);
@@ -135,7 +111,7 @@
       positionDiv.addClass(position.positionTypes);
     }
 
-    //    console.log("gridPositionSelector: ", gridPositionSelector);
+    console.log("gridPositionSelector: ", gridPositionSelector);
     // Here's how we select a specifc grid item!
     // @see https://www.geeksforgeeks.org/jquery-attributevalue-selector-4/
     $("[data-grid-coords|='" + gridPositionSelector + "']")
@@ -152,45 +128,80 @@
 
   $.extend(PositionHelper.prototype, {
     clearField: function (fieldElm) {
+      /**
+       * clearField(fieldElm)
+       * Clears a given portion of the field of all positions.
+       *
+       * @param Element fieldElm The protion of the field to clear (typically #offense or #defense)
+       */
       console.log("Clear Field?");
-      console.log("wut", fieldElm);
+      console.log("fieldElm: ", fieldElm);
     },
     whereIsMyInside(gridX) {
-      //      console.log("called whereIsMyInside()");
+      /**
+       * whereIsMyInside(gridX)
+       * Determines the relative direction of "inside" (aka towards the ball). 
+       * This is useful to determeine whether to add or subtract when calculating the X coord.
+       * 
+       * @param Number gridX The GridColumnStart of an html element (typically a position).
+       * @returns string higher|lower|onball
+       */
+      console.log("called whereIsMyInside() with gridX: ", gridX);
       const ballColumnStart = window.getComputedStyle(document.getElementById("ball")).gridColumnStart;
-      // console.log("myPosition: ", myPosition);
-      // console.log("The ball is at column: ", ballColumnStart);
-      if (ballColumnStart > gridX) {
-        return "higher";
-      } else if (ballColumnStart < gridX) {
-        return "lower";
+      console.log("gridX: ", gridX);
+      console.log("The ball is at column: ", ballColumnStart);
+      let direction = null;
+      if (Number(ballColumnStart) > Number(gridX)) {
+        direction = "higher";
+      } else if (Number(ballColumnStart) < Number(gridX)) {
+        direction = "lower";
       } else {
-        return "onball";
+        direction = "onball";
       }
+      console.log("X coord goes ::", direction, ":: to be inside (closer to ball)");
+      return direction;
+
+    },
+    modMyAlignment: function (myGridPositionX, myInside, myAlignment, position) {
+      /**
+       * modMyAlignment()
+       *
+       *
+       * @param Number myGridPositionX
+       * @param String myInside
+       * @param Obj myAlignment
+       *
+       * @returns Number The modified X coord
+       */
+      //      console.log("modMyAlignment() called with: ", myGridPositionX, myInside, myAlignment);
+
+      //modify myGridPositionX
+      // console.log("myGridPositionX (before): ", myGridPositionX);
+
+      if ((myAlignment == 'outside' && myInside == 'higher') || (myAlignment == 'inside' && myInside == 'lower')) {
+
+        console.log("++++ outside higher / inside lower ++++");
+        myGridPositionX = Number(myGridPositionX) - Number(position.alignment.distance);
+
+      } else if ((myAlignment == 'outside' && myInside == 'lower') || (myAlignment == 'inside' && myInside == 'higher')) {
+
+        console.log("++++ outside lower / inside higher ++++");
+        myGridPositionX = Number(myGridPositionX) + Number(position.alignment.distance);
+
+
+      } else if (myAlignment == 'on') {
+
+        console.log("++++ ON (don't mod the X coord) ++++");
+
+
+      } else {
+        console.log("# WUT? NO COMBO");
+      }
+
+      return myGridPositionX;
     }
 
 
   });
-
-  /**
-   * Determines the relative direction of "inside" (aka towards the ball).
-   * 
-   * 
-   * @param Number myPosition The GridColumnStart of an html element (typically a position).
-   * @returns string 
-   */
-  //  function whereIsInside(myPosition) {
-  //    const ballColumnStart = window.getComputedStyle(document.getElementById("ball")).gridColumnStart;
-  //    // console.log("myPosition: ", myPosition);
-  //    // console.log("The ball is at column: ", ballColumnStart);
-  //    if (ballColumnStart > myPosition) {
-  //      return "higher";
-  //    } else if (ballColumnStart < myPosition) {
-  //      return "lower";
-  //    } else {
-  //      return "onball";
-  //    }
-  //  }
-
 
 })(window, jQuery);
