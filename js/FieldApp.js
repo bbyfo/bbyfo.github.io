@@ -143,8 +143,6 @@
       //this.clearField = new ClearField;
       //this.clearField.clearField($("#offense"));
 
-      console.log("do we get here?");
-
 
       // Get rid of any existing offensive positions
       $(".position-offense").fadeOut('slow', function () {
@@ -167,7 +165,7 @@
             // Loop over the positions and populate them on the grid
             formation.positions.forEach((position) => {
 
-              console.log("position in forEach(): ", position);
+              //              console.log("position in forEach(): ", position);
               let gridItemSelected = $('#offense .grid-item-position');
 
               // Positions place themselves, right?
