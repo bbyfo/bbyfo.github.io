@@ -26,7 +26,7 @@
         gridPositionY = position.positionY;
         break;
       case 'defense':
-        console.log("----------------------");
+        //        console.log("----------------------");
         //        console.log("NOW we get the " + position.positionName + " Postion's position.");
 
         let myGridPositionX = "*dummy*";
@@ -73,18 +73,16 @@
 
         // Math the alignment and the anchor and get the positions' cordinates
         let myModdedAlignmentX = myPositionHelper.modMyAlignment(myGridPositionX, myInside, myAlignment, position);
-        console.log("myModdedAlignment (after modding)", myModdedAlignmentX);
-
-
-        console.log(positionName, position.alignment.distance, myAlignment, $myAnchorElm.attr('id'));
+        //        console.log("myModdedAlignment (after modding)", myModdedAlignmentX);
+        //        console.log(positionName, position.alignment.distance, myAlignment, $myAnchorElm.attr('id'));
         //        console.log("myAlignment", myAlignment);
-        console.log("myInside: ", myInside);
+        //        console.log("myInside: ", myInside);
 
         //        console.log("$myAnchorElm: ", $myAnchorElm.attr('id'));
 
         // After all the mods, we finally set the "my" version of the X coord to the final, usabl X coord.
         gridPositionX = myModdedAlignmentX;
-        console.log("gridPositionX (final, to be used): ", gridPositionX);
+        //        console.log("gridPositionX (final, to be used): ", gridPositionX);
         // Thankfully, the Y coord is just pulled from the position definition
         myGridPositionY = position.depth;
         gridPositionY = myGridPositionY;
@@ -111,7 +109,7 @@
       positionDiv.addClass(position.positionTypes);
     }
 
-    console.log("gridPositionSelector: ", gridPositionSelector);
+    //    console.log("gridPositionSelector: ", gridPositionSelector);
     // Here's how we select a specifc grid item!
     // @see https://www.geeksforgeeks.org/jquery-attributevalue-selector-4/
     $("[data-grid-coords|='" + gridPositionSelector + "']")
@@ -146,10 +144,10 @@
        * @param Number gridX The GridColumnStart of an html element (typically a position).
        * @returns string higher|lower|onball
        */
-      console.log("called whereIsMyInside() with gridX: ", gridX);
+      //      console.log("called whereIsMyInside() with gridX: ", gridX);
       const ballColumnStart = window.getComputedStyle(document.getElementById("ball")).gridColumnStart;
-      console.log("gridX: ", gridX);
-      console.log("The ball is at column: ", ballColumnStart);
+      //      console.log("gridX: ", gridX);
+      //      console.log("The ball is at column: ", ballColumnStart);
       let direction = null;
       if (Number(ballColumnStart) > Number(gridX)) {
         direction = "higher";
@@ -158,7 +156,7 @@
       } else {
         direction = "onball";
       }
-      console.log("X coord goes ::", direction, ":: to be inside (closer to ball)");
+      //      console.log("X coord goes ::", direction, ":: to be inside (closer to ball)");
       return direction;
 
     },
@@ -180,18 +178,18 @@
 
       if ((myAlignment == 'outside' && myInside == 'higher') || (myAlignment == 'inside' && myInside == 'lower')) {
 
-        console.log("++++ outside higher / inside lower ++++");
+        //        console.log("++++ outside higher / inside lower ++++");
         myGridPositionX = Number(myGridPositionX) - Number(position.alignment.distance);
 
       } else if ((myAlignment == 'outside' && myInside == 'lower') || (myAlignment == 'inside' && myInside == 'higher')) {
 
-        console.log("++++ outside lower / inside higher ++++");
+        //        console.log("++++ outside lower / inside higher ++++");
         myGridPositionX = Number(myGridPositionX) + Number(position.alignment.distance);
 
 
       } else if (myAlignment == 'on') {
 
-        console.log("++++ ON (don't mod the X coord) ++++");
+        //        console.log("++++ ON (don't mod the X coord) ++++");
 
 
       } else {

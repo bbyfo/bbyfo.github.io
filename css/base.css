@@ -106,6 +106,12 @@
 .position-offense {
   line-height: 1;
 }
+/**
+* The Builder Form
+*/
+form label {
+  display: none;
+}
 #pos-d-1 {
   grid-column-start: 13;
   grid-row-start: 3;

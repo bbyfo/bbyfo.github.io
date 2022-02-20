@@ -18,36 +18,43 @@
   </div>
   <div id="builder">
     <form>
-      <label for="picker_offense_formation">Pick Offensive Formation</label>
-      <select id="picker_offense_formation" class="form-control">
-        <option value="--default--">Pick Formation</option>
-        <option value="formation__bison_right">Bison Right</option>
-        <option value="formation__bison_left">Bison Left</option>
-        <option value="formation__bison_left_wide">Bison Left Wide</option>
-        <option value="formation__spread__base">Spread Base</option>
-      </select>
-      <br />
-      <label>Play Call?</label>
-      <br />
-      <label>Blocking Call?</label>
-      <select id="picker_blocking_call" class="form-control">
-        <option>Pick Blocking Call</option>
-        <option value="blocking_call__gold_right">G.O.L.D. Right</option>
-        <option value="gold_left">G.O.L.D. Left</option>
-        <option value="gost">G.O.S.T.</option>
-        <option value="middle">Middle</option>
-      </select>
-      <br />
-      <label>Pick Defensive Package</label>
-      <select id="picker_defense_formation" class="form-control">
-        <option value="--default--">Pick Defensive Formation</option>
-        <option value="formation__5_3__base">5-3 Base</option>
-        <option value="formation__5_3__man">5-3 Man</option>
-        <option value="formation__6_2__base">6-2 Base</option>
-      </select>
-      <div id="pick_offense_first" class="alert-danger" style="display:none;">Make sure an Offensive Formation is selected</div>
-      <br />
-      <input type="button" name="Build It" id="builderSubmit" value="Build It, yo">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <label for="picker_offense_formation">Pick Offensive Formation</label>
+            <select id="picker_offense_formation" class="form-control">
+              <option value="--default--">Pick Formation</option>
+              <option value="formation__bison_right">Bison Right</option>
+              <option value="formation__bison_left">Bison Left</option>
+              <option value="formation__bison_left_wide">Bison Left Wide</option>
+              <option value="formation__spread__base">Spread Base</option>
+            </select>
+
+            <label>Play Call?</label>
+
+            <label>Blocking Call?</label>
+            <select id="picker_blocking_call" class="form-control">
+              <option>Pick Blocking Call</option>
+              <option value="blocking_call__gold_right">G.O.L.D. Right</option>
+              <option value="gold_left">G.O.L.D. Left</option>
+              <option value="gost">G.O.S.T.</option>
+              <option value="middle">Middle</option>
+            </select>
+          </div>
+          <div class="col-sm">
+            <label>Pick Defensive Package</label>
+            <select id="picker_defense_formation" class="form-control">
+              <option value="--default--">Pick Defensive Formation</option>
+              <option value="formation__5_3__base">5-3 Base</option>
+              <option value="formation__5_3__man">5-3 Man</option>
+              <option value="formation__6_2__base">6-2 Base</option>
+            </select>
+            <div id="pick_offense_first" class="alert-danger" style="display:none;">Make sure an Offensive Formation is selected</div>
+            <br />
+            <input type="button" name="Build It" id="builderSubmit" value="Build It, yo">
+          </div>
+        </div>
+      </div>
     </form>
   </div>
 </div>

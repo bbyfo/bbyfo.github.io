@@ -90,7 +90,7 @@
           let fieldGridItem = document.createElement("div");
           fieldGridItem.style.gridColumnStart = this.fieldColumnCurrent;
           fieldGridItem.style.gridRowStart = fieldRowName;
-          fieldGridItem.classList.add('js-empty-grid-item');
+          //          fieldGridItem.classList.add('js-empty-grid-item');
 
           // Adding the grid coords to individual data-* atrtibutes.
           // Not sure we need this anymore, but not getting rid of it yet.
@@ -140,21 +140,22 @@
     //////////////////////////////////////////  
     handlePickOffenseFormation: function (e) {
 
-      //this.clearField = new ClearField;
-      //this.clearField.clearField($("#offense"));
+      let myFieldHelper = new FieldHelper();
+      myFieldHelper.clearFieldSection($("#offense"));
 
 
       // Get rid of any existing offensive positions
-      $(".position-offense").fadeOut('slow', function () {
-        this.remove();
-      });
+
       $("#pick_offense_first").hide();
 
       // If an Offensive Formation was just selected, build and display the Offenseive Players.
       let $formationId = $(e.currentTarget).val();
       //  console.log("$formationId", $formationId);
 
-      if ($formationId != '--default--') {
+      if ($formationId == '--default--') {
+        console.log("clear stuff, yo");
+
+      } else {
         let $offenseElm = $(".offense-position");
 
         fetch("data/offense/" + $formationId + ".json")
@@ -178,8 +179,6 @@
             // We set gaps here to make sure that all the Offensive positions have been set.
             //setGaps();
           });
-
-
       }
 
     },
@@ -210,9 +209,12 @@
 
       console.log("Formation to work with: ", $formationId);
 
-      if ($formationId != '--default--') {
+      if ($formationId == '--default--') {
+        console.log("Clear stuff, yo!");
+        let myPositionHelper = new FieldHelper;
+        myPositionHelper.clearFieldSection($("#defense"));
 
-
+      } else {
         fetch("data/defense/" + $formationId + ".json")
           .then(Response => Response.json())
           .then(formation => {
@@ -234,8 +236,6 @@
             // We set gaps here to make sure that all the Offensive positions have been set.
             //setGaps();
           });
-
-
       }
 
 
@@ -248,14 +248,20 @@
    * Clear the field of stuff (and things, Lori)
    *
    */
-  var ClearField = function ($wrapper) {
+  var FieldHelper = function ($wrapper) {
+    console.log("called FieldHelper with: ", $wrapper);
     this.$wrapper = $wrapper;
   }
 
-  $.extend(ClearField.prototype, {
-    clearField: function (fieldElm) {
-      console.log("Clear Field?");
-      console.log("wut", fieldElm);
+  $.extend(FieldHelper.prototype, {
+    clearFieldSection: function (fieldElm) {
+      //      console.log("Clear Field?");
+      console.log("clearFieldSectdion: ", fieldElm);
+      let positions = fieldElm.find(".position-node");
+      //      console.log("positions to remove: ", positions);
+      positions.fadeOut('slow', function () {
+        this.remove();
+      });
     }
   });
 
