@@ -1,11 +1,10 @@
 #field {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 2rem;
+  font-size: clamp(1rem, 1.5rem, 2rem);
 }
 #field, #defense, #los, #offense {
   display: grid;
   /* @todo It'd be great if these columns were generated based on the number of columns via script. Instead of hard-coding here */
-  /*  grid-template-columns: 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw 1vw 5vw;*/
   grid-template-columns: 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr;
   align-items: stretch;
   justify-items: stretch;
@@ -19,8 +18,7 @@
   grid-auto-rows: auto;
 }
 #defense {
-  /* grid-template-rows: repeat(3, 5vh [row-start]); */
-  grid-template-rows: [safety] 5vh [linebacker] 5vh [defensive_los] 5vh;
+  grid-template-rows: [safety] minmax(1vh, 10vh) [linebacker] minmax(1vh, 10vh) [defensive_los] minmax(1vh, 10vh);
   grid-row-start: 1;
   grid-row-end: 4;
   grid-auto-rows: auto;
@@ -31,28 +29,38 @@
 #defense > div {
   place-self: center;
 }
-#offense > div {
+#offense > div, #los > div, #defense > div {
   place-self: stretch;
   display: flex;
-  align-content: flex-start;
   justify-content: center;
 }
-#offense, #defense {
-  background-color: darkgreen;
+#defense > div {
+  align-content: flex-end;
+  border-top: 2px dashed white;
 }
+#los > div {
+  align-content: space-around;
+  font-size: 1rem;
+}
+#offense > div {
+  align-content: flex-start;
+  border-bottom: 2px dashed white;
+}
+#offense, #defense {}
 #los {
   grid-row-start: 4;
   grid-row-end: 5;
   background-color: white;
   color: black;
   align-items: center;
-  grid-template-rows: [los] 3vh;
+  grid-template-rows: [los] auto;
+  /*
   padding-top: 0.25em;
   padding-bottom: 0.25em;
+*/
 }
 #offense {
-  /* grid-template-rows: repeat(3, 5vh [row-start]); */
-  grid-template-rows: [offensive_los] 5vh [off] 5vh [shotgun] 5vh [deep] 5vh;
+  grid-template-rows: [offensive_los] minmax(1vh, 10vh) [off] minmax(1vh, 10vh) [shotgun] minmax(1vh, 10vh) [deep] minmax(1vh, 10vh);
   grid-auto-rows: auto;
   grid-row-start: 5;
   grid-row-end: 8;
@@ -86,18 +94,25 @@
   background-position: center;
 }
 .grid-item-gap {
-  /*  width: 1vw;*/
+  text-align: center;
   background-color: #333d39;
 }
 .grid-item-gap > div {
-  /*  line-height: 1;*/
+  line-height: 1;
 }
-.grid-item-position {
+#offense .grid-item-position {
   background-color: #9f1e22;
-  /*  width: 5vw;*/
+}
+#defense .grid-item-position {
+  background-color: darkblue;
+}
+#defense .grid-item-position, #defense .grid-item-gap {
+  align-items: flex-end;
 }
 .grid-item-gap, .grid-item-position {
   color: #f1f1f0;
+  word-break: break-all;
+  line-height: 1;
 }
 .gap-text {
   font-size: 80%;
