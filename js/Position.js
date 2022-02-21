@@ -17,6 +17,10 @@
     // Get the coordinates
     let gridPositionSection = $fieldSection.attr('id');
 
+    // Handle Positions in gaps (spoier, they gotta be wider)
+    let addGapExtendedEnding = false;
+
+    let addExtendedEnding = Number(0);
 
     let gridPositionX = "";
     let gridPositionY = "";
@@ -80,6 +84,14 @@
 
         //        console.log("$myAnchorElm: ", $myAnchorElm.attr('id'));
 
+        // Even numbers are gaps. 
+
+        if (myModdedAlignmentX % 2 === 0) {
+          //          console.log("even, I'm in a gap. lower my X by 1");
+          addExtendedEnding = Number(myModdedAlignmentX);
+          myModdedAlignmentX = Number(myModdedAlignmentX) - Number(1);
+        }
+
         // After all the mods, we finally set the "my" version of the X coord to the final, usabl X coord.
         gridPositionX = myModdedAlignmentX;
         //        console.log("gridPositionX (final, to be used): ", gridPositionX);
@@ -98,6 +110,8 @@
 
     // Create the position element
     var positionDiv = $("<div></div>").text(positionName);
+
+
     positionDiv.addClass('position-node');
     positionDiv.attr('id', position.positionName)
     // Add the position section (offense or defense)
@@ -109,12 +123,36 @@
       positionDiv.addClass(position.positionTypes);
     }
 
+
     //    console.log("gridPositionSelector: ", gridPositionSelector);
     // Here's how we select a specifc grid item!
     // @see https://www.geeksforgeeks.org/jquery-attributevalue-selector-4/
     $("[data-grid-coords|='" + gridPositionSelector + "']")
       .html(positionDiv);
 
+
+    var positionDivImg = $("<img/>").attr({
+      src: 'images/helmet.svg'
+    }).addClass("helmet-image");
+    $("[data-grid-coords|='" + gridPositionSelector + "']").append(positionDivImg);
+
+
+    // Handle the extra width of positions in gaps
+
+    //    console.log("positionDiv: ", positionDiv);
+    //    console.log("parent: ", positionDiv.parent(".grid-item-gap"));
+    //    console.log("addExtendedEnding: ", addExtendedEnding);
+    if (Number(addExtendedEnding) > 0) {
+      console.log("Add Extended Ending bobo");
+      let myExtendedEnding = Number(gridPositionX) + Number(3);
+      console.log("myExtendedEnding: ", myExtendedEnding);
+      let myParent = positionDiv.parent(".grid-item-position");
+      console.log("myParent: ", myParent);
+      myParent.css({
+        gridColumnEnd: myExtendedEnding,
+        zIndex: 15,
+      }).addClass('half-image');
+    }
 
   }
 

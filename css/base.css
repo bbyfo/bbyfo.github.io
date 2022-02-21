@@ -104,6 +104,9 @@
   /*  font-size: clamp(1vw, 1.5vw, 2vw);*/
   z-index: 10;
 }
+.grid-item-gap .helmet-image {
+  max-width: 48%;
+}
 .grid-item-gap > div {
   line-height: 1;
 }
@@ -111,23 +114,42 @@
 #offense .grid-item-position {
   background-color: #9f1e22;
 }
+#offense .helmet-image {
+  display: none;
+  z-index: 0;
+}
 #defense .grid-item-position {
   background-color: darkblue;
+  position: relative;
+}
+#defense .helmet-image {
+  position: absolute;
+}
+#defense .half-image .helmet-image {
+  max-width: 46%;
+}
+#defense .grid-item-position .helmet-image {
+  position: absolute;
 }
 #defense .grid-item-position, #defense .grid-item-gap {
   align-items: flex-end;
+  position: relative;
 }
 /*
 * Position Background Images (or not)
 */
 #defense .position-node {
+  /*
   background: url("../images/helmet.svg");
   background-repeat: no-repeat;
   background-position: center;
+*/
+  z-index: 10;
   color: rgba(255, 255, 255, 1); /* hahaha, hope this works! */
 }
 #defense.hide-position-text .position-node {
-   color: rgba(0, 0, 0, 0); /* hahaha, hope this works! */
+  color: rgba(0, 0, 0, 0); /* hahaha, hope this works! */
+  background-color: rgba(0, 0, 0, 0);
 }
 .grid-item-gap, .grid-item-position {
   color: #f1f1f0;

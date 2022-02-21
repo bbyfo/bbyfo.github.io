@@ -252,7 +252,12 @@
     },
 
     handleHideTextCheckbox: function (e) {
-      console.log("checkbox", $(e.currentTarget).attr("checked"));
+      console.log("checkbox", e.currentTarget.checked);
+      if (e.currentTarget.checked === true) {
+        $("#defense").addClass('hide-position-text');
+      } else {
+        $("#defense").removeClass('hide-position-text');
+      }
 
     }
 
@@ -268,6 +273,7 @@
   }
 
   $.extend(FieldHelper.prototype, {
+	  
     clearFieldSection: function (fieldElm) {
       //      console.log("Clear Field?");
       console.log("clearFieldSectdion: ", fieldElm);
@@ -342,8 +348,8 @@
         let targetCellSelector = '.js-los-' + targetX;
         $(targetCellSelector).append(gapContent);
 
-        console.log("gapContent", gapContent);
-        console.log("targetCellSelector: ", targetCellSelector);
+//        console.log("gapContent", gapContent);
+//        console.log("targetCellSelector: ", targetCellSelector);
       }
 
     }
