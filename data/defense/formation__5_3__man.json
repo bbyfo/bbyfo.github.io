@@ -12,7 +12,8 @@
           "alignment": {
             "direction": "outside",
             "distance": 1
-          }
+          },
+          "positionTypes": ["defensive-line", "defensive-end"]
         },
         {
           "id": 2,
@@ -27,7 +28,8 @@
           "alignment": {
             "direction": "on",
             "distance": 0
-          }
+          },
+          "positionTypes": ["defensive-line", "defensive-tackle"]
         },
         {
           "id": 3,
@@ -42,7 +44,8 @@
           "alignment": {
             "direction": "on",
             "distance": 1
-          }
+          },
+          "positionTypes": ["defensive-line", "defensive-tackle"]
         },
         {
           "id": 4,
@@ -57,7 +60,8 @@
           "alignment": {
             "direction": "outside",
             "distance": 1
-          }
+          },
+          "positionTypes": ["defensive-line", "defensive-end"]
         },
         {
           "id": 5,
@@ -69,7 +73,8 @@
           "alignment": {
             "direction": "on",
             "distance": 0
-          }
+          },
+          "positionTypes": ["defensive-line", "nose-tackle"]
         },
         {
           "id": 6,
@@ -82,7 +87,8 @@
           "alignment": {
             "direction": "on",
             "distance": 0
-          }
+          },
+          "positionTypes": ["linebacker"]
         },
         {
           "id": 7,
@@ -95,7 +101,8 @@
           "alignment": {
             "direction": "on",
             "distance": 0
-          }
+          },
+          "positionTypes": ["linebacker"]
         },
         {
           "id": 8,
@@ -107,7 +114,8 @@
           "alignment": {
             "direction": "on",
             "distance": 0
-          }
+          },
+          "positionTypes": ["linebacker"]
         },
         {
           "id": 9,
@@ -119,20 +127,21 @@
           "alignment": {
             "direction": "on",
             "distance": 0
-          }
+          },
+          "positionTypes": ["safety"]
         },
         {
           "id": 10,
           "depth": "defensive_los",
           "positionName": "RC",
           "anchors": [
-            "WR",
             "D7"
           ],
           "alignment": {
-            "direction": "on",
+            "direction": "outside",
             "distance": 3
-          }
+          },
+          "positionTypes": ["cornerback"]
         },
         {
           "id": 11,
@@ -144,7 +153,8 @@
           "alignment": {
             "direction": "outside",
             "distance": 3
-          }
+          },
+          "positionTypes": ["cornerback"]
         }
       ]
     }

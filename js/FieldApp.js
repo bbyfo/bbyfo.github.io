@@ -12,6 +12,7 @@
    * Add Event Handlers.
    */
   window.FieldApp = function ($wrapper) {
+    console.log("$wrapper", $wrapper);
     this.$wrapper = $wrapper;
 
 
@@ -116,6 +117,9 @@
           } else {
             fieldGridItem.classList.add('grid-item-position');
           }
+
+          // Always add 'grid-item' class
+          fieldGridItem.classList.add('grid-item');
 
           fieldSection.append(fieldGridItem);
 
@@ -257,7 +261,7 @@
     },
 
     handleHideTextCheckbox: function (e) {
-//      console.log("checkbox", e.currentTarget.checked);
+      //      console.log("checkbox", e.currentTarget.checked);
       if (e.currentTarget.checked === true) {
         $("#defense").addClass('hide-position-text');
       } else {
@@ -285,13 +289,40 @@
        *
        * @param fieldElm jQuery element of either #offense or #defense
        */
-//      console.log("clearFieldSection() called");
-//      console.log("fieldElm: ", fieldElm);
+      console.log("clearFieldSection() called");
+      // console.log("fieldElm: ", fieldElm);
       let positions = fieldElm.find(".helmet-image, .position-node");
-//      console.log("positions to remove: ", positions);
+      // console.log("positions to remove: ", positions);
       positions.fadeOut('slow', function () {
         this.remove();
       });
+
+      // Reset the Defensive grid items. When a Defensive position is placed into a gap, the parent's grid start and end are messed with.
+      // We want to reset that to original
+      let $hackedXCoords = $(".coord-x-hacked");
+      //      console.log("$hackedXCoords: ", $hackedXCoords);
+      $hackedXCoords.each(function () {
+        //        console.log($(this));
+        let $self = $(this);
+        let currentX = $self.data('grid-position-x');
+        let originalX = $self.data('grid-position-x-initial');
+
+        console.log("currentX: ", currentX);
+        console.log("originalX: ", originalX);
+        if (Number(currentX) != Number(originalX)) {
+          console.log("Reset to original");
+          let newGridColumnEnd = Number(originalX) + Number(2);
+          console.log("newGridColumnEnd: ", newGridColumnEnd);
+          $self.css({
+            gridColumn: "",
+            gridColumnStart: originalX,
+            gridColumnEnd: newGridColumnEnd,
+            backgroundColor: "pink"
+          });
+        }
+
+      });
+
     },
     assignGaps: function () {
       /**

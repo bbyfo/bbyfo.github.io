@@ -22,6 +22,7 @@
   grid-row-start: 1;
   grid-row-end: 4;
   grid-auto-rows: auto;
+  background-color: darkblue;
 }
 #defense > #label_defense, #offense > #label_offense {
   place-self: start;
@@ -119,7 +120,6 @@
   z-index: 0;
 }
 #defense .grid-item-position {
-  background-color: darkblue;
   position: relative;
 }
 #defense .helmet-image {
@@ -130,6 +130,7 @@
 }
 #defense .grid-item-position .helmet-image {
   position: absolute;
+  max-height: 100%;
 }
 #defense .grid-item-position, #defense .grid-item-gap {
   align-items: flex-end;

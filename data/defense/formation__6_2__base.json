@@ -1,145 +1,162 @@
     {
-        "formationName": "5-3 Base",
-        "positions": [
-            {
-                "id": 1,
-                "depth": "los",
-                "positionName": "LDE",
-                "anchors": [
-                    "D8",
-                    "RT",
-                    "RG"
-                ],
-                "alignment": {
-                    "direction": "outside",
-                    "distance": 1
-                }
-            },
-            {
-                "id": 2,
-                "depth": "los",
-                "positionName": "RWT",
-                "anchors": [
-                    "C5",
-                    "LT",
-                    "LG"
-                ],
-                "alignment": {
-                    "direction": "on",
-                    "distance": 1
-                }
-            },
-            {
-                "id": 3,
-                "depth": "los",
-                "positionName": "LWT",
-                "anchors": [
-                    "C6",
-                    "RT",
-                    "RG"
-                ],
-                "alignment": {
-                    "direction": "on",
-                    "distance": 0
-                }
-            },
-            {
-                "id": 4,
-                "depth": "los",
-                "positionName": "RDE",
-                "anchors": [
-                    "D7",
-                    "LT",
-                    "LG"
-                ],
-                "alignment": {
-                    "direction": "outside",
-                    "distance": 1
-                }
-            },
-            {
-                "id": 5,
-                "depth": "los",
-                "positionName": "LDT",
-                "anchors": [
-                    "A2"
-                ],
-                "alignment": {
-                    "direction": "on",
-                    "distance": 0
-                }
-            },
-            {
-                "id": 6,
-                "depth": "mid",
-                "positionName": "RLB",
-                "anchors": [
-                    "B3"
-                ],
-                "alignment": {
-                    "direction": "on",
-                    "distance": 0
-                }
-            },
-            {
-                "id": 7,
-                "depth": "mid",
-                "positionName": "LLB",
-                "anchors": [
-                    "B4"
-                ],
-                "alignment": {
-                    "direction": "on",
-                    "distance": 0
-                }
-            },
-            {
-                "id": 8,
-                "depth": "los",
-                "positionName": "RDT",
-                "anchors": [
-                    "A1"
-                ],
-                "alignment": {
-                    "direction": "on",
-                    "distance": 0
-                }
-            },
-            {
-                "id": 9,
-                "depth": "deep",
-                "positionName": "S",
-                "anchors": [
-                    "C"
-                ],
-                "alignment": {
-                    "direction": "on",
-                    "distance": 0
-                }
-            },
-            {
-                "id": 10,
-                "depth": "los",
-                "positionName": "RC",
-                "anchors": [
-                    "RDE"
-                ],
-                "alignment": {
-                    "direction": "outside",
-                    "distance": 2
-                }
-            },
-            {
-                "id": 11,
-                "depth": "los",
-                "positionName": "LC",
-                "anchors": [
-                    "LDE"
-                ],
-                "alignment": {
-                    "direction": "outside",
-                    "distance": 2
-                }
-            }
-        ]
+      "formationName": "6-2 Base",
+      "positions": [{
+          "id": 1,
+          "depth": "defensive_los",
+          "positionName": "LDE",
+          "anchors": [
+            "D8",
+            "RTE",
+            "RT"
+          ],
+          "alignment": {
+            "direction": "outside",
+            "distance": 1
+          },
+          "positionTypes": ["defensive-line", "defensive-end"]
+        },
+        {
+          "id": 2,
+          "depth": "defensive_los",
+          "positionName": "LWT",
+          "anchors": [
+            "C6",
+            "RT",
+            "RG",
+            "C"
+          ],
+          "alignment": {
+            "direction": "on",
+            "distance": 0
+          },
+          "positionTypes": ["defensive-line", "defensive-tackle"]
+        },
+        {
+          "id": 3,
+          "depth": "defensive_los",
+          "positionName": "RWT",
+          "anchors": [
+            "C5",
+            "LT",
+            "LG",
+            "C"
+          ],
+          "alignment": {
+            "direction": "on",
+            "distance": 1
+          },
+          "positionTypes": ["defensive-line", "defensive-tackle"]
+        },
+        {
+          "id": 4,
+          "depth": "defensive_los",
+          "positionName": "RDE",
+          "anchors": [
+            "D7",
+            "LTE",
+            "LT",
+            "LG"
+          ],
+          "alignment": {
+            "direction": "outside",
+            "distance": 1
+          },
+          "positionTypes": ["defensive-line", "defensive-end"]
+        },
+        {
+          "id": 6,
+          "depth": "linebacker",
+          "positionName": "RLB",
+          "anchors": [
+            "B3",
+            "LG"
+          ],
+          "alignment": {
+            "direction": "on",
+            "distance": 0
+          },
+          "positionTypes": ["linebacker"]
+        },
+        {
+          "id": 7,
+          "depth": "linebacker",
+          "positionName": "LLB",
+          "anchors": [
+            "B4",
+            "RT"
+          ],
+          "alignment": {
+            "direction": "on",
+            "distance": 0
+          },
+          "positionTypes": ["linebacker"]
+        },
+        {
+          "id": 8,
+          "depth": "defensive_los",
+          "positionName": "LNT",
+          "anchors": [
+            "A1",
+            "C"
+          ],
+          "alignment": {
+            "direction": "on",
+            "distance": 0
+          },
+          "positionTypes": ["linebacker"]
+        },
+        {
+          "id": 5,
+          "depth": "defensive_los",
+          "positionName": "RNT",
+          "anchors": [
+            "A2",
+            "C"
+          ],
+          "alignment": {
+            "direction": "on",
+            "distance": 0
+          },
+          "positionTypes": ["defensive-line", "nose-tackle"]
+        },
+        {
+          "id": 9,
+          "depth": "safety",
+          "positionName": "SAF",
+          "anchors": [
+            "C"
+          ],
+          "alignment": {
+            "direction": "on",
+            "distance": 0
+          },
+          "positionTypes": ["safety"]
+        },
+        {
+          "id": 10,
+          "depth": "linebacker",
+          "positionName": "RC",
+          "anchors": [
+            "D7"
+          ],
+          "alignment": {
+            "direction": "outside",
+            "distance": 3
+          },
+          "positionTypes": ["cornerback"]
+        },
+        {
+          "id": 11,
+          "depth": "linebacker",
+          "positionName": "LC",
+          "anchors": [
+            "D8"
+          ],
+          "alignment": {
+            "direction": "outside",
+            "distance": 3
+          },
+          "positionTypes": ["cornerback"]
+        }
+      ]
     }

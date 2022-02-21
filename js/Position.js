@@ -19,7 +19,7 @@
 
     // Handle Positions in gaps (spoier, they gotta be wider)
     let addGapExtendedEnding = false;
-
+    let myModdedAlignmentXInitial = Number(0);
     let addExtendedEnding = Number(0);
 
     let gridPositionX = "";
@@ -40,6 +40,7 @@
         let myAnchors = position.anchors;
         //        console.log("myAnchors: ", myAnchors);
 
+        // Get the Anchor for this Defensive Position
         let myAnchorElm = null;
         let myAnchorELmFound = false;
         myAnchors.forEach((myAnchor) => {
@@ -57,12 +58,13 @@
 
 
         //        console.log("myAnchorElm after the forEach: ", myAnchorElm);
+        // Get the Parent of the Anchor (the parent contains the coordinate data)
         let $myAnchorElm = $(myAnchorElm);
         //        console.log("$myAnchorElm: ", $myAnchorElm);
         let $myAnchorElmParent = $myAnchorElm.parent();
         //        console.log("$myAnchorElmParent: ", $myAnchorElmParent);
 
-
+        // Finally, get the X coord of the parent.
         let myAnchorsX = $myAnchorElmParent.css('grid-column-start');
         //        console.log("myAnchorsX: ", myAnchorsX);
 
@@ -84,15 +86,20 @@
 
         //        console.log("$myAnchorElm: ", $myAnchorElm.attr('id'));
 
-        // Even numbers are gaps. 
 
+        // Take note of the original X coord
+        myModdedAlignmentXInitial = myModdedAlignmentX;
+
+        // Even numbers are gaps. Handle the putting of postion nodes in Gaps.
+        // We set the custom grid-column-end later
         if (myModdedAlignmentX % 2 === 0) {
           //          console.log("even, I'm in a gap. lower my X by 1");
           addExtendedEnding = Number(myModdedAlignmentX);
           myModdedAlignmentX = Number(myModdedAlignmentX) - Number(1);
         }
 
-        // After all the mods, we finally set the "my" version of the X coord to the final, usabl X coord.
+
+        // After all the mods, we finally set the "my" version of the X coord to the final, usable X coord.
         gridPositionX = myModdedAlignmentX;
         //        console.log("gridPositionX (final, to be used): ", gridPositionX);
         // Thankfully, the Y coord is just pulled from the position definition
@@ -116,6 +123,7 @@
     positionDiv.attr('id', position.positionName)
     // Add the position section (offense or defense)
     positionDiv.addClass(['position-' + gridPositionSection]);
+
 
     // Add the position type(s) class(es).
     //    console.log(position.positionTypes);
@@ -143,16 +151,26 @@
     //    console.log("parent: ", positionDiv.parent(".grid-item-gap"));
     //    console.log("addExtendedEnding: ", addExtendedEnding);
     if (Number(addExtendedEnding) > 0) {
-//      console.log("Add Extended Ending bobo");
+      //      console.log("Add Extended Ending bobo");
       let myExtendedEnding = Number(gridPositionX) + Number(3);
-//      console.log("myExtendedEnding: ", myExtendedEnding);
+      //      console.log("myExtendedEnding: ", myExtendedEnding);
       let myParent = positionDiv.parent(".grid-item-position");
-//      console.log("myParent: ", myParent);
+      //      console.log("myParent: ", myParent);
       myParent.css({
-        gridColumnEnd: myExtendedEnding,
-        zIndex: 15,
-      }).addClass('half-image');
+          gridColumnEnd: myExtendedEnding,
+          zIndex: 15,
+        }).addClass(['half-image', 'coord-x-hacked'])
+        .attr("data-grid-position-x-initial", myModdedAlignmentXInitial);
     }
+
+    // Add the initial X coord
+
+    //    console.log("Trying to add initial X coord: ", myModdedAlignmentXInitial);
+    //    console.log("positionDiv (pre): ", positionDiv);
+    //    let myParentDiv = positionDiv.parent(".grid-item");
+    //    console.log("myParentDiv: ", myParentDiv);
+    //    myParentDiv.attr("data-coord-x-initial", myModdedAlignmentXInitial);
+    //    console.log("positionDiv (post): ", positionDiv);
 
   }
 
