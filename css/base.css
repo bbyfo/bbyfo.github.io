@@ -1,6 +1,5 @@
 #field {
   font-family: 'Courier New', Courier, monospace;
-  font-size: clamp(1rem, 1.5rem, 2rem);
 }
 #field, #defense, #los, #offense {
   display: grid;
@@ -96,9 +95,13 @@
 .grid-item-gap {
   text-align: center;
   background-color: #333d39;
+  font-size: clamp(1vw, 1.5vw, 2vw);
 }
 .grid-item-gap > div {
   line-height: 1;
+}
+.grid-item-position {
+  font-size: clamp(1.5vw, 2vw, 3vw);
 }
 #offense .grid-item-position {
   background-color: #9f1e22;
