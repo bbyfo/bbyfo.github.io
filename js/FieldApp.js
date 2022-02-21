@@ -101,11 +101,12 @@
           // Adding the grid coords to a single data-* attribute...easy to select.  See @file Position.js 
           // Should be like offense-14-offensive_los
           fieldGridItem.dataset.gridCoords = thisFieldSection + '-' + this.fieldColumnCurrent + '-' + fieldRowName;
-
+          fieldGridItem.classList.add('js-' + thisFieldSection + '-' + this.fieldColumnCurrent);
           // Is the grid item a gap/hole or a position container?
           if (this.fieldColumnCurrent % 2 == 0) {
             fieldGridItem.classList.add('grid-item-gap');
-            $(fieldGridItem).html("<div>&nbsp;</div>");
+            //            let $fieldGridItemContent = $("<div></div>").html('&nbsp;').addClass('bobo-jones-' + thisFieldSection)
+            //            $(fieldGridItem).html($fieldGridItemContent);
           } else {
             fieldGridItem.classList.add('grid-item-position');
           }
@@ -120,6 +121,9 @@
     });
 
 
+    // Assign Gap/Hole information
+    let myFieldHelper = new FieldHelper();
+    myFieldHelper.assignGaps();
   }; // end window.FieldApp
 
 
@@ -244,10 +248,10 @@
 
   });
 
-  /**
-   * Clear the field of stuff (and things, Lori)
-   *
-   */
+
+  //////////////////////////
+  // Helper functionality //
+  //////////////////////////	
   var FieldHelper = function ($wrapper) {
     console.log("called FieldHelper with: ", $wrapper);
     this.$wrapper = $wrapper;
@@ -262,6 +266,76 @@
       positions.fadeOut('slow', function () {
         this.remove();
       });
+    },
+    assignGaps: function () {
+      console.log("assignGaps() called");
+      // Build out the Gap Data
+      let gapData = {
+        a1: {
+          distance: -1,
+          id: 'A1',
+          label: 'A 1'
+        },
+        a2: {
+          distance: 1,
+          id: 'A2',
+          label: 'A 2'
+        },
+        b3: {
+          distance: -3,
+          id: 'B3',
+          label: 'B 3'
+        },
+        b4: {
+          distance: 3,
+          id: 'B4',
+          label: 'B 4'
+        },
+        c5: {
+          distance: -5,
+          id: 'C5',
+          label: 'C 5'
+        },
+        c6: {
+          distance: 5,
+          id: 'C6',
+          label: 'C 6'
+        },
+        d7: {
+          distance: -7,
+          id: 'D7',
+          label: 'D 7'
+        },
+        d8: {
+          distance: 7,
+          id: 'D8',
+          label: 'D 8'
+        }
+      };
+
+      // Find the Ball and build out from there.
+      let $ball = $("#ball");
+      let ballX = $ball.css("grid-column-start");
+      //console.log("$ball: ", $ball, "ballX: ", ballX, "gapData: ", gapData);
+
+      // Loop over the gapData and populate the grid items with gap data
+      for (const gap in gapData) {
+        //        console.log(`${gap}: ${gapData[gap].label}`);
+        //        console.log("label: ", gapData[gap].label);
+        //        console.log("id: ", gapData[gap].id);
+        let gapContent = $("<div></div>")
+          .text(gapData[gap].label)
+          .attr('id', gapData[gap].id)
+          .addClass(['grid-gap-item']);
+        let targetX = Number(ballX) + Number(gapData[gap].distance);
+        // Build the selector for the Grid item into which we're going to add our HTML
+        let targetCellSelector = '.js-los-' + targetX;
+        $(targetCellSelector).append(gapContent);
+
+        console.log("gapContent", gapContent);
+        console.log("targetCellSelector: ", targetCellSelector);
+      }
+
     }
   });
 
