@@ -143,11 +143,11 @@
     //    console.log("parent: ", positionDiv.parent(".grid-item-gap"));
     //    console.log("addExtendedEnding: ", addExtendedEnding);
     if (Number(addExtendedEnding) > 0) {
-      console.log("Add Extended Ending bobo");
+//      console.log("Add Extended Ending bobo");
       let myExtendedEnding = Number(gridPositionX) + Number(3);
-      console.log("myExtendedEnding: ", myExtendedEnding);
+//      console.log("myExtendedEnding: ", myExtendedEnding);
       let myParent = positionDiv.parent(".grid-item-position");
-      console.log("myParent: ", myParent);
+//      console.log("myParent: ", myParent);
       myParent.css({
         gridColumnEnd: myExtendedEnding,
         zIndex: 15,

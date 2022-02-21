@@ -196,10 +196,15 @@
     // Defensive Formation has been picked //
     /////////////////////////////////////////  
     handlePickDefenseFormation: function (e) {
-      console.log("handlePickDefenseFormation()");
+      //      console.log("handlePickDefenseFormation()");
+
+      // Clear the Defensive side of the Field.
+      let myFieldHelper = new FieldHelper();
+      myFieldHelper.clearFieldSection($("#defense"));
+
       // Make sure that offense has beenn placed...many defensive positions are relative to offensive positions.
       if ($("#offense .position-node.position-offense").length == 11) {
-        console.log("Yes, there are 11 offensive players on the field. Proceed to set the Defensive Positions");
+        //        console.log("Yes, there are 11 offensive players on the field. Proceed to set the Defensive Positions");
         $("#pick_offense_first").hide();
 
         // Get rid of any existing defensive positions
@@ -217,7 +222,7 @@
 
       let $formationId = $(e.currentTarget).val();
 
-      console.log("Formation to work with: ", $formationId);
+      //      console.log("Formation to work with: ", $formationId);
 
       if ($formationId == '--default--') {
         console.log("Clear stuff, yo!");
@@ -252,7 +257,7 @@
     },
 
     handleHideTextCheckbox: function (e) {
-      console.log("checkbox", e.currentTarget.checked);
+//      console.log("checkbox", e.currentTarget.checked);
       if (e.currentTarget.checked === true) {
         $("#defense").addClass('hide-position-text');
       } else {
@@ -268,23 +273,32 @@
   // Helper functionality //
   //////////////////////////	
   var FieldHelper = function ($wrapper) {
-    console.log("called FieldHelper with: ", $wrapper);
+    //    console.log("called FieldHelper with: ", $wrapper);
     this.$wrapper = $wrapper;
   }
 
   $.extend(FieldHelper.prototype, {
-	  
+
     clearFieldSection: function (fieldElm) {
-      //      console.log("Clear Field?");
-      console.log("clearFieldSectdion: ", fieldElm);
-      let positions = fieldElm.find(".position-node");
-      //      console.log("positions to remove: ", positions);
+      /**
+       * clearFieldSection() removes positions and postion-related elements from the Field.
+       *
+       * @param fieldElm jQuery element of either #offense or #defense
+       */
+//      console.log("clearFieldSection() called");
+//      console.log("fieldElm: ", fieldElm);
+      let positions = fieldElm.find(".helmet-image, .position-node");
+//      console.log("positions to remove: ", positions);
       positions.fadeOut('slow', function () {
         this.remove();
       });
     },
     assignGaps: function () {
-      console.log("assignGaps() called");
+      /**
+       * assignGaps() declares and builds all the Gaps/Holes along the LOS.
+       * Someday it'd be cool to have this more programatic, but for now, build and leverage this giant data object.
+       */
+      //      console.log("assignGaps() called");
       // Build out the Gap Data
       let gapData = {
         a1: {
@@ -348,8 +362,8 @@
         let targetCellSelector = '.js-los-' + targetX;
         $(targetCellSelector).append(gapContent);
 
-//        console.log("gapContent", gapContent);
-//        console.log("targetCellSelector: ", targetCellSelector);
+        //        console.log("gapContent", gapContent);
+        //        console.log("targetCellSelector: ", targetCellSelector);
       }
 
     }
