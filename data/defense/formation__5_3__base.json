@@ -19,7 +19,7 @@
           "depth": "defensive_los",
           "positionName": "LWT",
           "anchors": [
-            "B3",
+            "B6",
             "RT",
             "RG",
             "C"
@@ -34,6 +34,7 @@
           "depth": "defensive_los",
           "positionName": "RWT",
           "anchors": [
+            "B5",
             "LT",
             "LG",
             "C"
@@ -63,7 +64,6 @@
           "depth": "defensive_los",
           "positionName": "NT",
           "anchors": [
-            "A2",
             "C"
           ],
           "alignment": {
@@ -123,14 +123,14 @@
         },
         {
           "id": 10,
-          "depth": "linebacker",
+          "depth": "defensive_los",
           "positionName": "RC",
           "anchors": [
-            "LTE"
+            "D7"
           ],
           "alignment": {
-            "direction": "inside",
-            "distance": 1
+            "direction": "outside",
+            "distance": 3
           }
         },
         {
@@ -138,11 +138,11 @@
           "depth": "linebacker",
           "positionName": "LC",
           "anchors": [
-            "RTE"
+            "D8"
           ],
           "alignment": {
-            "direction": "on",
-            "distance": 0
+            "direction": "outside",
+            "distance": 3
           }
         }
       ]

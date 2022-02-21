@@ -96,6 +96,7 @@
   text-align: center;
   background-color: #333d39;
   font-size: clamp(1vw, 1.5vw, 2vw);
+	z-index: 10;
 }
 .grid-item-gap > div {
   line-height: 1;
@@ -114,7 +115,6 @@
 }
 .grid-item-gap, .grid-item-position {
   color: #f1f1f0;
-  word-break: break-all;
   line-height: 1;
 }
 .gap-text {
