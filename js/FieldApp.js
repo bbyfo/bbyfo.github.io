@@ -36,6 +36,12 @@
       this.handlePickDefenseFormation.bind(this)
     );
 
+    // Event Handler for Showing / Hiding Defensive Position Text
+    this.$wrapper.on(
+      'change',
+      '#hide_text',
+      this.handleHideTextCheckbox.bind(this)
+    );
 
     ////////////////////////////////////////////  
     // Write out the initial Field Grid Items //
@@ -243,8 +249,12 @@
       }
 
 
-    }
+    },
 
+    handleHideTextCheckbox: function (e) {
+      console.log("checkbox", $(e.currentTarget).attr("checked"));
+
+    }
 
   });
 

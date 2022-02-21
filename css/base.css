@@ -1,5 +1,6 @@
 #field {
   font-family: 'Courier New', Courier, monospace;
+  font-size: clamp(1.5vw, 2vw, 3vw);
 }
 #field, #defense, #los, #offense {
   display: grid;
@@ -83,6 +84,7 @@
     align-self: center;
 	  text-align: center;*/
 }
+/*
 #field > div > div.position-node {
   display: flex;
   justify-content: flex-start;
@@ -92,18 +94,20 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+*/
+#defense .position-node {
+  background-color: darkblue;
+}
 .grid-item-gap {
   text-align: center;
   background-color: #333d39;
-  font-size: clamp(1vw, 1.5vw, 2vw);
-	z-index: 10;
+  /*  font-size: clamp(1vw, 1.5vw, 2vw);*/
+  z-index: 10;
 }
 .grid-item-gap > div {
   line-height: 1;
 }
-.grid-item-position {
-  font-size: clamp(1.5vw, 2vw, 3vw);
-}
+.grid-item-position {}
 #offense .grid-item-position {
   background-color: #9f1e22;
 }
@@ -112,6 +116,18 @@
 }
 #defense .grid-item-position, #defense .grid-item-gap {
   align-items: flex-end;
+}
+/*
+* Position Background Images (or not)
+*/
+#defense .position-node {
+  background: url("../images/helmet.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  color: rgba(255, 255, 255, 1); /* hahaha, hope this works! */
+}
+#defense.hide-position-text .position-node {
+   color: rgba(0, 0, 0, 0); /* hahaha, hope this works! */
 }
 .grid-item-gap, .grid-item-position {
   color: #f1f1f0;
