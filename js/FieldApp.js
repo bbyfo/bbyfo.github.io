@@ -12,7 +12,7 @@
    * Add Event Handlers.
    */
   window.FieldApp = function ($wrapper) {
-    console.log("$wrapper", $wrapper);
+    //    console.log("$wrapper", $wrapper);
     this.$wrapper = $wrapper;
 
 
@@ -44,96 +44,7 @@
       this.handleHideTextCheckbox.bind(this)
     );
 
-    ////////////////////////////////////////////  
-    // Write out the initial Field Grid Items //
-    ////////////////////////////////////////////
 
-
-    this.fieldSections = [
-      $('#defense'),
-      $('#los'),
-      $('#offense')
-    ];
-
-    // Loop over the Field Sections
-    this.fieldSections.forEach((fieldSection) => {
-      let thisFieldSection = fieldSection.attr("id");
-
-      //      console.log("thisFieldSection: ", thisFieldSection);
-      // Set the proper Field Section
-      if (thisFieldSection === "defense") {
-        this.fieldRowNames = [
-          'safety',
-          'linebacker',
-          'defensive_los'
-        ];
-      } else if (thisFieldSection === "offense") {
-        this.fieldRowNames = [
-          'offensive_los',
-          'off',
-          'shotgun',
-          'deep'
-        ];
-
-      } else if (thisFieldSection === "los") {
-        this.fieldRowNames = [
-          'los'
-        ];
-      } else {
-        this.fieldRowNames = [];
-      }
-
-      // Loop over the Row Names 
-      this.fieldRowNames.forEach((fieldRowName) => {
-        //        console.log(fieldRowName);
-        this.fieldColumnCurrent = 1;
-        this.fieldColumnMax = 25;
-
-        // this is where we finally build out the grid item placeholder divs
-        while (this.fieldColumnCurrent <= this.fieldColumnMax) {
-          // console.log(this.fieldColumnCurrent, fieldSection, fieldRowName);
-
-
-          let fieldGridItem = document.createElement("div");
-          fieldGridItem.style.gridColumnStart = this.fieldColumnCurrent;
-          fieldGridItem.style.gridRowStart = fieldRowName;
-          //          fieldGridItem.classList.add('js-empty-grid-item');
-
-          // Adding the grid coords to individual data-* atrtibutes.
-          // Not sure we need this anymore, but not getting rid of it yet.
-          fieldGridItem.dataset.gridPositionSection = thisFieldSection;
-          fieldGridItem.dataset.gridPositionX = this.fieldColumnCurrent;
-          fieldGridItem.dataset.gridPositionY = fieldRowName;
-
-          // Adding the grid coords to a single data-* attribute...easy to select.  See @file Position.js 
-          // Should be like offense-14-offensive_los
-          fieldGridItem.dataset.gridCoords = thisFieldSection + '-' + this.fieldColumnCurrent + '-' + fieldRowName;
-          fieldGridItem.classList.add('js-' + thisFieldSection + '-' + this.fieldColumnCurrent);
-          // Is the grid item a gap/hole or a position container?
-          if (this.fieldColumnCurrent % 2 == 0) {
-            fieldGridItem.classList.add('grid-item-gap');
-            //            let $fieldGridItemContent = $("<div></div>").html('&nbsp;').addClass('bobo-jones-' + thisFieldSection)
-            //            $(fieldGridItem).html($fieldGridItemContent);
-          } else {
-            fieldGridItem.classList.add('grid-item-position');
-          }
-
-          // Always add 'grid-item' class
-          fieldGridItem.classList.add('grid-item');
-
-          fieldSection.append(fieldGridItem);
-
-
-          this.fieldColumnCurrent++;
-        }
-      });
-
-    });
-
-
-    // Assign Gap/Hole information
-    let myFieldHelper = new FieldHelper();
-    myFieldHelper.assignGaps();
   }; // end window.FieldApp
 
 
@@ -143,9 +54,9 @@
     // Ball is clicked //
     /////////////////////
     handleBallClick: function (e) {
-      let $ball = $(e.currentTarget);
-      console.log("$ball", $ball);
-      console.log("this", this);
+      //      let $ball = $(e.currentTarget);
+      //      console.log("$ball", $ball);
+      //      console.log("this", this);
 
     },
 
@@ -170,7 +81,7 @@
         console.log("clear stuff, yo");
 
       } else {
-        let $offenseElm = $(".offense-position");
+        //        let $offenseElm = $(".offense-position");
 
         fetch("data/offense/" + $formationId + ".json")
           .then(Response => Response.json())
@@ -181,7 +92,7 @@
             formation.positions.forEach((position) => {
 
               //              console.log("position in forEach(): ", position);
-              let gridItemSelected = $('#offense .grid-item-position');
+              //              let gridItemSelected = $('#offense .grid-item-position');
 
               // Positions place themselves, right?
               let positionObj = new Position($('#offense'), position);
@@ -194,19 +105,20 @@
             //setGaps();
           });
       }
-
+      //this.populateField($fieldElm);
+      myFieldHelper.populateField($("#offense"));
     },
     /////////////////////////////////////////  
     // Defensive Formation has been picked //
     /////////////////////////////////////////  
     handlePickDefenseFormation: function (e) {
       //      console.log("handlePickDefenseFormation()");
-
+      let $fieldElm = $('#defense');
       // Clear the Defensive side of the Field.
       let myFieldHelper = new FieldHelper();
-      myFieldHelper.clearFieldSection($("#defense"));
-
-      // Make sure that offense has beenn placed...many defensive positions are relative to offensive positions.
+      myFieldHelper.clearFieldSection($fieldElm);
+      myFieldHelper.populateField($fieldElm);
+      // Make sure that offense has been placed...many defensive positions are relative to offensive positions.
       if ($("#offense .position-node.position-offense").length == 11) {
         //        console.log("Yes, there are 11 offensive players on the field. Proceed to set the Defensive Positions");
         $("#pick_offense_first").hide();
@@ -246,7 +158,7 @@
               let gridItemSelected = $('#offense .grid-item-position');
 
               // Positions place themselves, right?
-              let positionObj = new Position($('#defense'), position);
+              let positionObj = new Position($($fieldElm), position);
 
 
             });
@@ -268,7 +180,15 @@
         $("#defense").removeClass('hide-position-text');
       }
 
+    },
+
+    // Here we build the initial field
+    buildField: function ($wrapper) {
+      let myFieldHelper = new FieldHelper($wrapper);
+      myFieldHelper.populateField();
+      myFieldHelper.assignGaps();
     }
+
 
   });
 
@@ -283,45 +203,121 @@
 
   $.extend(FieldHelper.prototype, {
 
-    clearFieldSection: function (fieldElm) {
+    clearFieldSection: function ($fieldElm) {
       /**
        * clearFieldSection() removes positions and postion-related elements from the Field.
        *
-       * @param fieldElm jQuery element of either #offense or #defense
+       * @param $fieldElm jQuery element of either #offense or #defense
        */
-      console.log("clearFieldSection() called");
-      // console.log("fieldElm: ", fieldElm);
-      let positions = fieldElm.find(".helmet-image, .position-node");
+      console.log("clearFieldSection() called with $fieldElm", $fieldElm);
+      console.log("this", this);
+      // console.log("$fieldElm: ", $fieldElm);
+      let positions = $fieldElm.find("*");
       // console.log("positions to remove: ", positions);
       positions.fadeOut('slow', function () {
         this.remove();
       });
 
-      // Reset the Defensive grid items. When a Defensive position is placed into a gap, the parent's grid start and end are messed with.
-      // We want to reset that to original
-      let $hackedXCoords = $(".coord-x-hacked");
-      //      console.log("$hackedXCoords: ", $hackedXCoords);
-      $hackedXCoords.each(function () {
-        //        console.log($(this));
-        let $self = $(this);
-        let currentX = $self.data('grid-position-x');
-        let originalX = $self.data('grid-position-x-initial');
 
-        console.log("currentX: ", currentX);
-        console.log("originalX: ", originalX);
-        if (Number(currentX) != Number(originalX)) {
-          console.log("Reset to original");
-          let newGridColumnEnd = Number(originalX) + Number(2);
-          console.log("newGridColumnEnd: ", newGridColumnEnd);
-          $self.css({
-            gridColumn: "",
-            gridColumnStart: originalX,
-            gridColumnEnd: newGridColumnEnd,
-            backgroundColor: "pink"
-          });
+      // Reset the grid items.
+      // We want to reset to the original
+
+
+    },
+    //////////////////////////////////////////////  
+    // Populate the field with Field Grid Items //
+    //////////////////////////////////////////////
+    populateField: function ($wrapper = null) {
+      /*
+            console.log("$wrapper in buildField:", $wrapper);
+      */
+      if ($wrapper === null) {
+        this.fieldSections = [
+          $('#defense'),
+          $('#los'),
+          $('#offense')
+        ];
+      } else {
+        this.fieldSections = [
+          $wrapper
+        ]
+      }
+
+      // Loop over the Field Sections
+      this.fieldSections.forEach((fieldSection) => {
+        let thisFieldSection = fieldSection.attr("id");
+
+        //      console.log("thisFieldSection: ", thisFieldSection);
+        // Set the proper Field Section
+        if (thisFieldSection === "defense") {
+          this.fieldRowNames = [
+            'safety',
+            'linebacker',
+            'defensive_los'
+          ];
+        } else if (thisFieldSection === "offense") {
+          this.fieldRowNames = [
+            'offensive_los',
+            'off',
+            'shotgun',
+            'deep'
+          ];
+
+        } else if (thisFieldSection === "los") {
+          this.fieldRowNames = [
+            'los'
+          ];
+        } else {
+          this.fieldRowNames = [];
         }
 
+        // Loop over the Row Names 
+        this.fieldRowNames.forEach((fieldRowName) => {
+          //        console.log(fieldRowName);
+          this.fieldColumnCurrent = 1;
+          this.fieldColumnMax = 25;
+
+          // this is where we finally build out the grid item placeholder divs
+          while (this.fieldColumnCurrent <= this.fieldColumnMax) {
+            // console.log(this.fieldColumnCurrent, fieldSection, fieldRowName);
+
+
+            let fieldGridItem = document.createElement("div");
+            fieldGridItem.style.gridColumnStart = this.fieldColumnCurrent;
+            fieldGridItem.style.gridRowStart = fieldRowName;
+            //          fieldGridItem.classList.add('js-empty-grid-item');
+
+            // Adding the grid coords to individual data-* atrtibutes.
+            // Not sure we need this anymore, but not getting rid of it yet.
+            fieldGridItem.dataset.gridPositionSection = thisFieldSection;
+            fieldGridItem.dataset.gridPositionX = this.fieldColumnCurrent;
+            fieldGridItem.dataset.gridPositionY = fieldRowName;
+
+            // Adding the grid coords to a single data-* attribute...easy to select.  See @file Position.js 
+            // Should be like offense-14-offensive_los
+            fieldGridItem.dataset.gridCoords = thisFieldSection + '-' + this.fieldColumnCurrent + '-' + fieldRowName;
+            fieldGridItem.classList.add('js-' + thisFieldSection + '-' + this.fieldColumnCurrent);
+            // Is the grid item a gap/hole or a position container?
+            if (this.fieldColumnCurrent % 2 == 0) {
+              fieldGridItem.classList.add('grid-item-gap');
+              //            let $fieldGridItemContent = $("<div></div>").html('&nbsp;').addClass('bobo-jones-' + thisFieldSection)
+              //            $(fieldGridItem).html($fieldGridItemContent);
+            } else {
+              fieldGridItem.classList.add('grid-item-position');
+            }
+
+            // Always add 'grid-item' class
+            fieldGridItem.classList.add('grid-item');
+
+            fieldSection.append(fieldGridItem);
+
+
+            this.fieldColumnCurrent++;
+          }
+        });
+
       });
+
 
     },
     assignGaps: function () {
@@ -329,7 +325,7 @@
        * assignGaps() declares and builds all the Gaps/Holes along the LOS.
        * Someday it'd be cool to have this more programatic, but for now, build and leverage this giant data object.
        */
-      //      console.log("assignGaps() called");
+      console.log("assignGaps() called");
       // Build out the Gap Data
       let gapData = {
         a1: {
