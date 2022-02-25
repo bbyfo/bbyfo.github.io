@@ -64,12 +64,10 @@
     // Offenseive Formation has been picked //
     //////////////////////////////////////////  
     handlePickOffenseFormation: function (e) {
-
-      let myFieldHelper = new FieldHelper();
-      myFieldHelper.clearFieldSection($("#offense"));
-
-
-      // Get rid of any existing offensive positions
+      let $fieldElm = $("#offense");
+      let myFieldHelper = new FieldHelper($fieldElm);
+      myFieldHelper.clearFieldSection($fieldElm);
+      myFieldHelper.populateFieldWithEmptyGridItems($fieldElm);
 
       $("#pick_offense_first").hide();
 
@@ -95,7 +93,7 @@
               //              let gridItemSelected = $('#offense .grid-item-position');
 
               // Positions place themselves, right?
-              let positionObj = new Position($('#offense'), position);
+              let positionObj = new Position($fieldElm, position);
 
 
             });
@@ -105,8 +103,8 @@
             //setGaps();
           });
       }
-      //this.populateField($fieldElm);
-      myFieldHelper.populateField($("#offense"));
+
+
     },
     /////////////////////////////////////////  
     // Defensive Formation has been picked //
@@ -117,7 +115,7 @@
       // Clear the Defensive side of the Field.
       let myFieldHelper = new FieldHelper();
       myFieldHelper.clearFieldSection($fieldElm);
-      myFieldHelper.populateField($fieldElm);
+      myFieldHelper.populateFieldWithEmptyGridItems($fieldElm);
       // Make sure that offense has been placed...many defensive positions are relative to offensive positions.
       if ($("#offense .position-node.position-offense").length == 11) {
         //        console.log("Yes, there are 11 offensive players on the field. Proceed to set the Defensive Positions");
@@ -132,7 +130,7 @@
         $("#pick_offense_first").show();
         let $self = $(e.currentTarget);
         $self.val('--default--');
-        console.log($self);
+//        console.log($self);
       }
 
 
@@ -141,10 +139,10 @@
       //      console.log("Formation to work with: ", $formationId);
 
       if ($formationId == '--default--') {
-        console.log("Clear stuff, yo!");
+        //        console.log("Clear stuff, yo!");
         let myPositionHelper = new FieldHelper;
-        myPositionHelper.clearFieldSection($("#defense"));
-
+        myPositionHelper.clearFieldSection($fieldElm);
+        myFieldHelper.populateFieldWithEmptyGridItems($fieldElm);
       } else {
         fetch("data/defense/" + $formationId + ".json")
           .then(Response => Response.json())
@@ -159,16 +157,9 @@
 
               // Positions place themselves, right?
               let positionObj = new Position($($fieldElm), position);
-
-
             });
-
-
-            // We set gaps here to make sure that all the Offensive positions have been set.
-            //setGaps();
           });
       }
-
 
     },
 
@@ -185,7 +176,7 @@
     // Here we build the initial field
     buildField: function ($wrapper) {
       let myFieldHelper = new FieldHelper($wrapper);
-      myFieldHelper.populateField();
+      myFieldHelper.populateFieldWithEmptyGridItems();
       myFieldHelper.assignGaps();
     }
 
@@ -209,25 +200,19 @@
        *
        * @param $fieldElm jQuery element of either #offense or #defense
        */
-      console.log("clearFieldSection() called with $fieldElm", $fieldElm);
-      console.log("this", this);
+      //      console.log("clearFieldSection() called with $fieldElm", $fieldElm);
+      //      console.log("this", this);
       // console.log("$fieldElm: ", $fieldElm);
       let positions = $fieldElm.find("*");
       // console.log("positions to remove: ", positions);
       positions.fadeOut('slow', function () {
         this.remove();
       });
-
-
-      // Reset the grid items.
-      // We want to reset to the original
-
-
     },
     //////////////////////////////////////////////  
     // Populate the field with Field Grid Items //
     //////////////////////////////////////////////
-    populateField: function ($wrapper = null) {
+    populateFieldWithEmptyGridItems: function ($wrapper = null) {
       /*
             console.log("$wrapper in buildField:", $wrapper);
       */
@@ -325,7 +310,7 @@
        * assignGaps() declares and builds all the Gaps/Holes along the LOS.
        * Someday it'd be cool to have this more programatic, but for now, build and leverage this giant data object.
        */
-      console.log("assignGaps() called");
+      //      console.log("assignGaps() called");
       // Build out the Gap Data
       let gapData = {
         a1: {
