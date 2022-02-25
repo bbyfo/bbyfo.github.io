@@ -1,71 +1,81 @@
     {
-        "formationName": "Spread Base",
-        "positions": [
-            {
-                "id": 1,
-                "positionName": "QB",
-                "positionX": 20,
-                "positionY": "shotgun"
-            },
-            {
-                "id": 2,
-                "positionName": "WR1",
-                "positionX": 10,
-                "positionY": "los"
-            },
-            {
-                "id": 3,
-                "positionName": "WR2",
-                "positionX": 29,
-                "positionY": "off"
-            },
-            {
-                "id": 4,
-                "positionName": "WR3",
-                "positionX": 6,
-                "positionY": "los"
-            },
-            {
-                "id": 5,
-                "positionName": "C",
-                "positionX": 20,
-                "positionY": "los"
-            },
-            {
-                "id": 6,
-                "positionName": "RG",
-                "positionX": 22,
-                "positionY": "los"
-            },
-            {
-                "id": 7,
-                "positionName": "RT",
-                "positionX": 24,
-                "positionY": "los"
-            },
-            {
-                "id": 8,
-                "positionName": "RTE",
-                "positionX": 26,
-                "positionY": "off"
-            },
-            {
-                "id": 9,
-                "positionName": "LG",
-                "positionX": 18,
-                "positionY": "los"
-            },
-            {
-                "id": 10,
-                "positionName": "LT",
-                "positionX": 16,
-                "positionY": "los"
-            },
-            {
-                "id": 11,
-                "positionName": "LTE",
-                "positionX": 14,
-                "positionY": "off"
-            }
-        ]
+      "formationName": "Spread Base",
+      "positions": [{
+          "id": 1,
+          "positionName": "QB",
+          "positionX": 11,
+          "positionY": "shotgun",
+          "positionTypes": ["quarterback"]
+        },
+        {
+          "id": 2,
+          "positionName": "RB",
+          "positionX": 1,
+          "positionY": "offensive_los",
+          "positionTypes": ["running-back", "halfback"]
+        },
+        {
+          "id": 3,
+          "positionName": "FB",
+          "positionX": 3,
+          "positionY": "off",
+          "positionTypes": ["running-back", "fullback"]
+        },
+        {
+          "id": 4,
+          "positionName": "WR",
+          "positionX": 21,
+          "positionY": "offensive_los",
+          "positionTypes": ["wide-reciever"]
+        },
+        {
+          "id": 5,
+          "positionName": "C",
+          "positionX": 11,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman"]
+        },
+        {
+          "id": 6,
+          "positionName": "RG",
+          "positionX": 13,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman"]
+        },
+        {
+          "id": 7,
+          "positionName": "RT",
+          "positionX": 15,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman"]
+        },
+        {
+          "id": 8,
+          "positionName": "RTE",
+          "positionX": 17,
+          "positionY": "off",
+          "positionTypes": ["lineman", "tight-end"]
+        },
+        {
+          "id": 9,
+          "positionName": "LG",
+          "positionX": 9,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman"]
+        },
+        {
+          "id": 10,
+          "positionName": "LT",
+          "positionX": 7,
+          "positionY": "offensive_los",
+          "positionTypes": ["lineman"]
+        },
+        {
+          "id": 11,
+          "positionName": "LTE",
+          "positionX": 5,
+          "positionY": "off",
+          "positionTypes": ["lineman", "tight-end"]
+        }
+      ]
     }

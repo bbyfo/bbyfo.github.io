@@ -5,7 +5,8 @@
 #field, #defense, #los, #offense {
   display: grid;
   /* @todo It'd be great if these columns were generated based on the number of columns via script. Instead of hard-coding here */
-  grid-template-columns: 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr;
+  /*  grid-template-columns: 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr;*/
+  grid-template-columns: repeat(10, 6fr 1fr) 6fr;
   align-items: stretch;
   justify-items: stretch;
 }
@@ -74,7 +75,7 @@
 }
 #ball {
   color: white;
-  grid-column-start: 13;
+  grid-column-start: 11;
   grid-row-start: los;
   background: url("../images/football.svg");
   background-repeat: no-repeat;
