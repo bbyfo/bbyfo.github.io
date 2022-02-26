@@ -130,7 +130,7 @@
         $("#pick_offense_first").show();
         let $self = $(e.currentTarget);
         $self.val('--default--');
-//        console.log($self);
+        //        console.log($self);
       }
 
 
@@ -352,6 +352,11 @@
           distance: 7,
           id: 'D8',
           label: 'D 8'
+        },
+        d9: {
+          distance: -9,
+          id: 'D9',
+          label: 'D 9'
         }
       };
 
@@ -366,7 +371,7 @@
         //        console.log("label: ", gapData[gap].label);
         //        console.log("id: ", gapData[gap].id);
         let gapContent = $("<div></div>")
-          .text(gapData[gap].label)
+          .html(gapData[gap].label)
           .attr('id', gapData[gap].id)
           .addClass(['grid-gap-item']);
         let targetX = Number(ballX) + Number(gapData[gap].distance);

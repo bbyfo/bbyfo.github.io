@@ -122,7 +122,9 @@
           "depth": "safety",
           "positionName": "SAF",
           "anchors": [
-            "C"
+            "C",
+            "A1",
+            "A2"
           ],
           "alignment": {
             "direction": "on",

@@ -1,12 +1,12 @@
 #field {
   font-family: 'Courier New', Courier, monospace;
-  font-size: clamp(1.5vw, 2vw, 3vw);
+  font-size: clamp(1vw, 3vw, 4vw);
 }
 #field, #defense, #los, #offense {
   display: grid;
   /* @todo It'd be great if these columns were generated based on the number of columns via script. Instead of hard-coding here */
   /*  grid-template-columns: 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr;*/
-  grid-template-columns: repeat(10, 6fr 1fr) 6fr;
+  grid-template-columns: repeat(10, 6fr 2.5fr) 6fr;
   align-items: stretch;
   justify-items: stretch;
 }
@@ -19,11 +19,10 @@
   grid-auto-rows: auto;
 }
 #defense {
-  grid-template-rows: [safety] minmax(1vh, 10vh) [linebacker] minmax(1vh, 10vh) [defensive_los] minmax(1vh, 10vh);
+  grid-template-rows: [safety] minmax(1vh, 5vh) [linebacker] minmax(1vh, 5vh) [defensive_los] minmax(1vh, 5vh);
   grid-row-start: 1;
   grid-row-end: 4;
   grid-auto-rows: auto;
-  background-color: darkblue;
 }
 #defense > #label_defense, #offense > #label_offense {
   place-self: start;
@@ -48,7 +47,9 @@
   align-content: flex-start;
   border-bottom: 2px dashed white;
 }
-#offense, #defense {}
+#offense, #defense {
+  background-color: darkgreen;
+}
 #los {
   grid-row-start: 4;
   grid-row-end: 5;
@@ -62,7 +63,7 @@
 */
 }
 #offense {
-  grid-template-rows: [offensive_los] minmax(1vh, 10vh) [off] minmax(1vh, 10vh) [shotgun] minmax(1vh, 10vh) [deep] minmax(1vh, 10vh);
+  grid-template-rows: [offensive_los] minmax(1vh, 5vh) [off] minmax(1vh, 5vh) [shotgun] minmax(1vh, 5vh) [deep] minmax(1vh, 5vh);
   grid-auto-rows: auto;
   grid-row-start: 5;
   grid-row-end: 8;
@@ -70,7 +71,7 @@
 #defense > div:hover {
   background-color: cyan;
 }
-#offense > div:hover {
+#offense > .grid-item:hover {
   background-color: magenta;
 }
 #ball {
@@ -100,6 +101,11 @@
 #defense .position-node {
   background-color: darkblue;
 }
+#offense .position-node {
+  background-color: #890000;
+  position: absolute;
+  top: 0;
+}
 .grid-item-gap {
   text-align: center;
   background-color: #333d39;
@@ -113,45 +119,44 @@
   line-height: 1;
 }
 .grid-item-position {}
-#offense .grid-item-position {
-  background-color: #9f1e22;
-}
+#offense .grid-item-position {}
 #offense .helmet-image {
-  display: none;
-  z-index: 0;
+  bottom: 0;
 }
 #defense .grid-item-position {
   position: relative;
 }
 #defense .helmet-image {
   position: absolute;
+  top: 0;
+
 }
 #defense .half-image .helmet-image {
   max-width: 46%;
 }
-#defense .grid-item-position .helmet-image {
+.grid-item-position .helmet-image {
   position: absolute;
-  max-height: 100%;
+  max-height: 50%;
 }
-#defense .grid-item-position, #defense .grid-item-gap {
+.grid-item-position, .grid-item-gap {
   align-items: flex-end;
   position: relative;
 }
 /*
 * Position Background Images (or not)
 */
-#defense .position-node {
-  /*
-  background: url("../images/helmet.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-*/
+.position-node {
+  width: 100%;
+  text-align: center;
   z-index: 10;
   color: rgba(255, 255, 255, 1); /* hahaha, hope this works! */
 }
 #defense.hide-position-text .position-node {
   color: rgba(0, 0, 0, 0); /* hahaha, hope this works! */
   background-color: rgba(0, 0, 0, 0);
+}
+#defense.hide-position-text .helmet-image {
+  top: inherit;
 }
 .grid-item-gap, .grid-item-position {
   color: #f1f1f0;
@@ -163,6 +168,9 @@
 }
 .position-offense {
   line-height: 1;
+}
+.coord-x-hacked .position-node {
+  width: auto;
 }
 /**
 * The Builder Form

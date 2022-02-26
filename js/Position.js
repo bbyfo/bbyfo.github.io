@@ -12,7 +12,7 @@
     this.position = position;
     //    console.log("Position instantiated as: ", $fieldSection, this.position);
     let positionName = position.positionName;
-    // Proof of concept: Place the ID text in the proper cell
+
 
     // Get the coordinates
     let gridPositionSection = $fieldSection.attr('id');
@@ -108,15 +108,16 @@
 
         break;
 
-    }
+    } // End of big-ol' switch (sniff...sniff...Do I smell a refactor?  Spoiler: Yes.)
 
     // Here we assign the coordinates
     let gridPositionSelector = gridPositionSection + '-' + gridPositionX + '-' + gridPositionY;
 
     //    console.log("Grid Positions in Position: ", gridPositionSection, gridPositionX, gridPositionY, gridPositionSelector, position.positionTypes);
 
+
     // Create the position element
-    var positionDiv = $("<div></div>").text(positionName);
+    var positionDiv = $("<div></div>").html(positionName);
 
 
     positionDiv.addClass('position-node');
@@ -139,9 +140,32 @@
       .html(positionDiv);
 
 
+    ///////////////////////////////////
+    // Choose the helmet image style //
+    ///////////////////////////////////
+    console.log("$fieldSection: ", $fieldSection.attr('id'));
+    // Default helmet
+    var imgHelmetStyle = "";
+    switch ($fieldSection.attr('id')) {
+      case "offense":
+        imgHelmetStyle = "helmet-red";
+        break;
+      case "defense":
+        imgHelmetStyle = "helmet-blue";
+        break;
+      default:
+        imgHelmetStyle = "helmet";
+    }
+
+    /*
+     * Right here would be a cool place to implement some sort of "Setting" or "Hook" to override the default imgHelmetStyle
+     */
+
+
     var positionDivImg = $("<img/>").attr({
-      src: 'images/helmet.svg'
+      src: 'images/' + imgHelmetStyle + '.svg'
     }).addClass("helmet-image");
+
     $("[data-grid-coords|='" + gridPositionSelector + "']").append(positionDivImg);
 
 
