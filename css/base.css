@@ -19,7 +19,7 @@
   grid-auto-rows: auto;
 }
 #defense {
-  grid-template-rows: [safety] minmax(1vh, 5vh) [linebacker] minmax(1vh, 5vh) [defensive_los] minmax(1vh, 5vh);
+  grid-template-rows: [safety] minmax(4vh, 8vh) [linebacker] minmax(4vh, 8vh) [defensive_los] minmax(4vh, 8vh);
   grid-row-start: 1;
   grid-row-end: 4;
   grid-auto-rows: auto;
@@ -63,7 +63,7 @@
 */
 }
 #offense {
-  grid-template-rows: [offensive_los] minmax(1vh, 5vh) [off] minmax(1vh, 5vh) [shotgun] minmax(1vh, 5vh) [deep] minmax(1vh, 5vh);
+  grid-template-rows: [offensive_los] minmax(4vh, 8vh) [off] minmax(4vh, 8vh) [shotgun] minmax(4vh, 8vh) [deep] minmax(4vh, 8vh);
   grid-auto-rows: auto;
   grid-row-start: 5;
   grid-row-end: 8;
