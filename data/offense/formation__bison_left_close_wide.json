@@ -1,5 +1,5 @@
     {
-      "formationName": "Bison Spread Base",
+      "formationName": "Bison Left Wide On",
       "positions": [{
           "id": 5,
           "positionName": "C",
@@ -49,7 +49,7 @@
             "direction": "right",
             "distance": 2
           },
-          "depth": "off",
+          "depth": "offensive_los",
           "positionTypes": ["lineman", "tight-end"]
         },
         {
@@ -89,7 +89,7 @@
             "direction": "left",
             "distance": 2
           },
-          "depth": "off",
+          "depth": "offensive_los",
           "positionTypes": ["lineman", "tight-end"]
         },
 
@@ -110,13 +110,13 @@
           "id": 15,
           "positionName": "RB",
           "anchors": [
-            "RTE"
+            "QB"
           ],
           "alignment": {
-            "direction": "right",
-            "distance": 4
+            "direction": "left",
+            "distance": 6
           },
-          "depth": "offensive_los",
+          "depth": "off",
           "positionTypes": ["running-back", "halfback"]
         }, {
           "id": 34,
@@ -134,13 +134,13 @@
           "id": 34,
           "positionName": "WR",
           "anchors": [
-            "LTE"
+            "FB"
           ],
           "alignment": {
             "direction": "left",
-            "distance": 4
+            "distance": 2
           },
-          "depth": "offensive_los",
+          "depth": "off",
           "positionTypes": ["wide-reciever"]
         }
 

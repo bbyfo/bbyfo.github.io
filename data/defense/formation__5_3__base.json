@@ -1,6 +1,10 @@
     {
       "formationName": "5-3 Base",
-      "positions": [{
+      "positions": [
+		  
+		  
+		  
+		  {
           "id": 1,
           "depth": "defensive_los",
           "positionName": "LDE",
@@ -15,6 +19,9 @@
           },
           "positionTypes": ["defensive-line", "defensive-end"]
         },
+					
+					
+					
         {
           "id": 2,
           "depth": "defensive_los",

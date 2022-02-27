@@ -27,9 +27,11 @@
     let gridPositionY = "";
     switch (gridPositionSection) {
       case 'offense':
-        gridPositionX = position.positionX;
-        gridPositionY = position.positionY;
-        break;
+        // Issue #4 Build Offense and Defense the same way: Anchors!
+        // I'm just keeping this around for now.  Who knows what detonates after further testing 8^)
+        // gridPositionX = position.positionX;
+        // gridPositionY = position.positionY;
+        // break;
       case 'defense':
         //        console.log("----------------------");
         //        console.log("NOW we get the " + position.positionName + " Postion's position.");
@@ -84,7 +86,7 @@
 
         // After all the mods, we finally set the "my" version of the X coord to the final, usable X coord.
         gridPositionX = myModdedAlignmentX;
-			
+
         // Thankfully, the Y coord is just pulled from the position definition
         myGridPositionY = position.depth;
         gridPositionY = myGridPositionY;
@@ -125,7 +127,7 @@
     ///////////////////////////////////
     // Choose the helmet image style //
     ///////////////////////////////////
-    console.log("$fieldSection: ", $fieldSection.attr('id'));
+    //    console.log("$fieldSection: ", $fieldSection.attr('id'));
     // Default helmet
     var imgHelmetStyle = "";
     switch ($fieldSection.attr('id')) {
@@ -212,17 +214,26 @@
        *
        * @returns Number The modified X coord
        */
-      //      console.log("modMyAlignment() called with: ", myGridPositionX, myInside, myAlignment);
+      console.log("modMyAlignment() called for " + position.positionName);
+      console.log("myGridPositionX: ", myGridPositionX);
+      console.log("myInside: ", myInside);
+      console.log("myAlignment: ", myAlignment);
+      console.log("position: ", position);
+
 
       //modify myGridPositionX
       // console.log("myGridPositionX (before): ", myGridPositionX);
 
-      if ((myAlignment == 'outside' && myInside == 'higher') || (myAlignment == 'inside' && myInside == 'lower')) {
+      if ((myAlignment == 'outside' && myInside == 'higher')
+        || (myAlignment == 'inside' && myInside == 'lower')
+        || (myInside == 'onball' && myAlignment == 'left')) {
 
         //        console.log("++++ outside higher / inside lower ++++");
         myGridPositionX = Number(myGridPositionX) - Number(position.alignment.distance);
 
-      } else if ((myAlignment == 'outside' && myInside == 'lower') || (myAlignment == 'inside' && myInside == 'higher')) {
+      } else if ((myAlignment == 'outside' && myInside == 'lower')
+        || (myAlignment == 'inside' && myInside == 'higher')
+        || (myInside == 'onball' && myAlignment == 'right')) {
 
         //        console.log("++++ outside lower / inside higher ++++");
         myGridPositionX = Number(myGridPositionX) + Number(position.alignment.distance);
@@ -234,9 +245,9 @@
 
 
       } else {
-        console.log("# ERROR: Cannot properly modify the aligntment.");
+        console.log("# ERROR: " + position.positionName + " Cannot properly modify the aligntment.");
       }
-
+      console.log("------------");
       return myGridPositionX;
     }
 
