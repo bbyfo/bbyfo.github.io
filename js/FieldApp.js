@@ -59,7 +59,6 @@
       //      console.log("this", this);
 
     },
-
     //////////////////////////////////////////  
     // Offenseive Formation has been picked //
     //////////////////////////////////////////  
@@ -89,9 +88,7 @@
             // Loop over the positions and populate them on the grid
             formation.positions.forEach((position) => {
 
-              //              console.log("position in forEach(): ", position);
-              //              let gridItemSelected = $('#offense .grid-item-position');
-
+              // Instantiate a new Position
               // Positions place themselves, right?
               let positionObj = new Position($fieldElm, position);
 
@@ -154,7 +151,7 @@
 
               // console.log("position in forEach(): ", position);
               let gridItemSelected = $('#offense .grid-item-position');
-
+              // Instantiate a new Position
               // Positions place themselves, right?
               let positionObj = new Position($($fieldElm), position);
             });
@@ -162,7 +159,9 @@
       }
 
     },
-
+    ////////////////////////////////////
+    // Way-Too-Manual Form Validation //
+    ////////////////////////////////////
     handleHideTextCheckbox: function (e) {
       //      console.log("checkbox", e.currentTarget.checked);
       if (e.currentTarget.checked === true) {
@@ -172,8 +171,9 @@
       }
 
     },
-
-    // Here we build the initial field
+    /////////////////////////////  
+    // Build the initial field //
+    /////////////////////////////
     buildField: function ($wrapper) {
       let myFieldHelper = new FieldHelper($wrapper);
       myFieldHelper.populateFieldWithEmptyGridItems();
@@ -192,6 +192,9 @@
     this.$wrapper = $wrapper;
   }
 
+  ///////////////////////////////////////////////////
+  // Extend (add methods) to the FieldHelper class //
+  ///////////////////////////////////////////////////
   $.extend(FieldHelper.prototype, {
 
     clearFieldSection: function ($fieldElm) {
@@ -209,13 +212,15 @@
         this.remove();
       });
     },
-    //////////////////////////////////////////////  
-    // Populate the field with Field Grid Items //
-    //////////////////////////////////////////////
+
+    /**
+     * Populate the field with Field Grid Items
+     * @param $wrapper jQuery object. A section of the Field (#offense, #defense, #los)
+     */
+
     populateFieldWithEmptyGridItems: function ($wrapper = null) {
-      /*
-            console.log("$wrapper in buildField:", $wrapper);
-      */
+      // If no $wrapper is passed, populate the whole field.
+      // Otherwise, jsut populate the given $wrapper
       if ($wrapper === null) {
         this.fieldSections = [
           $('#defense'),
@@ -305,14 +310,21 @@
 
 
     },
+
+    /**
+     * assignGaps() declares and builds all the Gaps/Holes along the LOS.
+     * Someday it'd be cool to have this more programatic, but for now, build and leverage this giant data object.
+     */
     assignGaps: function () {
-      /**
-       * assignGaps() declares and builds all the Gaps/Holes along the LOS.
-       * Someday it'd be cool to have this more programatic, but for now, build and leverage this giant data object.
-       */
-      //      console.log("assignGaps() called");
+
+      // console.log("assignGaps() called");
       // Build out the Gap Data
       let gapData = {
+        ball: {
+          distance: 0,
+          id: 'ball',
+          label: 'Ball'
+        },
         a1: {
           distance: -1,
           id: 'A1',
@@ -361,12 +373,13 @@
       };
 
       // Find the Ball and build out from there.
-      let $ball = $("#ball");
+      let $ball = $("#ball-origin");
       let ballX = $ball.css("grid-column-start");
-      //console.log("$ball: ", $ball, "ballX: ", ballX, "gapData: ", gapData);
+//      console.log("$ball: ", $ball, "ballX: ", ballX, "gapData: ", gapData);
 
       // Loop over the gapData and populate the grid items with gap data
       for (const gap in gapData) {
+        //console.log("gap: ", gap);
         //        console.log(`${gap}: ${gapData[gap].label}`);
         //        console.log("label: ", gapData[gap].label);
         //        console.log("id: ", gapData[gap].id);

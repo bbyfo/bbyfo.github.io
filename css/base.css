@@ -74,7 +74,7 @@
 #offense > .grid-item:hover {
   background-color: magenta;
 }
-#ball {
+#ball-origin {
   color: white;
   grid-column-start: 11;
   grid-row-start: los;
