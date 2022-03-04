@@ -8,8 +8,11 @@
 }
 #field, #defense, #los, #offense {
   display: grid;
-  /* @todo It'd be great if these columns were generated based on the number of columns via script. Instead of hard-coding here */
-  /*  grid-template-columns: 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr 1vw 1fr;*/
+  /**
+	* @todo It'd be great if these columns were generated based on the number of columns via script. Instead of hard-coding here.
+	* We could use a parameter with a default in FieldApp.buildField. Then, when building the Field, we place the dynamic nunmber of
+	* grid-template-columns on the element in-line, instead of here.
+	*/
   grid-template-columns: repeat(10, 6fr 2.5fr) 6fr;
   align-items: stretch;
   justify-items: stretch;
