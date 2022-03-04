@@ -1,6 +1,10 @@
 #field {
   font-family: 'Courier New', Courier, monospace;
   font-size: clamp(1vw, 3vw, 4vw);
+  background-color: white;
+  width: 90vw;
+  margin: 0 auto;
+  height: 75vh;
 }
 #field, #defense, #los, #offense {
   display: grid;
@@ -11,18 +15,20 @@
   justify-items: stretch;
 }
 #field {
+  /*
   grid-template-rows: auto;
+*/
 }
 #defense, #offense, #los {
   grid-column-start: 1;
   grid-column-end: -1;
-  grid-auto-rows: auto;
+  /*  grid-auto-rows: auto;*/
 }
 #defense {
-  grid-template-rows: [safety] minmax(4vh, 8vh) [linebacker] minmax(4vh, 8vh) [defensive_los] minmax(4vh, 8vh);
+  grid-template-rows: [safety] minmax(50px, 6fr) [linebacker] minmax(50px, 6fr) [defensive_los] minmax(50px, 6fr);
   grid-row-start: 1;
   grid-row-end: 4;
-  grid-auto-rows: auto;
+  /*  grid-auto-rows: auto;*/
 }
 #defense > #label_defense, #offense > #label_offense {
   place-self: start;
@@ -37,7 +43,9 @@
 }
 #defense > div {
   align-content: flex-end;
+  /*
   border-top: 2px dashed white;
+*/
 }
 #los > div {
   align-content: space-around;
@@ -45,10 +53,12 @@
 }
 #offense > div {
   align-content: flex-start;
+  /*
   border-bottom: 2px dashed white;
+*/
 }
 #offense, #defense {
-  background-color: darkgreen;
+  row-gap: 5px;
 }
 #los {
   grid-row-start: 4;
@@ -56,15 +66,11 @@
   background-color: white;
   color: black;
   align-items: center;
-  grid-template-rows: [los] auto;
-  /*
-  padding-top: 0.25em;
-  padding-bottom: 0.25em;
-*/
+  grid-template-rows: [los] 0.5fr;
 }
 #offense {
-  grid-template-rows: [offensive_los] minmax(4vh, 8vh) [off] minmax(4vh, 8vh) [shotgun] minmax(4vh, 8vh) [deep] minmax(4vh, 8vh);
-  grid-auto-rows: auto;
+  grid-template-rows: [offensive_los] minmax(50px, 6fr) [off] minmax(50px, 6fr) [shotgun] minmax(50px, 6fr) [deep] minmax(50px, 6fr);
+  /*  grid-auto-rows: auto;*/
   grid-row-start: 5;
   grid-row-end: 8;
 }
@@ -99,16 +105,15 @@
 }
 */
 #defense .position-node {
-  background-color: darkblue;
+  /*  background-color: darkblue;*/
 }
 #offense .position-node {
-  background-color: #890000;
+  /*  background-color: #890000;*/
   position: absolute;
   top: 0;
 }
 .grid-item-gap {
   text-align: center;
-  background-color: #333d39;
   /*  font-size: clamp(1vw, 1.5vw, 2vw);*/
   z-index: 10;
 }
@@ -129,20 +134,34 @@
 #defense .helmet-image {
   position: absolute;
   top: 0;
-
 }
 #defense .half-image .helmet-image {
   max-width: 46%;
 }
 .grid-item-position .helmet-image {
   position: absolute;
-  max-height: 50%;
+  max-height: 100%
 }
 .grid-item-position, .grid-item-gap {
   align-items: flex-end;
   position: relative;
 }
-/*
+/**
+* Zebra Striping
+*/
+/* Light Green */
+.depth--safety, .depth--defensive_los, .depth--offensive_los, .depth--shotgun {
+  background-color: #ACDF87;
+}
+/* Dark Green */
+.depth--linebacker, .depth--off, .depth--deep {
+  background-color: #68BB59;
+}
+/* Grey Gaps */
+.grid-item-gap {
+  background-color: #333d39;
+}
+/**
 * Position Background Images (or not)
 */
 .position-node {

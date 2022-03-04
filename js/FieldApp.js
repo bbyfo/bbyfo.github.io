@@ -265,7 +265,7 @@
         this.fieldRowNames.forEach((fieldRowName) => {
           //        console.log(fieldRowName);
           this.fieldColumnCurrent = 1;
-          this.fieldColumnMax = 25;
+          this.fieldColumnMax = 21;
 
           // this is where we finally build out the grid item placeholder divs
           while (this.fieldColumnCurrent <= this.fieldColumnMax) {
@@ -287,6 +287,10 @@
             // Should be like offense-14-offensive_los
             fieldGridItem.dataset.gridCoords = thisFieldSection + '-' + this.fieldColumnCurrent + '-' + fieldRowName;
             fieldGridItem.classList.add('js-' + thisFieldSection + '-' + this.fieldColumnCurrent);
+
+            // Add the depth class for zebra striping
+            fieldGridItem.classList.add('depth--' + fieldRowName);
+
             // Is the grid item a gap/hole or a position container?
             if (this.fieldColumnCurrent % 2 == 0) {
               fieldGridItem.classList.add('grid-item-gap');
@@ -375,7 +379,7 @@
       // Find the Ball and build out from there.
       let $ball = $("#ball-origin");
       let ballX = $ball.css("grid-column-start");
-//      console.log("$ball: ", $ball, "ballX: ", ballX, "gapData: ", gapData);
+      //      console.log("$ball: ", $ball, "ballX: ", ballX, "gapData: ", gapData);
 
       // Loop over the gapData and populate the grid items with gap data
       for (const gap in gapData) {
