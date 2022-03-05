@@ -61,12 +61,17 @@
 <script src="js/FieldApp.js"></script> 
 <script src="js/Position.js"></script> 
 <script src="js/FieldSettings.js"></script> 
+<script src="js/Blocking.js"></script> 
 <script>
         $(document).ready(function() {
-            var $wrapper = $('#FootballApp');
+           	// Build the Field
+			var $wrapper = $('#FootballApp');
             var fieldApp = new FieldApp($wrapper);
 			fieldApp.buildField();
 			
+//			var $blockingWrapper = $("#builder")
+//			var $blockingPositions = $('.offensive-line', '.tight-end');
+//			var blocking = new Blocking($blockingWrapper, $blockingPositions);
         });
 	
     </script>

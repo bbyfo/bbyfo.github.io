@@ -65,9 +65,17 @@
 
         myGridPositionX = myAnchorsX;
 
+        // Modify my X grid position based on the alignment direction and distance.
+        if (position.alignment.direction === "right") {
+          myGridPositionX = Number(myGridPositionX) + Number(position.alignment.distance);
+        } else if (position.alignment.direction === "left") {
+          myGridPositionX = Number(myGridPositionX) - Number(position.alignment.distance);
+        }
+
         // Where is my inside?
         let myPositionHelper = new PositionHelper();
-        let myInside = myPositionHelper.whereIsMyInside(myAnchorsX);
+        let myInside = myPositionHelper.whereIsMyInside(myGridPositionX);
+
         let myAlignment = position.alignment.direction;
 
         // Math the alignment and the anchor and get the positions' cordinates
@@ -186,10 +194,10 @@
        * @param Number gridX The GridColumnStart of an html element (typically a position).
        * @returns string higher|lower|onball
        */
-      //      console.log("called whereIsMyInside() with gridX: ", gridX);
-      const ballColumnStart = window.getComputedStyle(document.getElementById("ball")).gridColumnStart;
+      console.log("whereIsMyInside() called with gridX: ", gridX);
+      const ballColumnStart = window.getComputedStyle(document.getElementById("ball-origin")).gridColumnStart;
       //      console.log("gridX: ", gridX);
-      //      console.log("The ball is at column: ", ballColumnStart);
+      console.log("The ball is at column: ", ballColumnStart);
       let direction = null;
       if (Number(ballColumnStart) > Number(gridX)) {
         direction = "higher";
@@ -219,7 +227,7 @@
       console.log("myInside: ", myInside);
       console.log("myAlignment: ", myAlignment);
       console.log("position: ", position);
-
+      console.log("distance: ", position.alignment.distance);
 
       //modify myGridPositionX
       // console.log("myGridPositionX (before): ", myGridPositionX);
@@ -247,7 +255,8 @@
       } else {
         console.log("# ERROR: " + position.positionName + " Cannot properly modify the aligntment.");
       }
-      console.log("------------");
+      console.log("myGridPositionX returned by modMyAlignment()", myGridPositionX);
+      console.log("-------------");
       return myGridPositionX;
     }
 
