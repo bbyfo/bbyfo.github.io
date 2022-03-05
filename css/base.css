@@ -56,7 +56,7 @@
 }
 #defense > div {
   align-content: flex-end;
-  border-top: 2px dashed white;
+  border-top: 2px solid white;
 }
 #los > div {
   align-content: space-around;
@@ -64,7 +64,7 @@
 }
 #offense > div {
   align-content: flex-start;
-  border-bottom: 2px dashed white;
+  border-bottom: 2px solid white;
 }
 #offense, #defense {
   /*  row-gap: 5px;*/

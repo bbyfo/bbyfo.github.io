@@ -223,12 +223,12 @@
        *
        * @returns Number The modified X coord
        */
-            console.log("modMyAlignment() called for " + position.positionName);
-            console.log("myGridPositionX: ", myGridPositionX);
-            console.log("myInside: ", myInside);
-            console.log("myAlignment: ", myAlignment);
-            console.log("position: ", position);
-            console.log("distance: ", position.alignment.distance);
+      //            console.log("modMyAlignment() called for " + position.positionName);
+      //            console.log("myGridPositionX: ", myGridPositionX);
+      //            console.log("myInside: ", myInside);
+      //            console.log("myAlignment: ", myAlignment);
+      //            console.log("position: ", position);
+      //            console.log("distance: ", position.alignment.distance);
 
       //modify myGridPositionX
       // console.log("myGridPositionX (before): ", myGridPositionX);
@@ -237,27 +237,29 @@
         || (myAlignment == 'inside' && myInside == 'lower')
         || (myInside == 'onball' && myAlignment == 'left')) {
 
-        console.log("++++ outside higher / inside lower ++++");
+        //        console.log("++++ outside higher / inside lower ++++");
+
         myGridPositionX = Number(myGridPositionX) - Number(position.alignment.distance);
 
       } else if ((myAlignment == 'outside' && myInside == 'lower')
         || (myAlignment == 'inside' && myInside == 'higher')
         || (myInside == 'onball' && myAlignment == 'right')) {
 
-        console.log("++++ outside lower / inside higher ++++");
+        //        console.log("++++ outside lower / inside higher ++++");
+
         myGridPositionX = Number(myGridPositionX) + Number(position.alignment.distance);
 
 
       } else if (myAlignment == 'on') {
 
-        console.log("++++ ON (don't mod the X coord) ++++");
+        //        console.log("++++ ON (don't mod the X coord) ++++");
 
 
       } else {
-        console.log("# ERROR: " + position.positionName + " Cannot properly modify the aligntment.");
+        //        console.log("# WARNING: " + position.positionName + " No need to modify the aligntment.");
       }
-      console.log("myGridPositionX returned by modMyAlignment()", myGridPositionX);
-      console.log("-------------");
+      //      console.log("myGridPositionX returned by modMyAlignment()", myGridPositionX);
+      //      console.log("-------------");
       return myGridPositionX;
     }
 

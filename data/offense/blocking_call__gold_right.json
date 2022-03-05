@@ -1,10 +1,13 @@
 {
-    "blockingCallName": "G.O.L.D. Right",
-    "blockingCallAppliesTo": [".offensive-lineman", ".tight-end"],
-    "blockingCallRules": [
-        "gap_inside",
-        "on_me",
-        "linebacker",
-        "destroy_nearest"
-    ]
+  "blockingCallName": "G.O.L.D. Right",
+  "blockingAssignments": [{
+      "appliesTo": [".offensive-lineman", ".tight-end"],
+      "rules": ["gap_inside", "on_me", "linebacker", "destroy_nearest"]
+    },
+    {
+      "appliesTo": [".wide-reciever"],
+      "rules": ["farthest_outside"]
+    }
+
+  ]
 }

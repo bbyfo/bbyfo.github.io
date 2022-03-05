@@ -29,15 +29,16 @@
               <option value="formation__bison_left_close_wide">Bison Left Close Wide</option>
               <option value="formation__spread__base">Spread Base</option>
             </select>
-            <label>Play Call?</label>
             <label>Blocking Call?</label>
             <select id="picker_blocking_call" class="form-control">
-              <option>Pick Blocking Call</option>
+              <option value="--default--">Pick Blocking Call</option>
               <option value="blocking_call__gold_right">G.O.L.D. Right</option>
               <option value="gold_left">G.O.L.D. Left</option>
               <option value="gost">G.O.S.T.</option>
               <option value="middle">Middle</option>
             </select>
+            <button type="button" id="show_blocking_all">Show All Blocking</button>
+            <label>Play Call?</label>
           </div>
           <div class="col-sm">
             <label>Pick Defensive Package</label>
@@ -69,9 +70,7 @@
             var fieldApp = new FieldApp($wrapper);
 			fieldApp.buildField();
 			
-			var $blockingWrapper = $("#builder")
-			var $blockingPositions = $('.offensive-line', '.tight-end');
-			var blocking = new Blocking($blockingWrapper, $blockingPositions);
+			var blocking = new Blocking($wrapper);
         });
 	
     </script>
