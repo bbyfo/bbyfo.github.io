@@ -241,6 +241,7 @@
         // Set the proper Field Section
         if (thisFieldSection === "defense") {
           this.fieldRowNames = [
+            'deep',
             'safety',
             'linebacker',
             'defensive_los'
