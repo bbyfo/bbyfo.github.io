@@ -83,12 +83,12 @@
       console.log("processBlockingAssignments() called with: ", blockingAssignment);
 
       //      console.log("blockingAssignment.appliesTo: ", blockingAssignment.appliesTo);
+      let blockingAssignmentClassNumber = 1;
 
       blockingAssignment.appliesTo.forEach((positionClass) => {
         //        console.log("positionClass: ", positionClass);
 
         let $positionsByClass = $(positionClass);
-        let blockingAssignmentClassNumber = 3;
         //        console.log("$positionsByClass: ", $positionsByClass);
 
         $positionsByClass.each((i, position) => {
@@ -139,7 +139,13 @@
                   assignmentX = myX;
 
                   break;
+                case 'linebacker':
+
+					  
+                  break;
               }
+
+
               // Get the X coord for the rule
               // the Y is defined in the blocking call and so its set directly.  *phew*
               assignmentY = rule.depth;
@@ -158,9 +164,11 @@
                 console.log("Umm...I think we have a target!!");
                 foundAssignment = true;
 
-                $thisPosition.parent().addClass(`blocking-identifier-${blockingAssignmentClassNumber}`);
-                $targetToCheck.addClass(`blocking-identifier-${blockingAssignmentClassNumber}`);
+                $thisPosition.parent().children(".position-node").addClass(`blocking-identifier-${blockingAssignmentClassNumber}`);
+                $targetToCheck.children(".position-node").addClass(`blocking-identifier-${blockingAssignmentClassNumber}`);
                 blockingAssignmentClassNumber++;
+              } else {
+                console.log("We found nobody to block here.");
               }
 
               // If there is a position at the target coords, assign the blocking classes to the blocker and the target
