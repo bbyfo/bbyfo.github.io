@@ -7,7 +7,7 @@
    * Add Event Handlers.
    */
   window.Blocking = function ($wrapper, $blockingPositions) {
-    console.log("Blocking instantiated.", $wrapper);
+    //    console.log("Blocking instantiated.", $wrapper);
     this.$wrapper = $wrapper;
     // Event Handler for Picking the Blocking Call
     this.$wrapper.on(
@@ -58,7 +58,7 @@
             blockingCall.blockingAssignments.forEach((blockingAssignment) => {
 
               //              console.log("blockingAssignment: ", blockingAssignment);
-              this.processBlockingAssignment(blockingAssignment);
+              this.processBlockingAssignments(blockingAssignment);
 
             });
 
@@ -79,10 +79,107 @@
     showBlockingSingle: function () {
 
     },
-    processBlockingAssignment: function (blockingAssignment) {
-      console.log("processBlockingAssignment() called", blockingAssignment);
-      blockingAssignment.appliesTo.forEach((position) => {
-        console.log("position: ", $(position));
+    processBlockingAssignments: function (blockingAssignment) {
+      console.log("processBlockingAssignments() called with: ", blockingAssignment);
+
+      //      console.log("blockingAssignment.appliesTo: ", blockingAssignment.appliesTo);
+
+      blockingAssignment.appliesTo.forEach((positionClass) => {
+        //        console.log("positionClass: ", positionClass);
+
+        let $positionsByClass = $(positionClass);
+        let blockingAssignmentClassNumber = 3;
+        //        console.log("$positionsByClass: ", $positionsByClass);
+
+        $positionsByClass.each((i, position) => {
+          //          console.log("position: ", position);
+          let $thisPosition = $(position);
+          let positionHelper = new PositionHelper();
+          let rules = blockingAssignment.rules;
+          console.log("-----------");
+          console.log("$thisPosition: ", $thisPosition.attr('id'));
+          // Find my X
+          let myX = $thisPosition.parent().css("grid-column-start");
+          // Find my Inside
+          let myInside = positionHelper.whereIsMyInside(myX);
+
+          console.log("myX: ", myX);
+          console.log("myInside: ", myInside);
+          //          console.log(rules);
+          // Loop through rules and stop at the first 'yes'
+          // @todo The big 'ol switch statement has to manually match all possible values in the blocking_call__XXXXX.json files.
+          // Not optimal, but it's what we've got for now.
+          // sanityCounter keeps us from eternally looping and crashing stuff if we miss something.
+          let foundAssignment = false;
+
+          rules.forEach((rule) => {
+            let assignmentX = null;
+            let assignmentY = null;
+            let $targetToCheck = null;
+            console.log("blockingAssignmentClassNumber: ", blockingAssignmentClassNumber);
+            if (foundAssignment === false) {
+              console.log(`Processing rule: ${rule.name}`);
+
+              // Get the X coord for the rule
+              switch (rule.name) {
+                case 'gap_inside':
+                  if (myInside == "higher") {
+                    assignmentX = Number(myX) + Number(1);
+                  } else if (myInside == "lower") {
+                    assignmentX = Number(myX) - Number(1);
+
+                  } else if (myInside == "onball") {
+                    assignmentX = myX;
+                  } else {
+
+                  }
+
+                  break;
+                case 'on_me':
+                  assignmentX = myX;
+
+                  break;
+              }
+              // Get the X coord for the rule
+              // the Y is defined in the blocking call and so its set directly.  *phew*
+              assignmentY = rule.depth;
+
+              console.log("assignmentX: ", assignmentX);
+              console.log("assignmentY: ", assignmentY);
+
+
+              // Check those coords for a position
+              // Build the coord selector
+              // js-defense-15 depth--defensive_los
+              $targetToCheck = $(`.js-defense-${assignmentX}.depth--${assignmentY}`);
+
+              console.log("$targetToCheck: ", $targetToCheck);
+              if ($targetToCheck.children(".position-node").length > Number(0)) {
+                console.log("Umm...I think we have a target!!");
+                foundAssignment = true;
+
+                $thisPosition.parent().addClass(`blocking-identifier-${blockingAssignmentClassNumber}`);
+                $targetToCheck.addClass(`blocking-identifier-${blockingAssignmentClassNumber}`);
+                blockingAssignmentClassNumber++;
+              }
+
+              // If there is a position at the target coords, assign the blocking classes to the blocker and the target
+              // Also, set the foundAssignement to true so we stop processing.
+
+            }
+          });
+          /*
+          let sanityCounter = Number(0);
+                    let sanityLimit = Number(10);
+                    while (foundAssignment === false && sanityCounter <= sanityLimit) {
+                      sanityCounter++;
+                      console.log("checking for sanity (post): ", sanityCounter);
+
+                    }
+          		  */
+
+
+        });
       });
     }
 
