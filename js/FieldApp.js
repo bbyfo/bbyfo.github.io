@@ -240,19 +240,9 @@
         //      console.log("thisFieldSection: ", thisFieldSection);
         // Set the proper Field Section
         if (thisFieldSection === "defense") {
-          this.fieldRowNames = [
-            'deep',
-            'safety',
-            'linebacker',
-            'defensive_los'
-          ];
+          this.fieldRowNames = this.getDefensiveDepths();
         } else if (thisFieldSection === "offense") {
-          this.fieldRowNames = [
-            'offensive_los',
-            'off',
-            'shotgun',
-            'deep'
-          ];
+          this.fieldRowNames = this.getOffensiveDepths();
 
         } else if (thisFieldSection === "los") {
           this.fieldRowNames = [
@@ -401,7 +391,25 @@
         //        console.log("targetCellSelector: ", targetCellSelector);
       }
 
+    },
+    getDefensiveDepths: function () {
+      return [
+        'deep',
+        'safety',
+        'linebacker',
+        'defensive_los'
+      ];
+    },
+    getOffensiveDepths: function () {
+      return [
+        'offensive_los',
+        'off',
+        'shotgun',
+        'deep'
+      ];
     }
+
+
   });
 
 
