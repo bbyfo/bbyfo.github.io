@@ -1,6 +1,6 @@
 {
-  "blockingCallName": "G.O.L.D. Right",
-  "playSide": "right",
+  "blockingCallName": "G.O.O. Left",
+  "playSide": "left",
   "blockingAssignments": [{
     "appliesTo": [".offensive-lineman", ".tight-end"],
     "rules": [{
@@ -10,8 +10,8 @@
       "name": "on_me",
       "depth": "defensive_los"
     }, {
-      "name": "linebacker",
-      "depth": "linebacker"
+      "name": "gap_outside",
+      "depth": "defensive_los"
     }, {
       "name": "destroy_nearest",
       "depth": "defensive_los"

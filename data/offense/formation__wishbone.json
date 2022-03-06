@@ -1,5 +1,5 @@
     {
-      "formationName": "Bison Left",
+      "formationName": "Wishbone",
       "positions": [{
           "id": 5,
           "positionName": "C",
@@ -96,7 +96,7 @@
         {
           "id": 1,
           "positionName": "QB",
-          "depth": "shotgun",
+          "depth": "off",
           "anchors": [
             "C",
             "ball"
@@ -113,19 +113,19 @@
             "QB"
           ],
           "alignment": {
-            "direction": "left",
-            "distance": 2
+            "direction": "on",
+            "distance": 0
           },
-          "depth": "shotgun",
+          "depth": "deep",
           "positionTypes": ["running-back", "halfback"]
         }, {
           "id": 34,
           "positionName": "FB",
           "anchors": [
-            "RB"
+            "QB"
           ],
           "alignment": {
-            "direction": "left",
+            "direction": "right",
             "distance": 2
           },
           "depth": "shotgun",
@@ -134,7 +134,7 @@
           "id": 34,
           "positionName": "WR",
           "anchors": [
-            "FB"
+            "QB"
           ],
           "alignment": {
             "direction": "left",

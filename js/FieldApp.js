@@ -89,7 +89,7 @@
             formation.positions.forEach((position) => {
 
               // Instantiate a new Position
-              // Positions place themselves, right?
+              // Positions place themselves
               let positionObj = new Position($fieldElm, position);
 
 
