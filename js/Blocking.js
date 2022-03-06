@@ -97,9 +97,9 @@
           let positionHelper = new PositionHelper();
           let rules = blockingAssignment.rules;
           console.log("-----------");
-          console.log("$thisPosition: ", $thisPosition.attr('id'));
+          console.log("POSITION: ", $thisPosition.attr('id'));
           // Find my X
-          let myX = $thisPosition.parent().css("grid-column-start");
+          let myX = Number($thisPosition.parent().css("grid-column-start"));
           // Find my Inside
           let myInside = positionHelper.whereIsMyInside(myX);
 
@@ -113,10 +113,10 @@
           let foundAssignment = false;
 
           rules.forEach((rule) => {
-            let assignmentX = null;
+            let assignmentX = [];
             let assignmentY = null;
             let $targetToCheck = null;
-            console.log("blockingAssignmentClassNumber: ", blockingAssignmentClassNumber);
+            //            console.log("blockingAssignmentClassNumber: ", blockingAssignmentClassNumber);
             if (foundAssignment === false) {
               console.log(`Processing rule: ${rule.name}`);
 
@@ -124,24 +124,42 @@
               switch (rule.name) {
                 case 'gap_inside':
                   if (myInside == "higher") {
-                    assignmentX = Number(myX) + Number(1);
+                    assignmentX[0] = Number(myX) + Number(1);
                   } else if (myInside == "lower") {
-                    assignmentX = Number(myX) - Number(1);
+                    assignmentX[0] = Number(myX) - Number(1);
 
                   } else if (myInside == "onball") {
-                    assignmentX = myX;
+                    assignmentX[0] = myX;
                   } else {
 
                   }
 
                   break;
                 case 'on_me':
-                  assignmentX = myX;
+                  assignmentX[0] = myX;
 
                   break;
                 case 'linebacker':
+                  assignmentX[0] = Number(myX) - Number(2);
+                  assignmentX[1] = Number(myX) - Number(1);
+                  assignmentX[2] = Number(myX);
+                  assignmentX[3] = Number(myX) + Number(1);
+                  break;
+                case 'destroy_nearest':
+                  let targets = [];
+                  if (myInside == "higher") {
+                    targets = [Number(0), Number(-1), Number(1), Number(-2), Number(2), Number(-3), Number(3), Number(-4), Number(4), Number(-5), Number(5)];
+                  } else if (myInside == "lower") {
+                    targets = [Number(0), Number(1), Number(-1), Number(2), Number(-2), Number(3), Number(-3), Number(4), Number(-4), Number(5), Number(-5)];
 
-					  
+                  }
+
+                  targets.forEach((target) => {
+                    console.log(target);
+                    assignmentX.push(Number(myX) + Number(target));
+                  });
+
+
                   break;
               }
 
@@ -150,29 +168,40 @@
               // the Y is defined in the blocking call and so its set directly.  *phew*
               assignmentY = rule.depth;
 
-              console.log("assignmentX: ", assignmentX);
-              console.log("assignmentY: ", assignmentY);
+              //              console.log("assignmentX: ", assignmentX);
+              //              console.log("assignmentY: ", assignmentY);
 
 
               // Check those coords for a position
               // Build the coord selector
               // js-defense-15 depth--defensive_los
-              $targetToCheck = $(`.js-defense-${assignmentX}.depth--${assignmentY}`);
 
-              console.log("$targetToCheck: ", $targetToCheck);
-              if ($targetToCheck.children(".position-node").length > Number(0)) {
-                console.log("Umm...I think we have a target!!");
-                foundAssignment = true;
-
-                $thisPosition.parent().children(".position-node").addClass(`blocking-identifier-${blockingAssignmentClassNumber}`);
-                $targetToCheck.children(".position-node").addClass(`blocking-identifier-${blockingAssignmentClassNumber}`);
-                blockingAssignmentClassNumber++;
-              } else {
-                console.log("We found nobody to block here.");
-              }
+              // Build out the target list
+              let targetList = [];
+              assignmentX.forEach((x) => {
+                targetList.push($(`.js-defense-${x}.depth--${assignmentY}`));
+              });
+              console.log("targetList: ", targetList);
 
               // If there is a position at the target coords, assign the blocking classes to the blocker and the target
               // Also, set the foundAssignement to true so we stop processing.
+              targetList.every(($target) => {
+                console.log("$target: ", $target);
+                if ($target.children(".position-node").length > Number(0)) {
+                  console.log("Umm...I think we have a target!!");
+                  foundAssignment = true;
+
+                  $thisPosition.parent().children(".position-node").addClass(`blocking-identifier-${blockingAssignmentClassNumber}`);
+                  $target.children(".position-node").addClass(`blocking-identifier-${blockingAssignmentClassNumber}`);
+                  blockingAssignmentClassNumber++;
+                  return false;
+                } else {
+                  console.log("We found nobody to block here.");
+                  return true;
+                }
+
+              });
+
 
             }
           });
