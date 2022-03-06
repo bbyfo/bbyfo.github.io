@@ -19,7 +19,10 @@
     },
     {
       "appliesTo": [".wide-reciever"],
-      "rules": ["farthest_outside"]
+      "rules": [{
+        "name": "first_most_outside",
+        "depth": "defensive_los"
+      }]
     }
 
   ]

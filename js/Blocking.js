@@ -58,7 +58,7 @@
             blockingCall.blockingAssignments.forEach((blockingAssignment) => {
 
               //              console.log("blockingAssignment: ", blockingAssignment);
-              this.processBlockingAssignments(blockingAssignment);
+              this.processBlockingAssignments(blockingAssignment, blockingCall);
 
             });
 
@@ -79,9 +79,9 @@
     showBlockingSingle: function () {
 
     },
-    processBlockingAssignments: function (blockingAssignment) {
+    processBlockingAssignments: function (blockingAssignment, blockingCall) {
       console.log("processBlockingAssignments() called with: ", blockingAssignment);
-
+      console.log("blockingCall", blockingCall);
       //      console.log("blockingAssignment.appliesTo: ", blockingAssignment.appliesTo);
       let blockingAssignmentClassNumber = 1;
 
@@ -129,7 +129,16 @@
                     assignmentX[0] = Number(myX) - Number(1);
 
                   } else if (myInside == "onball") {
-                    assignmentX[0] = myX;
+                    // Use the playSide of the Blocking call to determine the inside gap  
+                    console.log("blockingCall: ", blockingCall);
+                    if (blockingCall.playSide == "right") {
+                      assignmentX[0] = myX + Number(1);
+                    } else if (blockingCall.playSide == "left") {
+                      assignmentX[0] = myX - Number(1);
+                    } else {
+                      console.log("We don't have a playside defined in the blocking file.");
+                    }
+
                   } else {
 
                   }
@@ -152,14 +161,20 @@
                   } else if (myInside == "lower") {
                     targets = [Number(0), Number(1), Number(-1), Number(2), Number(-2), Number(3), Number(-3), Number(4), Number(-4), Number(5), Number(-5)];
 
-                  }
+                  } else if (myInside == "onball") {
+                    if (blockingCall.playSide == "right") {
+                      targets = [Number(0), Number(1), Number(-1), Number(2), Number(-2), Number(3), Number(-3), Number(4), Number(-4), Number(5), Number(-5)];
+                    } else if (blockingCall.playSide == "left") {
+                      targets = [Number(0), Number(-1), Number(1), Number(-2), Number(2), Number(-3), Number(3), Number(-4), Number(4), Number(-5), Number(5)];
 
+                    } else {
+                      console.log("Wow, nobody?  Bueller?  Bueller?");
+                    }
+                  }
                   targets.forEach((target) => {
                     console.log(target);
                     assignmentX.push(Number(myX) + Number(target));
                   });
-
-
                   break;
               }
 
@@ -186,13 +201,26 @@
               // If there is a position at the target coords, assign the blocking classes to the blocker and the target
               // Also, set the foundAssignement to true so we stop processing.
               targetList.every(($target) => {
-                console.log("$target: ", $target);
+                console.log(rule.name, " $target: ", $target);
                 if ($target.children(".position-node").length > Number(0)) {
                   console.log("Umm...I think we have a target!!");
                   foundAssignment = true;
 
-                  $thisPosition.parent().children(".position-node").addClass(`blocking-identifier-${blockingAssignmentClassNumber}`);
-                  $target.children(".position-node").addClass(`blocking-identifier-${blockingAssignmentClassNumber}`);
+                  let $targetPosition = $target.children(".position-node");
+                  // Mark this position with a blocking identifier
+                  $thisPosition.addClass(`blocking-identifier-${blockingAssignmentClassNumber}`);
+
+                  if ($targetPosition.hasClass("js-is-blocked")) {
+                    console.log("$targetPosition: ", $targetPosition);
+
+                    $targetPosition.addClass(["js-is-double-teamed"]);
+                    $targetPosition.parent().addClass([`blocking-identifier-${blockingAssignmentClassNumber}`]);
+
+                  }
+                  // Mark the target as being blocked and by whom
+                  $targetPosition.addClass([`blocking-identifier-${blockingAssignmentClassNumber}`, 'js-is-blocked']);
+
+
                   blockingAssignmentClassNumber++;
                   return false;
                 } else {

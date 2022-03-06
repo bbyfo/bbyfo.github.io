@@ -1,0 +1,161 @@
+    {
+      "formationName": "6-2 Base Man",
+      "positions": [{
+          "id": 1,
+          "depth": "defensive_los",
+          "positionName": "LDE",
+          "anchors": [
+
+            "RTE",
+            "RT"
+          ],
+          "alignment": {
+            "direction": "on",
+            "distance": 0
+          },
+          "positionTypes": ["defensive-line", "defensive-end"]
+        },
+        {
+          "id": 2,
+          "depth": "defensive_los",
+          "positionName": "LWT",
+          "anchors": [
+
+            "RT",
+            "RG",
+            "C"
+          ],
+          "alignment": {
+            "direction": "on",
+            "distance": 0
+          },
+          "positionTypes": ["defensive-line", "defensive-tackle"]
+        },
+        {
+          "id": 3,
+          "depth": "defensive_los",
+          "positionName": "RWT",
+          "anchors": [
+            "LT",
+            "LG",
+            "C"
+          ],
+          "alignment": {
+            "direction": "on",
+            "distance": 0
+          },
+          "positionTypes": ["defensive-line", "defensive-tackle"]
+        },
+        {
+          "id": 4,
+          "depth": "defensive_los",
+          "positionName": "RDE",
+          "anchors": [
+
+            "LTE",
+            "LT",
+            "LG"
+          ],
+          "alignment": {
+            "direction": "on",
+            "distance": 0
+          },
+          "positionTypes": ["defensive-line", "defensive-end"]
+        },
+        {
+          "id": 6,
+          "depth": "linebacker",
+          "positionName": "RLB",
+          "anchors": [
+            "B3",
+            "LG"
+          ],
+          "alignment": {
+            "direction": "on",
+            "distance": 0
+          },
+          "positionTypes": ["linebacker"]
+        },
+        {
+          "id": 7,
+          "depth": "linebacker",
+          "positionName": "LLB",
+          "anchors": [
+            "B4",
+            "RT"
+          ],
+          "alignment": {
+            "direction": "on",
+            "distance": 0
+          },
+          "positionTypes": ["linebacker"]
+        },
+        {
+          "id": 8,
+          "depth": "defensive_los",
+          "positionName": "LNT",
+          "anchors": [
+            "RG",
+            "A1"
+          ],
+          "alignment": {
+            "direction": "on",
+            "distance": 0
+          },
+          "positionTypes": ["linebacker"]
+        },
+        {
+          "id": 5,
+          "depth": "defensive_los",
+          "positionName": "RNT",
+          "anchors": [
+            "LG",
+            "A2"
+          ],
+          "alignment": {
+            "direction": "on",
+            "distance": 0
+          },
+          "positionTypes": ["defensive-line", "nose-tackle"]
+        },
+        {
+          "id": 9,
+          "depth": "safety",
+          "positionName": "SAF",
+          "anchors": [
+            "C"
+          ],
+          "alignment": {
+            "direction": "on",
+            "distance": 0
+          },
+          "positionTypes": ["safety"]
+        },
+        {
+          "id": 10,
+          "depth": "linebacker",
+          "positionName": "RC",
+          "anchors": [
+            "D7"
+          ],
+          "alignment": {
+            "direction": "outside",
+            "distance": 3
+          },
+          "positionTypes": ["cornerback"]
+        },
+        {
+          "id": 11,
+          "depth": "linebacker",
+          "positionName": "LC",
+          "anchors": [
+            "D8"
+          ],
+          "alignment": {
+            "direction": "outside",
+            "distance": 3
+          },
+          "positionTypes": ["cornerback"]
+        }
+      ]
+    }
