@@ -111,6 +111,13 @@
   position: absolute;
   bottom: 0;
 }
+#defense .has-double-team {
+  display: flex;
+  flex-direction: column;
+}
+#defense .has-double-team .position-node {
+  position: relative;
+}
 #offense .position-node, #offense .helmet-image {
   /*  background-color: #890000;*/
   position: absolute;

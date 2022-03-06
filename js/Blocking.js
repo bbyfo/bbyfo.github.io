@@ -96,15 +96,18 @@
           let $thisPosition = $(position);
           let positionHelper = new PositionHelper();
           let rules = blockingAssignment.rules;
-          console.log("-----------");
-          console.log("POSITION: ", $thisPosition.attr('id'));
+
+
           // Find my X
           let myX = Number($thisPosition.parent().css("grid-column-start"));
           // Find my Inside
           let myInside = positionHelper.whereIsMyInside(myX);
 
-          console.log("myX: ", myX);
-          console.log("myInside: ", myInside);
+          //          console.log("myX: ", myX);
+          //          console.log("myInside: ", myInside);
+          console.log(" ");
+          console.log("##################");
+          console.log("POSITION: ", $thisPosition.attr('id'), "myX:", myX, "myInside:", myInside);
           //          console.log(rules);
           // Loop through rules and stop at the first 'yes'
           // @todo The big 'ol switch statement has to manually match all possible values in the blocking_call__XXXXX.json files.
@@ -130,13 +133,13 @@
 
                   } else if (myInside == "onball") {
                     // Use the playSide of the Blocking call to determine the inside gap  
-                    console.log("blockingCall: ", blockingCall);
+                    //                    console.log("blockingCall: ", blockingCall);
                     if (blockingCall.playSide == "right") {
                       assignmentX[0] = myX + Number(1);
                     } else if (blockingCall.playSide == "left") {
                       assignmentX[0] = myX - Number(1);
                     } else {
-                      console.log("We don't have a playside defined in the blocking file.");
+                      console.log(`We don't have a playside defined in ${blockingCall.blockingCallName}.`);
                     }
 
                   } else {
@@ -196,12 +199,14 @@
               assignmentX.forEach((x) => {
                 targetList.push($(`.js-defense-${x}.depth--${assignmentY}`));
               });
-              console.log("targetList: ", targetList);
+              //              console.log("targetList: ", targetList);
 
               // If there is a position at the target coords, assign the blocking classes to the blocker and the target
               // Also, set the foundAssignement to true so we stop processing.
               targetList.every(($target) => {
-                console.log(rule.name, " $target: ", $target);
+
+                console.log(rule.name, "$target: ", $target[0]);
+
                 if ($target.children(".position-node").length > Number(0)) {
                   console.log("Umm...I think we have a target!!");
                   foundAssignment = true;
@@ -210,11 +215,17 @@
                   // Mark this position with a blocking identifier
                   $thisPosition.addClass(`blocking-identifier-${blockingAssignmentClassNumber}`);
 
+                  // Check for a Double Team
                   if ($targetPosition.hasClass("js-is-blocked")) {
-                    console.log("$targetPosition: ", $targetPosition);
-
+                    // We've got a double team.  We need to show that.
+                    // Instead of adding another blocking identifier class to the target position, can we clone the target position and add the blocking identifier
+                    // to that newly cloned element.
+                    console.log(`Doubleteam found!`);
                     $targetPosition.addClass(["js-is-double-teamed"]);
-                    $targetPosition.parent().addClass([`blocking-identifier-${blockingAssignmentClassNumber}`]);
+                    $targetPosition.parent().addClass(["has-double-team"]);
+
+                    $targetPosition.clone().insertBefore($targetPosition);
+                    //$targetPosition.parent().addClass([`blocking-identifier-${blockingAssignmentClassNumber}`]);
 
                   }
                   // Mark the target as being blocked and by whom
