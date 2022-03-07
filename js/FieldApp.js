@@ -65,8 +65,14 @@
     handlePickOffenseFormation: function (e) {
       let $fieldElm = $("#offense");
       let myFieldHelper = new FieldHelper($fieldElm);
+
+      // Clear the offense and rebuild it
       myFieldHelper.clearFieldSection($fieldElm);
       myFieldHelper.populateFieldWithEmptyGridItems($fieldElm);
+      // Clear the defense and rebuild it
+      myFieldHelper.clearFieldSection($("#defense"));
+      myFieldHelper.populateFieldWithEmptyGridItems($("#defense"));
+
 
       $("#pick_offense_first").hide();
 
@@ -113,15 +119,20 @@
       let myFieldHelper = new FieldHelper();
       myFieldHelper.clearFieldSection($fieldElm);
       myFieldHelper.populateFieldWithEmptyGridItems($fieldElm);
+
+
       // Make sure that offense has been placed...many defensive positions are relative to offensive positions.
       if ($("#offense .position-node.position-offense").length == 11) {
         //        console.log("Yes, there are 11 offensive players on the field. Proceed to set the Defensive Positions");
         $("#pick_offense_first").hide();
 
         // Get rid of any existing defensive positions
-        $(".position-defense").fadeOut('slow', function () {
-          this.remove();
-        });
+        $(".position-defense").remove();
+        //        $(".position-defense").fadeOut('slow', function () {
+        //          this.remove();
+        //        });
+
+
       } else {
         console.log("Nope, there aren't 11 offenseive players on the field.");
         $("#pick_offense_first").show();
@@ -203,14 +214,15 @@
        *
        * @param $fieldElm jQuery element of either #offense or #defense
        */
-      //      console.log("clearFieldSection() called with $fieldElm", $fieldElm);
-      //      console.log("this", this);
-      // console.log("$fieldElm: ", $fieldElm);
       let positions = $fieldElm.find("*");
+      positions.remove();
+
+      //The below code makes a fancy fade-out, but causes a bug where selecting another offensive formation will, often, be incorrectly laid out. I believe this is an asynchronous issue.  If I understood promises better I could probably fix this for real.
       // console.log("positions to remove: ", positions);
-      positions.fadeOut('slow', function () {
-        this.remove();
-      });
+      //      positions.fadeOut('slow', function () {
+      //        this.remove();
+      //      });
+
     },
 
     /**
