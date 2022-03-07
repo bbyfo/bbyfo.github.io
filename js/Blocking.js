@@ -121,8 +121,11 @@
                   case 'gap_inside':
                     if (myInside == "higher") {
                       assignmentX[0] = Number(myX) + Number(1);
+                      assignmentX[1] = Number(myX) + Number(2);
                     } else if (myInside == "lower") {
                       assignmentX[0] = Number(myX) - Number(1);
+                      assignmentX[1] = Number(myX) - Number(2);
+
 
                     } else if (myInside == "onball") {
                       // Use the playSide of the Blocking call to determine the inside gap  
@@ -130,7 +133,8 @@
                       if (blockingCall.playSide == "right") {
                         assignmentX[0] = myX + Number(1);
                       } else if (blockingCall.playSide == "left") {
-                        assignmentX[0] = myX - Number(1);
+                        assignmentX[0] = Number(myX) - Number(1);
+                        assignmentX[1] = Number(myX) - Number(2);
                       } else {
                         console.log(`We don't have a playside defined in ${blockingCall.blockingCallName}.`);
                       }
@@ -148,8 +152,10 @@
                   case 'gap_outside':
                     if (myInside == "higher") {
                       assignmentX[0] = Number(myX) - Number(1);
+                      assignmentX[1] = Number(myX) - Number(2);
                     } else if (myInside == "lower") {
                       assignmentX[0] = Number(myX) + Number(1);
+                      assignmentX[1] = Number(myX) + Number(2);
 
                     } else if (myInside == "onball") {
                       // Use the playSide of the Blocking call to determine the inside gap  

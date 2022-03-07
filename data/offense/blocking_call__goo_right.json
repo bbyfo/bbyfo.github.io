@@ -1,6 +1,6 @@
 {
   "blockingCallName": "G.O.O. Right",
-  "playSide": "left",
+  "playSide": "right",
   "blockingAssignments": [{
     "appliesTo": [".offensive-lineman", ".tight-end"],
     "rules": [{
