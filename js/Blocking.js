@@ -173,29 +173,45 @@
                     assignmentX[2] = Number(myX);
                     assignmentX[3] = Number(myX) + Number(1);
                     break;
-                  case 'destroy_nearest':
+
+
+                  default:
+                    console.log("Nobody to block yet, defaulting to Down (playside)", blockingCall.playSide);
                     let targets = [];
-                    if (myInside == "higher") {
-                      targets = [Number(0), Number(-1), Number(1), Number(-2), Number(2), Number(-3), Number(3), Number(-4), Number(4), Number(-5), Number(5)];
-                    } else if (myInside == "lower") {
-                      targets = [Number(0), Number(1), Number(-1), Number(2), Number(-2), Number(3), Number(-3), Number(4), Number(-4), Number(5), Number(-5)];
 
-                    } else if (myInside == "onball") {
-                      if (blockingCall.playSide == "right") {
-                        targets = [Number(0), Number(1), Number(-1), Number(2), Number(-2), Number(3), Number(-3), Number(4), Number(-4), Number(5), Number(-5)];
-                      } else if (blockingCall.playSide == "left") {
-                        targets = [Number(0), Number(-1), Number(1), Number(-2), Number(2), Number(-3), Number(3), Number(-4), Number(4), Number(-5), Number(5)];
+                    // The following commented-out code is useful to find the "nearest" position to block.
+                    // It basically starts in the "head up" position, and then looks one space adjacent, then looks at the opposite space, and so on, preferring inside spaces
+                    //                    if (myInside == "higher") {
+                    //                      targets = [Number(0), Number(-1), Number(1), Number(-2), Number(2), Number(-3), Number(3), Number(-4), Number(4), Number(-5), Number(5)];
+                    //                    } else if (myInside == "lower") {
+                    //                      targets = [Number(0), Number(1), Number(-1), Number(2), Number(-2), Number(3), Number(-3), Number(4), Number(-4), Number(5), Number(-5)];
+                    //                    } else if (myInside == "onball") {
+                    //                      if (blockingCall.playSide == "right") {
+                    //                        targets = [Number(0), Number(1), Number(-1), Number(2), Number(-2), Number(3), Number(-3), Number(4), Number(-4), Number(5), Number(-5)];
+                    //                      } else if (blockingCall.playSide == "left") {
+                    //                        targets = [Number(0), Number(-1), Number(1), Number(-2), Number(2), Number(-3), Number(3), Number(-4), Number(4), Number(-5), Number(5)];
+                    //
+                    //                      } else {
+                    //                        console.log("Wow, nobody?  Bueller?  Bueller?");
+                    //                      }
+                    //                    }
 
-                      } else {
-                        console.log("Wow, nobody?  Bueller?  Bueller?");
-                      }
+                    // This code should find the closest position to block going to the playside.
+                    if (blockingCall.playSide == "right") {
+                      targets = [Number(0), Number(1), Number(2), Number(3), Number(4), Number(5), Number(6), Number(7), Number(8), Number(9), Number(10)];
+                    } else if (blockingCall.playSide == "left") {
+                      targets = [Number(0), Number(-1), Number(-2), Number(-3), Number(-4), Number(-5), Number(-6), Number(-7), Number(-8), Number(-9), Number(-10)];
+
+                    } else {
+                      console.log("Wow, nobody?  Bueller?  Bueller?");
                     }
+
                     targets.forEach((target) => {
                       console.log(target);
                       assignmentX.push(Number(myX) + Number(target));
                     });
                     break;
-                }
+                } // End Blocking Rules switch
 
 
                 // Get the X coord for the rule
