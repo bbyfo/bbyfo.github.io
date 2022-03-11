@@ -160,8 +160,8 @@
             // Loop over the positions and populate them on the grid
             formation.positions.forEach((position) => {
 
-              // console.log("position in forEach(): ", position);
-              let gridItemSelected = $('#offense .grid-item-position');
+              //console.log("position in forEach(): ", position);
+              //let gridItemSelected = $('#offense .grid-item-position');
               // Instantiate a new Position
               // Positions place themselves, right?
               let positionObj = new Position($($fieldElm), position);

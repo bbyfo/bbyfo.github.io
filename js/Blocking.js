@@ -112,7 +112,8 @@
               let assignmentX = [];
               let assignmentY = null;
               let $targetToCheck = null;
-              //            console.log("blockingAssignmentClassNumber: ", blockingAssignmentClassNumber);
+              let targets = [];
+              // console.log("blockingAssignmentClassNumber: ", blockingAssignmentClassNumber);
               if (foundAssignment === false) {
                 console.log(`Processing rule: ${rule.name}`);
 
@@ -133,6 +134,7 @@
                       } else if (blockingCall.playSide == "left") {
                         assignmentX[0] = Number(myX) - Number(1);
                       } else {
+                        assignmentX[0] = Number(myX);
                         console.log(`We don't have a playside defined in ${blockingCall.blockingCallName}.`);
                       }
 
@@ -175,10 +177,23 @@
                     assignmentX[3] = Number(myX) + Number(1);
                     break;
 
+                  case 'middle':
+                    targets = [];
+                    if (myInside == "higher") {
+                      targets = [Number(1), Number(2), Number(3), Number(4), Number(5), Number(6), Number(7), Number(8), Number(9), Number(10)];
+                    } else if (myInside == "lower") {
+                      targets = [Number(-1), Number(-2), Number(-3), Number(-4), Number(-5), Number(-6), Number(-7), Number(-8), Number(-9), Number(-10)];
+                    }
+                    targets.forEach((target) => {
+                      // console.log(target);
+                      assignmentX.push(Number(myX) + Number(target));
+                    });
+
+                    break;
 
                   default:
                     console.log("Nobody to block yet, defaulting to Down (playside)", blockingCall.playSide);
-                    let targets = [];
+
 
                     // The following commented-out code is useful to find the "nearest" position to block.
                     // It basically starts in the "head up" position, and then looks one space adjacent, then looks at the opposite space, and so on, preferring inside spaces
@@ -197,6 +212,7 @@
                     //                      }
                     //                    }
 
+                    targets = [];
                     // This code should find the closest position to block going to the playside.
                     if (blockingCall.playSide == "right") {
                       targets = [Number(0), Number(1), Number(2), Number(3), Number(4), Number(5), Number(6), Number(7), Number(8), Number(9), Number(10)];
@@ -256,6 +272,7 @@
                       console.log(`Doubleteam found!`);
                       $targetPosition.addClass(["js-is-double-teamed"]);
                       $targetPosition.parent().addClass(["has-double-team"]);
+
 
                       $targetPosition.clone().insertBefore($targetPosition);
                       //$targetPosition.parent().addClass([`blocking-identifier-${blockingAssignmentClassNumber}`]);
