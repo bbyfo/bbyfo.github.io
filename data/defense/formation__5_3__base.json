@@ -59,7 +59,6 @@
           "depth": "defensive_los",
           "positionName": "RDE",
           "anchors": [
-            "D7",
             "LTE",
             "LT",
             "LG"

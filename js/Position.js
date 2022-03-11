@@ -30,9 +30,9 @@
       let gridPositionSection = $fieldSection.attr('id');
 
       // Handle Positions in gaps (spoier, they gotta be wider)
-      let addGapExtendedEnding = false;
-      let myModdedAlignmentXInitial = Number(0);
-      let addExtendedEnding = Number(0);
+//      let addGapExtendedEnding = false;
+//      let myModdedAlignmentXInitial = Number(0);
+      //      let addExtendedEnding = Number(0);
 
       let gridPositionX = "";
       let gridPositionY = "";
@@ -42,7 +42,7 @@
           // I'm just keeping this around for now.  Who knows what detonates after further testing 8^)
           // gridPositionX = position.positionX;
           // gridPositionY = position.positionY;
-          // break;
+           // break;
         case 'defense':
           //        console.log("----------------------");
           //        console.log("NOW we get the " + position.positionName + " Postion's position.");
@@ -93,14 +93,14 @@
           let myModdedAlignmentX = myPositionHelper.modMyAlignment(myGridPositionX, myInside, myAlignment, position);
 
           // Take note of the original X coord
-          myModdedAlignmentXInitial = myModdedAlignmentX;
+//          myModdedAlignmentXInitial = myModdedAlignmentX;
 
           // Even numbers are gaps. Handle the putting of postion nodes in Gaps.
           // We set the custom grid-column-end later
-          if (myModdedAlignmentX % 2 === 0) {
-            addExtendedEnding = Number(myModdedAlignmentX);
-            myModdedAlignmentX = Number(myModdedAlignmentX) - Number(1);
-          }
+          //          if (myModdedAlignmentX % 2 === 0) {
+          //            addExtendedEnding = Number(myModdedAlignmentX);
+          //            myModdedAlignmentX = Number(myModdedAlignmentX) - Number(1);
+          //          }
 
 
           // After all the mods, we finally set the "my" version of the X coord to the final, usable X coord.
@@ -117,7 +117,7 @@
       // Here we assign the coordinates
       let gridPositionSelector = gridPositionSection + '-' + gridPositionX + '-' + gridPositionY;
 
-//          console.log("Grid Positions in Position: ", gridPositionSection, gridPositionX, gridPositionY, gridPositionSelector, position.positionTypes);
+      //          console.log("Grid Positions in Position: ", gridPositionSection, gridPositionX, gridPositionY, gridPositionSelector, position.positionTypes);
 
 
       // Create the position element placeholder
@@ -173,19 +173,19 @@
       $("[data-grid-coords|='" + gridPositionSelector + "']").append(positionDivImg);
 
 
-      // Handle the extra width of positions in gaps
-      if (Number(addExtendedEnding) > 0) {
-        //      console.log("Add Extended Ending bobo");
-        let myExtendedEnding = Number(gridPositionX) + Number(3);
-        //      console.log("myExtendedEnding: ", myExtendedEnding);
-        let myParent = positionDiv.parent(".grid-item-position");
-        //      console.log("myParent: ", myParent);
-        myParent.css({
-            gridColumnEnd: myExtendedEnding,
-            zIndex: 15,
-          }).addClass(['half-image', 'coord-x-hacked'])
-          .attr("data-grid-position-x-initial", myModdedAlignmentXInitial);
-      }
+      //      // Handle the extra width of positions in gaps
+      //      if (Number(addExtendedEnding) > 0) {
+      //        //      console.log("Add Extended Ending bobo");
+      //        let myExtendedEnding = Number(gridPositionX) + Number(3);
+      //        //      console.log("myExtendedEnding: ", myExtendedEnding);
+      //        let myParent = positionDiv.parent(".grid-item-position");
+      //        //      console.log("myParent: ", myParent);
+      //        myParent.css({
+      //            gridColumnEnd: myExtendedEnding,
+      //            zIndex: 15,
+      //          }).addClass(['half-image', 'coord-x-hacked'])
+      //          .attr("data-grid-position-x-initial", myModdedAlignmentXInitial);
+      //      }
     }
   });
 

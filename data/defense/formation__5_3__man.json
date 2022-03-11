@@ -5,13 +5,12 @@
           "depth": "defensive_los",
           "positionName": "LDE",
           "anchors": [
-            "D8",
             "RTE",
             "RT"
           ],
           "alignment": {
-            "direction": "outside",
-            "distance": 1
+            "direction": "on",
+            "distance": 0
           },
           "positionTypes": ["defensive-line", "defensive-end"]
         },
@@ -20,7 +19,6 @@
           "depth": "defensive_los",
           "positionName": "LWT",
           "anchors": [
-            "B6",
             "RT",
             "RG",
             "C"
@@ -36,14 +34,14 @@
           "depth": "defensive_los",
           "positionName": "RWT",
           "anchors": [
-            "B5",
+
             "LT",
             "LG",
             "C"
           ],
           "alignment": {
             "direction": "on",
-            "distance": 1
+            "distance": 0
           },
           "positionTypes": ["defensive-line", "defensive-tackle"]
         },
@@ -52,13 +50,12 @@
           "depth": "defensive_los",
           "positionName": "RDE",
           "anchors": [
-            "D7",
             "LTE",
             "LT",
             "LG"
           ],
           "alignment": {
-            "direction": "outside",
+            "direction": "on",
             "distance": 1
           },
           "positionTypes": ["defensive-line", "defensive-end"]

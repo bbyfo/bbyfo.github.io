@@ -1,7 +1,7 @@
 #field {
   font-family: 'Courier New', Courier, monospace;
-  font-size: clamp(1vw, 3vw, 4vw);
-  background-color: white;
+  font-size: clamp(1vw, 2vw, 3vw);
+  /*  background-color: white;*/
   width: 90vw;
   margin: 0 auto;
   /*  height: 75vh;*/
@@ -14,7 +14,7 @@
 	* We could use a parameter with a default in FieldApp.buildField. Then, when building the Field, we place the dynamic nunmber of
 	* grid-template-columns on the element in-line, instead of here.
 	*/
-  grid-template-columns: repeat(10, 6fr 2.5fr) 6fr;
+  grid-template-columns: repeat(21, 5fr);
   align-items: stretch;
   justify-items: stretch;
 }
@@ -52,10 +52,11 @@
 #offense > div, #los > div, #defense > div {
   place-self: stretch;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 #defense > div {
-  align-content: flex-end;
+  /*  align-content: flex-end;*/
   border-top: 2px solid white;
 }
 #los > div {
@@ -108,20 +109,25 @@
 }
 */
 #defense .position-node, #defense .helmet-image {
-  position: absolute;
-  bottom: 0;
+  /*  position: absolute;*/
+}
+#defense .position-node {
+  /*	  bottom: 0;*/
+}
+#defense .helmet-image {
+  /*	  top: 0;*/
 }
 #defense .has-double-team {
-  display: flex;
+  /*  display: flex;*/
   flex-direction: column;
 }
 #defense .has-double-team .position-node {
-  position: relative;
+  /*  position: relative;*/
 }
 #offense .position-node, #offense .helmet-image {
   /*  background-color: #890000;*/
-  position: absolute;
-  top: 0;
+  /*  position: absolute;*/
+  /*  top: 0;*/
 }
 .grid-item-gap {
   text-align: center;
@@ -129,7 +135,7 @@
   z-index: 10;
 }
 .grid-item-gap .helmet-image {
-  max-width: 48%;
+  /*  max-width: 48%;*/
 }
 .grid-item-gap > div {
   line-height: 1;
@@ -140,14 +146,17 @@
   bottom: 0;
 }
 #defense .grid-item-position {
-  position: relative;
+  /*  position: relative;*/
+  justify-content: flex-end;
 }
-#defense .helmet-image {}
+#defense .has-double-team .helmet-image {
+  max-width: 2.5vw;
+}
 #defense .half-image .helmet-image {
   max-width: 46%;
 }
 .grid-item-position .helmet-image {
-  position: absolute;
+  /*  position: absolute;*/
   max-height: 100%
 }
 .grid-item-position, .grid-item-gap {
