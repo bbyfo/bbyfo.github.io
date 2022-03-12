@@ -110,11 +110,11 @@
           "id": 15,
           "positionName": "RB",
           "anchors": [
-            "QB"
+            "LG"
           ],
           "alignment": {
-            "direction": "right",
-            "distance": 2
+            "direction": "on",
+            "distance": 0
           },
           "depth": "shotgun",
           "positionTypes": ["running-back", "halfback"]
@@ -122,11 +122,11 @@
           "id": 34,
           "positionName": "FB",
           "anchors": [
-            "RB"
+            "RG"
           ],
           "alignment": {
-            "direction": "right",
-            "distance": 2
+            "direction": "on",
+            "distance": 0
           },
           "depth": "shotgun",
           "positionTypes": ["running-back", "fullback"]

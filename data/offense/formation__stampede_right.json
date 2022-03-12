@@ -1,5 +1,5 @@
     {
-      "formationName": "Bison Left",
+      "formationName": "Stampede Right",
       "positions": [{
           "id": 5,
           "positionName": "C",
@@ -11,7 +11,7 @@
             "direction": "on",
             "distance": 0
           },
-          "positionTypes": ["offensive-lineman"]
+          "positionTypes": ["lineman"]
         },
         {
           "id": 6,
@@ -24,7 +24,7 @@
             "distance": 2
           },
           "depth": "offensive_los",
-          "positionTypes": ["offensive-lineman"]
+          "positionTypes": ["lineman"]
         },
         {
           "id": 25,
@@ -37,7 +37,7 @@
             "distance": 2
           },
           "depth": "offensive_los",
-          "positionTypes": ["offensive-lineman"]
+          "positionTypes": ["lineman"]
         },
         {
           "id": 54,
@@ -50,7 +50,7 @@
             "distance": 2
           },
           "depth": "offensive_los",
-          "positionTypes": ["tight-end"]
+          "positionTypes": ["lineman", "tight-end"]
         },
         {
           "id": 7,
@@ -63,7 +63,7 @@
             "distance": 2
           },
           "depth": "offensive_los",
-          "positionTypes": ["offensive-lineman"]
+          "positionTypes": ["lineman"]
         },
         {
           "id": 25,
@@ -76,7 +76,7 @@
             "distance": 2
           },
           "depth": "offensive_los",
-          "positionTypes": ["offensive-lineman"]
+          "positionTypes": ["lineman"]
         },
 
         {
@@ -90,7 +90,7 @@
             "distance": 2
           },
           "depth": "offensive_los",
-          "positionTypes": ["tight-end"]
+          "positionTypes": ["lineman", "tight-end"]
         },
 
         {
@@ -114,33 +114,33 @@
           ],
           "alignment": {
             "direction": "on",
-            "distance": 0
+            "distance": 6
           },
-          "depth": "shotgun",
+          "depth": "off",
           "positionTypes": ["running-back", "halfback"]
         }, {
           "id": 34,
           "positionName": "FB",
           "anchors": [
-            "LG"
+            "RB"
           ],
           "alignment": {
-            "direction": "on",
-            "distance": 0
+            "direction": "right",
+            "distance": 2
           },
-          "depth": "shotgun",
+          "depth": "off",
           "positionTypes": ["running-back", "fullback"]
         }, {
           "id": 34,
           "positionName": "WR",
           "anchors": [
-            "LT"
+            "FB"
           ],
           "alignment": {
-            "direction": "on",
-            "distance": 0
+            "direction": "right",
+            "distance": 2
           },
-          "depth": "shotgun",
+          "depth": "off",
           "positionTypes": ["wide-reciever"]
         }
 

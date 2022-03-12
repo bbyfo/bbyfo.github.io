@@ -1,5 +1,5 @@
     {
-      "formationName": "Bison Left Wide On",
+      "formationName": "Stampede Left",
       "positions": [{
           "id": 5,
           "positionName": "C",
@@ -110,10 +110,10 @@
           "id": 15,
           "positionName": "RB",
           "anchors": [
-            "QB"
+            "LG"
           ],
           "alignment": {
-            "direction": "left",
+            "direction": "on",
             "distance": 6
           },
           "depth": "off",

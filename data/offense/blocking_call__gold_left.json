@@ -16,19 +16,5 @@
       "name": "destroy_nearest",
       "depth": "defensive_los"
     }]
-  }, {
-    "appliesTo": [".nobody"],
-    "rules": [{
-        "name": "gap_outside",
-        "depth": "defensive_los"
-      }, {
-        "name": "gap_inside",
-        "depth": "defensive_los"
-      }, {
-        "name": "on_me",
-        "depth": "defensive_los"
-      }
-
-    ]
   }]
 }

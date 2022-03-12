@@ -171,10 +171,26 @@
 
                     break;
                   case 'linebacker':
-                    assignmentX[0] = Number(myX) - Number(2);
-                    assignmentX[1] = Number(myX) - Number(1);
-                    assignmentX[2] = Number(myX);
-                    assignmentX[3] = Number(myX) + Number(1);
+
+                    if (blockingCall.playSide == "right") {
+                      assignmentX[0] = Number(myX) - Number(1); // Easy LB
+                      assignmentX[1] = Number(myX); // On Me LB
+                      assignmentX[2] = Number(myX) + Number(1); // Playside LBs
+                      assignmentX[3] = Number(myX) + Number(2);
+                      assignmentX[4] = Number(myX) + Number(3);
+                      assignmentX[5] = Number(myX) + Number(4);
+                      assignmentX[6] = Number(myX) + Number(5);
+
+                    } else if (blockingCall.playSide == "left") {
+
+                    } else if (blockingCall.playSide == "middle") {
+
+                    }
+
+                    //                    assignmentX[0] = Number(myX) - Number(2);
+                    //                    assignmentX[1] = Number(myX) - Number(1);
+                    //                    assignmentX[2] = Number(myX);
+                    //                    assignmentX[3] = Number(myX) + Number(1);
                     break;
 
                   case 'middle':
@@ -248,7 +264,8 @@
                 assignmentX.forEach((x) => {
                   targetList.push($(`.js-defense-${x}.depth--${assignmentY}`));
                 });
-                //              console.log("targetList: ", targetList);
+
+                console.log("targetList: ", targetList);
 
                 // If there is a position at the target coords, assign the blocking classes to the blocker and the target
                 // Also, set the foundAssignement to true so we stop processing.
@@ -304,7 +321,8 @@
                     blockingAssignmentClassNumber++;
                     return false;
                   } else {
-                    console.log("We found nobody to block here.");
+                    console.log(`We found nobody to block for rule ${rule.name}`);
+                    console.log("-----");
                     return true;
                   }
 
