@@ -115,7 +115,7 @@
               let targets = [];
               // console.log("blockingAssignmentClassNumber: ", blockingAssignmentClassNumber);
               if (foundAssignment === false) {
-                console.log(`Processing rule: ${rule.name}`);
+                //                console.log(`Processing rule: ${rule.name}`);
 
                 // Get the X coord for the rule
                 switch (rule.name) {
@@ -254,15 +254,27 @@
                 // Also, set the foundAssignement to true so we stop processing.
                 targetList.every(($target) => {
 
-                  console.log(rule.name, "$target: ", $target[0]);
+                  console.log("Processing ", rule.name, "on $target: ", $target[0]);
 
                   if ($target.children(".position-node").length > Number(0)) {
-                    console.log("Umm...I think we have a target!!");
+                    console.log("We have a target!!");
                     foundAssignment = true;
 
                     let $targetPosition = $target.children(".position-node");
+                    let $targetPositionParent = $targetPosition.parent();
                     // Mark this position with a blocking identifier
                     $thisPosition.addClass(`blocking-identifier-${blockingAssignmentClassNumber}`);
+
+                    console.log("$thisPosition: ", $thisPosition[0]);
+                    console.log("$targetPosition: ", $targetPosition[0]);
+                    console.log("$targetPosition parent: ", $targetPositionParent[0]);
+
+                    let $blockingIdElm = $("<div></div>")
+                      .html($thisPosition.attr('id'))
+                      .addClass([`blocking-identifier-${blockingAssignmentClassNumber}`, 'position-node', 'offensive-blocking-identifier']);
+
+                    console.log("$blockingIdElm: ", $blockingIdElm[0]);
+                    $targetPosition.parent().prepend($blockingIdElm);
 
                     // Check for a Double Team
                     if ($targetPosition.hasClass("js-is-blocked")) {
@@ -274,12 +286,19 @@
                       $targetPosition.parent().addClass(["has-double-team"]);
 
 
-                      $targetPosition.clone().insertBefore($targetPosition);
+                      // Instead of cloing, we might try creating new elements to indicate who is blocking this defender.
+
+
+                      //$targetPosition.clone().insertBefore($targetPosition);
+
+
                       //$targetPosition.parent().addClass([`blocking-identifier-${blockingAssignmentClassNumber}`]);
 
                     }
+
+
                     // Mark the target as being blocked and by whom
-                    $targetPosition.addClass([`blocking-identifier-${blockingAssignmentClassNumber}`, 'js-is-blocked']);
+                    //$targetPosition.addClass([`blocking-identifier-${blockingAssignmentClassNumber}`, 'js-is-blocked']);
 
 
                     blockingAssignmentClassNumber++;

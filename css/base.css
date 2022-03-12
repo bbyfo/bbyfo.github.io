@@ -114,6 +114,9 @@
 #defense .position-node {
   /*	  bottom: 0;*/
 }
+#defense .position-node.offensive-blocking-identifier {
+  font-size: 75%;
+}
 #defense .helmet-image {
   /*	  top: 0;*/
 }
@@ -141,12 +144,13 @@
   line-height: 1;
 }
 .grid-item-position {}
-#offense .grid-item-position {}
+#offense .grid-item {
+  justify-content: flex-start;
+}
 #offense .helmet-image {
   bottom: 0;
 }
-#defense .grid-item-position {
-  /*  position: relative;*/
+#defense .grid-item {
   justify-content: flex-end;
 }
 #defense .has-double-team .helmet-image {
@@ -162,6 +166,9 @@
 .grid-item-position, .grid-item-gap {
   align-items: center;
   position: relative;
+}
+.helmet-image {
+  display: none;
 }
 /**
 * Zebra Striping
