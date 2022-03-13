@@ -378,6 +378,7 @@ form label {
 .block-miss-wrapper {
   position: relative;
 }
+/*
 .block-miss-wrapper::after {
   content: attr(data-blocking-rule-desc);
   position: static;
@@ -392,8 +393,26 @@ form label {
   display: none;
   visibility: hidden;
 }
+*/
+/*
 .visible.block-miss-wrapper::after {
   display: block;
+  visibility: visible;
+}
+*/
+#bocking-rule-description-wrapper {
+  padding: 0.5em;
+}
+#bocking-rule-description-wrapper strong {
+  font-size: 150%;
+}
+.blocking-rule-description {
+  /*  background-color: pink;*/
+  display: none;
+  visibility: hidden;
+}
+.visible .blocking-rule-description {
+  display: inline-block;
   visibility: visible;
 }
 .material-icons.blocking-rule-close {

@@ -194,19 +194,19 @@
                       assignmentX[0] = Number(myX) - Number(1); // Easy LB
                       assignmentX[1] = Number(myX); // On Me LB
                       assignmentX[2] = Number(myX) + Number(1); // Playside LBs
-                      assignmentX[3] = Number(myX) + Number(2);
-                      assignmentX[4] = Number(myX) + Number(3);
-                      assignmentX[5] = Number(myX) + Number(4);
-                      assignmentX[6] = Number(myX) + Number(5);
+                      //                      assignmentX[3] = Number(myX) + Number(2);
+                      //                      assignmentX[4] = Number(myX) + Number(3);
+                      //                      assignmentX[5] = Number(myX) + Number(4);
+                      //                      assignmentX[6] = Number(myX) + Number(5);
 
                     } else if (blockingCall.playSide == "left") {
                       assignmentX[0] = Number(myX) + Number(1); // Easy LB
                       assignmentX[1] = Number(myX); // On Me LB
                       assignmentX[2] = Number(myX) - Number(1); // Playside LBs
-                      assignmentX[3] = Number(myX) - Number(2);
-                      assignmentX[4] = Number(myX) - Number(3);
-                      assignmentX[5] = Number(myX) - Number(4);
-                      assignmentX[6] = Number(myX) - Number(5);
+                      //                      assignmentX[3] = Number(myX) - Number(2);
+                      //                      assignmentX[4] = Number(myX) - Number(3);
+                      //                      assignmentX[5] = Number(myX) - Number(4);
+                      //                      assignmentX[6] = Number(myX) - Number(5);
 
                     } else if (blockingCall.playSide == "middle") {
 
@@ -348,7 +348,7 @@
 
                     console.log($thisPosition.attr('id'), `found nobody to block for rule ${rule.name} Miss #${blockingRuleNoCount}`);
 
-                    blockingRuleDescription += " No. Go to next rule.";
+                    blockingRuleDescription += " <strong>No.</strong> Go to next rule.";
 
                     // Create the element to contain the Blocking Count Number and the 
                     let $blockMissWrapper = $('<div></div>').addClass(['block-miss-wrapper', blockingAssignmentOffensivePosition])
@@ -371,11 +371,11 @@
                     $blockMissWrapper.append($closeRuleDesc);
 
                     // Set up the number of "no's" we've gotten.  This is the order in which we examined the field.
-                    // + blockingRuleNoCount
 
                     let $blockingRuleNoCountElm = $('<span></span>').addClass(['blocking-rule-no-count']).html(blockingRuleNoCount);
 
-                    $blockMissWrapper.prepend($blockingRuleNoCountElm)
+
+                    $blockMissWrapper.prepend($blockingRuleNoCountElm);
 
 
                     blockingRuleNoCount++;
@@ -395,13 +395,24 @@
       }); // end processBlockingAssignments
     },
     handleClickMissedBlockIdentifier: function (e) {
-      console.log("handleClickMissedBlockIdentifier() called", e);
+      e.stopPropagation();
+      $('.block-miss-wrapper').removeClass('visible');
+      console.log("handleClick Missed Block Identifier() called", e);
       let $target = $(e.currentTarget);
       console.log("$target;: ", $target);
       $target.addClass('visible');
 
+      // Set up the Blocking Rule Description
+      let $blockingRuleDescriptionWrapperElm = $('#bocking-rule-description-wrapper');
+
+      //					  $blockingRuleDescription.addClass(['blocking-rule-description']);
+      $blockingRuleDescriptionWrapperElm.html($target.attr('data-blocking-rule-desc'));
+
+
     },
     handleClickCloseBlockingRuleDesc: function (e) {
+      e.stopPropagation();
+      e.preventDefault;
       console.log("handleClickCloseBlockingRuleDesc() called", e);
       $('.block-miss-wrapper').removeClass('visible');
     }
