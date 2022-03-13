@@ -16,6 +16,20 @@
       this.handleShowBlockingAll.bind(this)
     );
 
+    // Handle Clicking a Missed Block Identifier
+    this.$wrapper.on(
+      'click',
+      '.block-miss-wrapper',
+      this.handleClickMissedBlockIdentifier.bind(this)
+    );
+
+    this.$wrapper.on(
+      'click',
+      '.blocking-rule-close',
+      this.handleClickCloseBlockingRuleDesc.bind(this)
+    );
+
+
   };
 
 
@@ -74,7 +88,7 @@
       console.log("processBlockingAssignments() called with: ", blockingCall);
 
       //      console.log("blockingAssignment.appliesTo: ", blockingAssignment.appliesTo);
-      let blockingAssignmentClassNumber = 1;
+
 
       blockingCall.blockingAssignments.forEach((blockingAssignment) => {
 
@@ -87,6 +101,7 @@
           $positionsByClass.each((i, position) => {
             //          console.log("position: ", position);
             let $thisPosition = $(position);
+            let blockingAssignmentOffensivePosition = 'blocking-identifier--' + $thisPosition.attr('id');
             let positionHelper = new PositionHelper();
             let rules = blockingAssignment.rules;
 
@@ -108,12 +123,15 @@
             // sanityCounter keeps us from eternally looping and crashing stuff if we miss something.
             let foundAssignment = false;
 
+            let blockingRuleNoCount = Number(1);
+
+
             rules.forEach((rule) => {
               let assignmentX = [];
               let assignmentY = null;
               let $targetToCheck = null;
               let targets = [];
-              // console.log("blockingAssignmentClassNumber: ", blockingAssignmentClassNumber);
+              let blockingRuleDescription = rule.description;
               if (foundAssignment === false) {
                 //                console.log(`Processing rule: ${rule.name}`);
 
@@ -182,6 +200,13 @@
                       assignmentX[6] = Number(myX) + Number(5);
 
                     } else if (blockingCall.playSide == "left") {
+                      assignmentX[0] = Number(myX) + Number(1); // Easy LB
+                      assignmentX[1] = Number(myX); // On Me LB
+                      assignmentX[2] = Number(myX) - Number(1); // Playside LBs
+                      assignmentX[3] = Number(myX) - Number(2);
+                      assignmentX[4] = Number(myX) - Number(3);
+                      assignmentX[5] = Number(myX) - Number(4);
+                      assignmentX[6] = Number(myX) - Number(5);
 
                     } else if (blockingCall.playSide == "middle") {
 
@@ -231,9 +256,9 @@
                     targets = [];
                     // This code should find the closest position to block going to the playside.
                     if (blockingCall.playSide == "right") {
-                      targets = [Number(0), Number(1), Number(2), Number(3), Number(4), Number(5), Number(6), Number(7), Number(8), Number(9), Number(10)];
+                      targets = [Number(1), Number(2), Number(3), Number(4), Number(5), Number(6), Number(7), Number(8), Number(9), Number(10)];
                     } else if (blockingCall.playSide == "left") {
-                      targets = [Number(0), Number(-1), Number(-2), Number(-3), Number(-4), Number(-5), Number(-6), Number(-7), Number(-8), Number(-9), Number(-10)];
+                      targets = [Number(-1), Number(-2), Number(-3), Number(-4), Number(-5), Number(-6), Number(-7), Number(-8), Number(-9), Number(-10)];
 
                     } else {
                       console.log("Wow, nobody?  Bueller?  Bueller?");
@@ -265,13 +290,13 @@
                   targetList.push($(`.js-defense-${x}.depth--${assignmentY}`));
                 });
 
-                console.log("targetList: ", targetList);
+                //                console.log("targetList: ", targetList);
 
                 // If there is a position at the target coords, assign the blocking classes to the blocker and the target
                 // Also, set the foundAssignement to true so we stop processing.
                 targetList.every(($target) => {
 
-                  console.log("Processing ", rule.name, "on $target: ", $target[0]);
+                  console.log("Processing ", rule.name);
 
                   if ($target.children(".position-node").length > Number(0)) {
                     console.log("We have a target!!");
@@ -279,16 +304,22 @@
 
                     let $targetPosition = $target.children(".position-node");
                     let $targetPositionParent = $targetPosition.parent();
+
                     // Mark this position with a blocking identifier
-                    $thisPosition.addClass(`blocking-identifier-${blockingAssignmentClassNumber}`);
+                    //                    let blockingAssignmentOffensivePosition = 'blocking-identifier--' + $thisPosition.attr('id');
+
+                    $thisPosition.addClass(blockingAssignmentOffensivePosition);
 
                     console.log("$thisPosition: ", $thisPosition[0]);
                     console.log("$targetPosition: ", $targetPosition[0]);
                     console.log("$targetPosition parent: ", $targetPositionParent[0]);
+                    //                    console.log("rule.description", rule.description);
 
+                    let blockingRuleDescription = rule.description + " <strong>Yes!</strong>  Block him!";
                     let $blockingIdElm = $("<div></div>")
-                      .html($thisPosition.attr('id'))
-                      .addClass([`blocking-identifier-${blockingAssignmentClassNumber}`, 'position-node', 'offensive-blocking-identifier']);
+                      .html("verified")
+                      .attr('data-blocking-rule-desc', blockingRuleDescription)
+                      .addClass([blockingAssignmentOffensivePosition, 'position-node', 'offensive-blocking-identifier', 'material-icons']);
 
                     console.log("$blockingIdElm: ", $blockingIdElm[0]);
                     $targetPosition.parent().prepend($blockingIdElm);
@@ -302,26 +333,52 @@
                       $targetPosition.addClass(["js-is-double-teamed"]);
                       $targetPosition.parent().addClass(["has-double-team"]);
 
-
-                      // Instead of cloing, we might try creating new elements to indicate who is blocking this defender.
-
-
-                      //$targetPosition.clone().insertBefore($targetPosition);
-
-
-                      //$targetPosition.parent().addClass([`blocking-identifier-${blockingAssignmentClassNumber}`]);
-
                     }
 
 
-                    // Mark the target as being blocked and by whom
-                    //$targetPosition.addClass([`blocking-identifier-${blockingAssignmentClassNumber}`, 'js-is-blocked']);
-
-
-                    blockingAssignmentClassNumber++;
                     return false;
                   } else {
-                    console.log(`We found nobody to block for rule ${rule.name}`);
+
+                    ////////////////////////////////////////////////
+                    // Didn't find anyone to block in this space. //
+                    ////////////////////////////////////////////////
+
+                    console.log("$target", $target[0]);
+                    //                    console.log("$thisPosition", $thisPosition[0]);
+
+                    console.log($thisPosition.attr('id'), `found nobody to block for rule ${rule.name} Miss #${blockingRuleNoCount}`);
+
+                    blockingRuleDescription += " No. Go to next rule.";
+
+                    // Create the element to contain the Blocking Count Number and the 
+                    let $blockMissWrapper = $('<div></div>').addClass(['block-miss-wrapper', blockingAssignmentOffensivePosition])
+                    $blockMissWrapper.attr('data-blocking-rule-desc', blockingRuleDescription);
+                    $target.prepend($blockMissWrapper);
+
+
+                    // Set up the "nobody to block" icon
+                    let aTryandAMissIcon = "do_disturb";
+                    let $aTryAndAMissIconElm = $('<span></span>').html(aTryandAMissIcon);
+                    $aTryAndAMissIconElm.addClass(['material-icons', 'blocking-rule-icon']);
+
+
+                    $blockMissWrapper.prepend($aTryAndAMissIconElm);
+
+
+                    // Add a "close" X
+
+                    let $closeRuleDesc = $('<span>highlight_off</span>').addClass(['material-icons', 'blocking-rule-close']);
+                    $blockMissWrapper.append($closeRuleDesc);
+
+                    // Set up the number of "no's" we've gotten.  This is the order in which we examined the field.
+                    // + blockingRuleNoCount
+
+                    let $blockingRuleNoCountElm = $('<span></span>').addClass(['blocking-rule-no-count']).html(blockingRuleNoCount);
+
+                    $blockMissWrapper.prepend($blockingRuleNoCountElm)
+
+
+                    blockingRuleNoCount++;
                     console.log("-----");
                     return true;
                   }
@@ -336,6 +393,17 @@
           });
         });
       }); // end processBlockingAssignments
+    },
+    handleClickMissedBlockIdentifier: function (e) {
+      console.log("handleClickMissedBlockIdentifier() called", e);
+      let $target = $(e.currentTarget);
+      console.log("$target;: ", $target);
+      $target.addClass('visible');
+
+    },
+    handleClickCloseBlockingRuleDesc: function (e) {
+      console.log("handleClickCloseBlockingRuleDesc() called", e);
+      $('.block-miss-wrapper').removeClass('visible');
     }
 
   });

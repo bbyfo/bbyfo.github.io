@@ -264,48 +264,143 @@ form label {
   grid-row-start: 1;
 }
 /* Blocking Identifier Styles */
-.blocking-identifier-1 {
+.blocking-identifier--QB {
   border: 2px solid black;
   background-color: red;
   color: black;
 }
-.blocking-identifier-2 {
+.blocking-identifier--RB {
   border: 2px dashed black;
   background-color: orange;
   color: black;
 }
-.blocking-identifier-3 {
+.blocking-identifier--FB {
   border: 2px dashed black;
   background-color: yellow;
   color: black;
 }
-.blocking-identifier-4 {
+.blocking-identifier--WR {
   border: 2px dashed black;
   background-color: rgb(0, 204, 255);
   color: black;
 }
-.blocking-identifier-5 {
-  border: 2px dashed black;
-  background-color: rgb(0, 100, 255);
-  color: black;
+/*
+* Center
+*/
+.blocking-identifier--C {
+  border: 2px solid white;
+  background-color: rgb(79, 38, 131);
+  color: rgb(255, 198, 47);
 }
-.blocking-identifier-5 {
+.blocking-identifier--C.blocking-rule-icon {
+  color: rgba(0, 0, 0, 0.5);
+}
+/*
+* Right Guard
+*/
+.blocking-identifier--RG {
   border: 2px dashed white;
-  background-color: rgb(0, 50, 150);
+  background-color: rgb(0, 34, 68);
   color: white;
 }
-.blocking-identifier-6 {
-  border: 2px dashed black;
-  background-color: rgb(50, 150, 150);
+.blocking-identifier--RG.blocking-rule-no-count {}
+.blocking-identifier--RG.blocking-rule-icon {
+  color: rgba(134, 147, 151, 0.5);
+}
+/*
+* Left Guard
+*/
+.blocking-identifier--LG {
+  border: 2px solid rgb(252, 76, 2);
+  background-color: rgb(0, 87, 120);
+  color: white;
+  ;
+}
+.blocking-identifier--LG.blocking-rule-no-count {}
+.blocking-identifier--LG.blocking-rule-icon {
+  color: rgba(255, 255, 255, 0.50);
+}
+/*
+* Right Tackle
+*/
+.blocking-identifier--RT {
+  border: 2px dashed white;
+  background-color: rgb(170, 0, 0);
+  color: rgb(173, 153, 93);
+}
+.blocking-identifier--RT.blocking-rule-icon {}
+/* 
+* Left Tackle 
+*/
+.blocking-identifier--LT {
+  border: 2px solid black;
+  background-color: rgb(165, 172, 175);
   color: black;
 }
-.blocking-identifier-7 {
-  border: 2px dashed white;
-  background-color: rgb(50, 25, 50);
+.blocking-identifier--LT.blocking-rule-no-count {}
+.blocking-identifier--LT.blocking-rule-icon {
+  color: rgba(255, 255, 255, 0.75);
+  border-color: rgba(0, 0, 0, 0.75);
+}
+/* 
+* Left Tight End 
+*/
+.blocking-identifier--LTE {
+  border: 2px solid rgb(215, 162, 42);
+  background-color: rgb(0, 103, 120);
   color: white;
 }
-.blocking-identifier-8 {
-  border: 2px dashed black;
-  background-color: rgb(50, 250, 150);
+.blocking-identifier--LTE.blocking-rule-no-count {}
+.blocking-identifier--LTE.blocking-rule-icon {
+  color: rgba(255, 255, 255, 0.35);
+}
+/* 
+* Right Tight End 
+*/
+.blocking-identifier--RTE {
+  border: 2px dashed white;
+  background-color: rgb(0, 34, 68);
+  color: rgb(105, 190, 40);
+}
+.blocking-identifier--RTE.blocking-rule-icon {
+  color: rgba(255, 255, 255, 0.35);
+}
+.blocking-identifier--RTE.blocking-rule-no-count {}
+/* 
+*Common Blocking Rule Styles 
+*/
+.blocking-rule-no-count {
+  background-color: rgba(0, 0, 0, 0);
+  font-weight: bold;
+  border: none;
+}
+.blocking-rule-icon {}
+.block-miss-wrapper {
+  position: relative;
+}
+.block-miss-wrapper::after {
+  content: attr(data-blocking-rule-desc);
+  position: static;
+  width: 25vw;
+  height: 20vh;
+  top: -10vh;
+  left: -10vw;
+  background-color: white;
   color: black;
+  border: 6px solid cyan;
+  z-index: 100;
+  display: none;
+  visibility: hidden;
+}
+.visible.block-miss-wrapper::after {
+  display: block;
+  visibility: visible;
+}
+.material-icons.blocking-rule-close {
+  display: none;
+  visibility: hidden;
+}
+.visible .material-icons.blocking-rule-close {
+  display: inline-block;
+  visibility: visible;
 }
