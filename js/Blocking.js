@@ -268,7 +268,7 @@
                     }
 
                     targets.forEach((target) => {
-//                      console.log(target);
+                      //                      console.log(target);
                       assignmentX.push(Number(myX) + Number(target));
                     });
                     break;
@@ -313,9 +313,9 @@
 
                     $thisPosition.addClass(blockingAssignmentOffensivePosition);
 
-//                    console.log("$thisPosition: ", $thisPosition[0]);
-//                    console.log("$targetPosition: ", $targetPosition[0]);
-//                    console.log("$targetPosition parent: ", $targetPositionParent[0]);
+                    //                    console.log("$thisPosition: ", $thisPosition[0]);
+                    //                    console.log("$targetPosition: ", $targetPosition[0]);
+                    //                    console.log("$targetPosition parent: ", $targetPositionParent[0]);
                     //                    console.log("rule.description", rule.description);
 
                     let blockingRuleDescription = rule.description + " <strong>Yes!</strong>  Block him!";
@@ -324,7 +324,7 @@
                       .attr('data-blocking-rule-desc', blockingRuleDescription)
                       .addClass([blockingAssignmentOffensivePosition, 'position-node', 'offensive-blocking-identifier', 'material-icons']);
 
-//                    console.log("$blockingIdElm: ", $blockingIdElm[0]);
+                    //                    console.log("$blockingIdElm: ", $blockingIdElm[0]);
                     $targetPosition.parent().prepend($blockingIdElm);
 
                     // Check for a Double Team
@@ -332,7 +332,7 @@
                       // We've got a double team.  We need to show that.
                       // Instead of adding another blocking identifier class to the target position, can we clone the target position and add the blocking identifier
                       // to that newly cloned element.
-//                      console.log(`Doubleteam found!`);
+                      //                      console.log(`Doubleteam found!`);
                       $targetPosition.addClass(["js-is-double-teamed"]);
                       $targetPosition.parent().addClass(["has-double-team"]);
 
@@ -346,7 +346,7 @@
                     // Didn't find anyone to block in this space. //
                     ////////////////////////////////////////////////
 
-//                    console.log("$target", $target[0]);
+                    //                    console.log("$target", $target[0]);
                     //                    console.log("$thisPosition", $thisPosition[0]);
 
                     console.log($thisPosition.attr('id'), `found nobody to block for rule ${rule.name} Miss #${blockingRuleNoCount}`);
@@ -411,6 +411,7 @@
 
       // Set up the Blocking Rule Description
       let $blockingRuleDescriptionWrapperElm = $('#bocking-rule-description-wrapper');
+      $blockingRuleDescriptionWrapperElm.find('span').remove();
       $blockingRuleDescriptionWrapperElm.removeClass();
       //					  $blockingRuleDescription.addClass(['blocking-rule-description']);
 
