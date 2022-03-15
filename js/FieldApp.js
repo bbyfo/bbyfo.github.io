@@ -44,12 +44,20 @@
       this.handleHideTextCheckbox.bind(this)
     );
 
-    // Event Clearing the whole field.
+    // Event Handler for Clearing the whole field.
     this.$wrapper.on(
       'click',
       '#clear_field',
       this.handleClearFieldButton.bind(this)
     );
+
+    // Event Handler for Populating the offense
+    this.$wrapper.on(
+      'click',
+      '#build_offense',
+      this.handleBuildOffense.bind(this)
+    );
+
 
   }; // end window.FieldApp
 
@@ -175,6 +183,10 @@
           });
       }
 
+
+      console.log("End of the switching defense, right?");
+
+
     },
     ////////////////////////////////////
     // Way-Too-Manual Form Validation //
@@ -199,9 +211,13 @@
 
     handleClearFieldButton: function ($wrapper) {
       console.log("called handleClearFieldButton()", $wrapper);
-      $('#defense > div, #los > div, #offense > div').remove();
+      $('#defense > div, #los > div, #offense > div, bocking-rule-description-wrapper').remove();
       let myHelper = new FieldHelper($wrapper);
       this.buildField();
+    },
+    handleBuildOffense: function () {
+      console.log("handleBuildOffense() called");
+
     }
 
 

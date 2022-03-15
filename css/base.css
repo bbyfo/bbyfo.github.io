@@ -378,6 +378,9 @@ form label {
 .block-miss-wrapper {
   position: relative;
 }
+.blocking-rule-no-count, .blocking-rule-icon {
+  font-size: 65%;
+}
 /*
 .block-miss-wrapper::after {
   content: attr(data-blocking-rule-desc);

@@ -53,7 +53,10 @@
     },
 
     handleShowBlockingAll: function (e) {
-      //      console.log("handleShowBlockingAll()", e);
+      console.log("handleShowBlockingAll()", e);
+
+      // Remove all blocking things now
+      $('.block-miss-wrapper, .offensive-blocking-identifier').remove();
 
       // Make sure the field is set up properly and a Blocking Call is selected
       if (this.validateFieldForBlocking()) {
@@ -265,7 +268,7 @@
                     }
 
                     targets.forEach((target) => {
-                      console.log(target);
+//                      console.log(target);
                       assignmentX.push(Number(myX) + Number(target));
                     });
                     break;
@@ -310,9 +313,9 @@
 
                     $thisPosition.addClass(blockingAssignmentOffensivePosition);
 
-                    console.log("$thisPosition: ", $thisPosition[0]);
-                    console.log("$targetPosition: ", $targetPosition[0]);
-                    console.log("$targetPosition parent: ", $targetPositionParent[0]);
+//                    console.log("$thisPosition: ", $thisPosition[0]);
+//                    console.log("$targetPosition: ", $targetPosition[0]);
+//                    console.log("$targetPosition parent: ", $targetPositionParent[0]);
                     //                    console.log("rule.description", rule.description);
 
                     let blockingRuleDescription = rule.description + " <strong>Yes!</strong>  Block him!";
@@ -321,7 +324,7 @@
                       .attr('data-blocking-rule-desc', blockingRuleDescription)
                       .addClass([blockingAssignmentOffensivePosition, 'position-node', 'offensive-blocking-identifier', 'material-icons']);
 
-                    console.log("$blockingIdElm: ", $blockingIdElm[0]);
+//                    console.log("$blockingIdElm: ", $blockingIdElm[0]);
                     $targetPosition.parent().prepend($blockingIdElm);
 
                     // Check for a Double Team
@@ -329,7 +332,7 @@
                       // We've got a double team.  We need to show that.
                       // Instead of adding another blocking identifier class to the target position, can we clone the target position and add the blocking identifier
                       // to that newly cloned element.
-                      console.log(`Doubleteam found!`);
+//                      console.log(`Doubleteam found!`);
                       $targetPosition.addClass(["js-is-double-teamed"]);
                       $targetPosition.parent().addClass(["has-double-team"]);
 
@@ -343,7 +346,7 @@
                     // Didn't find anyone to block in this space. //
                     ////////////////////////////////////////////////
 
-                    console.log("$target", $target[0]);
+//                    console.log("$target", $target[0]);
                     //                    console.log("$thisPosition", $thisPosition[0]);
 
                     console.log($thisPosition.attr('id'), `found nobody to block for rule ${rule.name} Miss #${blockingRuleNoCount}`);
@@ -404,15 +407,21 @@
       console.log("$target;: ", $target);
       $target.addClass('visible');
 
+      let exceptSelector = $target.attr('data-blocking-identifier-class');
+
       // Set up the Blocking Rule Description
       let $blockingRuleDescriptionWrapperElm = $('#bocking-rule-description-wrapper');
-
+      $blockingRuleDescriptionWrapperElm.removeClass();
       //					  $blockingRuleDescription.addClass(['blocking-rule-description']);
-      $blockingRuleDescriptionWrapperElm.html($target.attr('data-blocking-rule-desc'));
+
+      let $blockingRuleDescriptionElm = $('<span></span>').html($target.attr('data-blocking-rule-desc'));
+      $blockingRuleDescriptionWrapperElm.append($blockingRuleDescriptionElm);
+      let blockingIdentifierCssSelector = $blockingRuleDescriptionWrapperElm.addClass([exceptSelector]);
+
 
       // Dim out other stuff
 
-      let exceptSelector = "." + $target.attr('data-blocking-identifier-class');
+      exceptSelector = "." + exceptSelector;
       let $exceptElms = $(exceptSelector);
       console.log("exceptSelector: ", exceptSelector);
       console.log("$exceptElms: ", $exceptElms);
