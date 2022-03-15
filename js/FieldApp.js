@@ -44,6 +44,12 @@
       this.handleHideTextCheckbox.bind(this)
     );
 
+    // Event Clearing the whole field.
+    this.$wrapper.on(
+      'click',
+      '#clear_field',
+      this.handleClearFieldButton.bind(this)
+    );
 
   }; // end window.FieldApp
 
@@ -189,6 +195,13 @@
       let myFieldHelper = new FieldHelper($wrapper);
       myFieldHelper.populateFieldWithEmptyGridItems();
       myFieldHelper.assignGaps();
+    },
+
+    handleClearFieldButton: function ($wrapper) {
+      console.log("called handleClearFieldButton()", $wrapper);
+      $('#defense > div, #los > div, #offense > div').remove();
+      let myHelper = new FieldHelper($wrapper);
+      this.buildField();
     }
 
 
@@ -324,6 +337,10 @@
      */
     assignGaps: function () {
 
+      // Refresh <div id="ball-origin">.</div>
+      $('#los #ball-origin').remove();
+      let $ballOrigin = $('<div></div>').attr('id', 'ball-origin').html('.');
+      $('#los').append($ballOrigin);
       // console.log("assignGaps() called");
       // Build out the Gap Data
       let gapData = {

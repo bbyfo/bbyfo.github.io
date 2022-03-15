@@ -353,6 +353,8 @@
                     // Create the element to contain the Blocking Count Number and the 
                     let $blockMissWrapper = $('<div></div>').addClass(['block-miss-wrapper', blockingAssignmentOffensivePosition])
                     $blockMissWrapper.attr('data-blocking-rule-desc', blockingRuleDescription);
+                    let blockingMissCssIdentifier = 'blocking-identifier--' + $thisPosition.attr('id');
+                    $blockMissWrapper.attr('data-blocking-identifier-class', blockingMissCssIdentifier);
                     $target.prepend($blockMissWrapper);
 
 
@@ -408,6 +410,13 @@
       //					  $blockingRuleDescription.addClass(['blocking-rule-description']);
       $blockingRuleDescriptionWrapperElm.html($target.attr('data-blocking-rule-desc'));
 
+      // Dim out other stuff
+
+      let exceptSelector = "." + $target.attr('data-blocking-identifier-class');
+      let $exceptElms = $(exceptSelector);
+      console.log("exceptSelector: ", exceptSelector);
+      console.log("$exceptElms: ", $exceptElms);
+      this.dimExcept($exceptElms);
 
     },
     handleClickCloseBlockingRuleDesc: function (e) {
@@ -415,7 +424,17 @@
       e.preventDefault;
       console.log("handleClickCloseBlockingRuleDesc() called", e);
       $('.block-miss-wrapper').removeClass('visible');
+      this.unDimm();
+    },
+    dimExcept: function ($except) {
+      console.log("dimExcept() called", $except);
+      $('#offense div, #defense div').not($except).addClass(['i-been-dimmed']);
+
+    },
+    unDimm: function () {
+      $('#offense div, #defense div').removeClass(['i-been-dimmed']);
     }
+
 
   });
 })(window, jQuery);

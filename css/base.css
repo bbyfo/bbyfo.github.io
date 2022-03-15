@@ -423,3 +423,17 @@ form label {
   display: inline-block;
   visibility: visible;
 }
+/**
+* Dimmed Styles
+*/
+.grid-item.i-been-dimmed {
+  background-color: #727272;
+}
+.grid-item.grid-item-gap.i-been-dimmed {
+  background-color: #9B9B9B;
+}
+.position-node.i-been-dimmed, .block-miss-wrapper.i-been-dimmed {
+  background-color: #313131;
+  color: #AAAAAA;
+  border-color: #8A8A8A;
+}
