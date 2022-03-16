@@ -60,26 +60,27 @@
 
       // Make sure the field is set up properly and a Blocking Call is selected
       if (this.validateFieldForBlocking()) {
-        //        console.log("Field is Valid for Blocking: ", e);
-        var blockingAssignment = $('#picker_blocking_call').val();
-        //        console.log("blockingAssignment: ", blockingAssignment);
-        // Load the Blocking Call file
 
-        fetch("data/offense/" + blockingAssignment + ".json")
-          .then(Response => Response.json())
-          .then(blockingCall => {
-
-            // console.log("blockingCall: ", blockingCall);
-
-            this.processBlockingAssignments(blockingCall);
-
-          });
-
+        this.fetchAndProcess($('#picker_blocking_call'));
 
       } else {
         // Looks like this Field isn't valid, or a Blocking Call hasn't been selected.
         console.log("Field is NOT Valid for Blocking: ");
       }
+    },
+    fetchAndProcess: function ($formElm) {
+      console.log("$formElm: ", $formElm);
+
+
+      let blockingCallUrl = "data/offense/" + $formElm.val() + ".json"
+      fetch(blockingCallUrl)
+        .then(Response => Response.json())
+        .then(blockingCall => {
+
+          this.processBlockingAssignments(blockingCall);
+
+        });
+
     },
     showBlockingAll: function () {
       console.log("showBlockingAll() called");

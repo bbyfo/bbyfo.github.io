@@ -99,29 +99,25 @@
 
       } else {
         //        let $offenseElm = $(".offense-position");
+        this.fetchAndProcess($formationId, $fieldElm);
 
-        fetch("data/offense/" + $formationId + ".json")
-          .then(Response => Response.json())
-          .then(formation => {
-
-
-            // Loop over the positions and populate them on the grid
-            formation.positions.forEach((position) => {
-
-              // Instantiate a new Position
-              // Positions place themselves
-              let positionObj = new Position($fieldElm, position);
-
-
-            });
-
-
-            // We set gaps here to make sure that all the Offensive positions have been set.
-            //setGaps();
-          });
       }
 
 
+    },
+    fetchAndProcess: function ($formationId, $fieldElm) {
+      fetch("data/offense/" + $formationId + ".json")
+        .then(Response => Response.json())
+        .then(formation => {
+
+          // Loop over the positions and populate them on the grid
+          formation.positions.forEach((position) => {
+
+            // Instantiate a new Position
+            // Positions place themselves
+            let positionObj = new Position($fieldElm, position);
+          });
+        });
     },
     /////////////////////////////////////////  
     // Defensive Formation has been picked //
