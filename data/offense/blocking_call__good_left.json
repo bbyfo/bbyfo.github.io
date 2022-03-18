@@ -1,0 +1,27 @@
+{
+  "blockingCallName": "G.O.O.D. Left",
+  "playSide": "left",
+  "blockingAssignments": [{
+    "appliesTo": [".offensive-lineman", ".tight-end"],
+    "rules": [{
+        "name": "gap_inside",
+        "depth": "defensive_los",
+        "description": "<strong>G</strong>ap? Is there anyone in my Gap (inside, closest to the ball)?"
+      }, {
+        "name": "on_me",
+        "depth": "defensive_los",
+        "description": "<strong>O</strong>n me? Is there anyone On me (right across from me)?"
+      }, {
+        "name": "gap_outside",
+        "depth": "defensive_los",
+        "description": "<strong>O</strong>utside me? Is there anyone in my Outside Gap (away from the ball)?"
+      }, {
+        "name": "destroy_nearest",
+        "depth": "defensive_los",
+        "description": "<strong>D</strong>estroy Playside: Is there anyone Down the playside? (the 'left' part of this call)"
+
+      }
+
+    ]
+  }]
+}

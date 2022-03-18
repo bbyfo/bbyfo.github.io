@@ -11,7 +11,7 @@
             "direction": "on",
             "distance": 0
           },
-          "positionTypes": ["lineman"]
+          "positionTypes": ["offensive-lineman"]
         },
         {
           "id": 6,
@@ -24,7 +24,7 @@
             "distance": 2
           },
           "depth": "offensive_los",
-          "positionTypes": ["lineman"]
+          "positionTypes": ["offensive-lineman"]
         },
         {
           "id": 25,
@@ -37,7 +37,7 @@
             "distance": 2
           },
           "depth": "offensive_los",
-          "positionTypes": ["lineman"]
+          "positionTypes": ["offensive-lineman"]
         },
         {
           "id": 54,
@@ -50,7 +50,7 @@
             "distance": 2
           },
           "depth": "offensive_los",
-          "positionTypes": ["lineman", "tight-end"]
+          "positionTypes": ["offensive-lineman", "tight-end"]
         },
         {
           "id": 7,
@@ -63,7 +63,7 @@
             "distance": 2
           },
           "depth": "offensive_los",
-          "positionTypes": ["lineman"]
+          "positionTypes": ["offensive-lineman"]
         },
         {
           "id": 25,
@@ -76,7 +76,7 @@
             "distance": 2
           },
           "depth": "offensive_los",
-          "positionTypes": ["lineman"]
+          "positionTypes": ["offensive-lineman"]
         },
 
         {
@@ -90,7 +90,7 @@
             "distance": 2
           },
           "depth": "offensive_los",
-          "positionTypes": ["lineman", "tight-end"]
+          "positionTypes": ["offensive-lineman", "tight-end"]
         },
 
         {

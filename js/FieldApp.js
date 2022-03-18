@@ -135,6 +135,7 @@
           // 001 Blocking only 
         case '001':
           console.log("Blocking only");
+
           break;
           // 110 Offense and Defense 
           // This requires some ajax calls in serial, i.e. Offense gets placed, then defense gets placed
@@ -184,6 +185,42 @@
           // 111 Offense, Defense, and Blocking
         case '111':
           console.log("Offense, Defense, and Blocking");
+          return new Promise(function (resolve, reject) {
+            $.ajax({
+              url: offensiveFileUrl
+            }).then(function (formation) {
+              console.log("!! formation in then", formation);
+              $fieldElm = $("#offense");
+              // Loop over the positions and populate them on the grid
+              formation.positions.forEach((position) => {
+                console.log("position: ", position);
+                // Instantiate a new Position
+                // Positions place themselves
+                let positionObj = new Position($fieldElm, position);
+              });
+            }).then(function () {
+              $fieldElm = $("#defense");
+              $.ajax({
+                url: defensiveFileUrl
+              }).then(function (formation) {
+                console.log("@@ formation in 2nd then: ", formation);
+                formation.positions.forEach((position) => {
+                  console.log("position: ", position);
+                  // Instantiate a new Position
+                  // Positions place themselves
+                  let positionObj = new Position($fieldElm, position);
+                });
+                return "bobo jones!!";
+              }).then(function (data) {
+                console.log("### data in 3rd then: ", data);
+                let myBlocking = new Blocking($("#FootballApp"));
+                myBlocking.handleShowBlockingAll();
+                console.log("myBlocking: ", myBlocking);
+              });
+            });
+          });
+
+
           break;
 
       }
