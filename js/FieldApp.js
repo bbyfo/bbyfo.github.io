@@ -24,18 +24,18 @@
     );
 
     // Event Handler for Picking an Offensive Formation
-    this.$wrapper.on(
-      'change',
-      '#picker_offense_formation',
-      this.handlePickOffenseFormation.bind(this)
-    );
+    //    this.$wrapper.on(
+    //      'change',
+    //      '#picker_offense_formation',
+    //      this.handlePickOffenseFormation.bind(this)
+    //    );
 
     // Event Handler for Picking a Defensive Formation
-    this.$wrapper.on(
-      'change',
-      '#picker_defense_formation',
-      this.handlePickDefenseFormation.bind(this)
-    );
+    //    this.$wrapper.on(
+    //      'change',
+    //      '#picker_defense_formation',
+    //      this.handlePickDefenseFormation.bind(this)
+    //    );
 
     // Event Handler for Showing / Hiding Defensive Position Text
     this.$wrapper.on(
@@ -48,7 +48,7 @@
     this.$wrapper.on(
       'click',
       '#clear_field',
-      this.handleClearFieldButton.bind(this)
+      this.resetField.bind(this)
     );
 
     // Event Handler for Populating the offense
@@ -58,23 +58,153 @@
       this.handleBuildOffense.bind(this)
     );
 
+    // Event Handler responding to a change in any of the main select lists.
+    this.$wrapper.on(
+      'change',
+      '#picker_defense_formation, #picker_offense_formation, #picker_blocking_call',
+      this.handleSelectChange.bind(this)
+    );
+
 
   }; // end window.FieldApp
 
 
   $.extend(window.FieldApp.prototype, {
 
+    handleSelectChange: function (e) {
+
+      console.log("handleSelectChange() called", this);
+      let selectChanged = e.currentTarget;
+      // Get the current values for the select elements
+      let offenseFormation = $('#picker_offense_formation').val();
+      let defenseFormation = $('#picker_defense_formation').val();
+      let blockingCall = $('#picker_blocking_call').val();
+      let pickerType = $(selectChanged).attr('data-picker-type');
+      let $fieldElm = $(`#` + pickerType);
+
+      let offensiveFileUrl = "data/offense/" + offenseFormation + ".json";
+      console.log("offensiveFileUrl: ", offensiveFileUrl);
+
+      let defensiveFileUrl = "data/defense/" + defenseFormation + ".json";
+      console.log("defensiveFileUrl: ", defensiveFileUrl);
+
+      //      console.log("offenseFormation: ", offenseFormation);
+      //      console.log("defenseFormation: ", defenseFormation);
+      console.log("blockingCall: ", blockingCall);
+      //      console.log("$fieldElm: ", $fieldElm);
+
+
+      // Clear the Field, because we're gonna rebuild it from scratch
+      this.resetField();
+      // Do different things depending on the status of the select elements
+      // Build a string to use in the switch to figure out what to do
+      let actionType = "";
+      if (offenseFormation != '--default--') {
+        actionType += 1;
+      } else {
+        actionType += 0;
+      }
+      if (defenseFormation != '--default--') {
+        actionType += 1;
+      } else {
+        actionType += 0;
+      }
+      if (blockingCall != '--default--') {
+        actionType += 1;
+      } else {
+        actionType += 0;
+      }
+
+      switch (actionType) {
+        // 000 Nothing Selected
+        case '000':
+          console.log("Nothing selected...should this be default?");
+
+          break;
+          // 100 Offense only 
+        case '100':
+          console.log("Offense only");
+
+          this.fetchAndProcessFormation('offense', offenseFormation, $fieldElm);
+          break;
+          // 010 Defense only 
+        case '010':
+          console.log("Defense only");
+          this.fetchAndProcessFormation('defense', defenseFormation, $fieldElm);
+          break;
+          // 001 Blocking only 
+        case '001':
+          console.log("Blocking only");
+          break;
+          // 110 Offense and Defense 
+          // This requires some ajax calls in serial, i.e. Offense gets placed, then defense gets placed
+        case '110':
+          console.log("Offense and Defense");
+
+
+          return new Promise(function (resolve, reject) {
+            $.ajax({
+              url: offensiveFileUrl
+            }).then(function (formation) {
+              console.log("formation in then", formation);
+              $fieldElm = $("#offense");
+              // Loop over the positions and populate them on the grid
+              formation.positions.forEach((position) => {
+                console.log("position: ", position);
+                // Instantiate a new Position
+                // Positions place themselves
+                let positionObj = new Position($fieldElm, position);
+              });
+            }).then(function () {
+              $fieldElm = $("#defense");
+              $.ajax({
+                url: defensiveFileUrl
+              }).then(function (formation) {
+                console.log("formation in 2nd then: ", formation);
+                formation.positions.forEach((position) => {
+                  console.log("position: ", position);
+                  // Instantiate a new Position
+                  // Positions place themselves
+                  let positionObj = new Position($fieldElm, position);
+                });
+              });
+            });
+          });
+
+
+          break;
+          // 101 Offense and Blocking
+        case '101':
+          console.log("Offense and Blocking")
+          break;
+          // 011 Defense and Blocking
+        case '011':
+          console.log("Defense and Blocking");
+          break;
+          // 111 Offense, Defense, and Blocking
+        case '111':
+          console.log("Offense, Defense, and Blocking");
+          break;
+
+      }
+
+      console.log("actionType: ", actionType);
+
+
+    },
     /////////////////////  
     // Ball is clicked //
+    // Deprecated      //
     /////////////////////
     handleBallClick: function (e) {
       //      let $ball = $(e.currentTarget);
-      //      console.log("$ball", $ball);
+      console.log("handleBallClick() called");
       //      console.log("this", this);
 
     },
     //////////////////////////////////////////  
     // Offenseive Formation has been picked //
+    // Possibly deprecated.                 //
     //////////////////////////////////////////  
     handlePickOffenseFormation: function (e) {
       let $fieldElm = $("#offense");
@@ -105,8 +235,14 @@
 
 
     },
-    fetchAndProcess: function ($formationId, $fieldElm) {
-      fetch("data/offense/" + $formationId + ".json")
+    //////////////////////////////////////////////
+    // Fetch a single formation and process it. //
+    //////////////////////////////////////////////
+    fetchAndProcessFormation: function (formationType, formationId, $fieldElm) {
+
+      let fileUrl = "data/" + formationType + "/" + formationId + ".json";
+      console.log("fileUrl", fileUrl);
+      fetch(fileUrl)
         .then(Response => Response.json())
         .then(formation => {
 
@@ -120,10 +256,11 @@
         });
     },
     /////////////////////////////////////////  
-    // Defensive Formation has been picked //
+    // Defensive Formation has been picked.//
+    // Possibly deprecated.                //
     /////////////////////////////////////////  
     handlePickDefenseFormation: function (e) {
-      //      console.log("handlePickDefenseFormation()");
+      console.log("handlePickDefenseFormation()");
       let $fieldElm = $('#defense');
       // Clear the Defensive side of the Field.
       let myFieldHelper = new FieldHelper();
@@ -204,9 +341,11 @@
       myFieldHelper.populateFieldWithEmptyGridItems();
       myFieldHelper.assignGaps();
     },
-
-    handleClearFieldButton: function ($wrapper) {
-      console.log("called handleClearFieldButton()", $wrapper);
+    ///////////////////////////////////////////////////////////////  
+    // Clear everything out of the field and rebuild it (empty). //
+    ///////////////////////////////////////////////////////////////
+    resetField: function ($wrapper) {
+      console.log("called resetField()", $wrapper);
       $('#defense > div, #los > div, #offense > div, bocking-rule-description-wrapper').remove();
       let myHelper = new FieldHelper($wrapper);
       this.buildField();
@@ -403,8 +542,13 @@
         },
         d9: {
           distance: -9,
-          id: 'D9',
-          label: 'D 9'
+          id: 'E9',
+          label: 'E 9'
+        },
+        e9: {
+          distance: 9,
+          id: 'E9',
+          label: 'E 9'
         }
       };
 

@@ -26,7 +26,7 @@
         <div class="row">
           <div class="col-sm">
             <label for="picker_offense_formation">Pick Offensive Formation</label>
-            <select id="picker_offense_formation" class="form-control">
+            <select id="picker_offense_formation" class="form-control" data-picker-type="offense">
               <option value="--default--">Pick Formation</option>
               <option value="formation__bison_right">Bison Right</option>
               <option value="formation__bison_left">Bison Left</option>
@@ -35,7 +35,7 @@
               <option value="formation__wishbone">Wishbone</option>
             </select>
             <label>Blocking Call?</label>
-            <select id="picker_blocking_call" class="form-control">
+            <select id="picker_blocking_call" class="form-control" data-picker-type="blocking">
               <option value="--default--">Pick Blocking Call</option>
               <option value="blocking_call__god_left">G.O.D. Left</option>
               <option value="blocking_call__god_middle">G.O.D. Middle</option>
@@ -50,7 +50,7 @@
           </div>
           <div class="col-sm">
             <label>Pick Defensive Package</label>
-            <select id="picker_defense_formation" class="form-control">
+            <select id="picker_defense_formation" class="form-control" data-picker-type="defense">
               <option value="--default--">Pick Defensive Formation</option>
               <option value="formation__5_3__base">5-3 Base</option>
               <option value="formation__5_3__man">5-3 Man</option>

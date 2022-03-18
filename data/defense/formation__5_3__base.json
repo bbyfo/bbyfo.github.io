@@ -1,10 +1,9 @@
     {
       "formationName": "5-3 Base",
       "positions": [
-		  
-		  
-		  
-		  {
+
+
+        {
           "id": 1,
           "depth": "defensive_los",
           "positionName": "LDE",
@@ -19,9 +18,8 @@
           },
           "positionTypes": ["defensive-line", "defensive-end"]
         },
-					
-					
-					
+
+
         {
           "id": 2,
           "depth": "defensive_los",
@@ -60,6 +58,7 @@
           "positionName": "RDE",
           "anchors": [
             "LTE",
+            "D7",
             "LT",
             "LG"
           ],
@@ -128,6 +127,7 @@
           "depth": "safety",
           "positionName": "SAF",
           "anchors": [
+            "WR",
             "C",
             "A1",
             "A2"
