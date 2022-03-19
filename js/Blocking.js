@@ -88,6 +88,13 @@
     showBlockingSingle: function () {
 
     },
+    ///////////////////////////////////
+    // Process Blocking Assignements //
+    ///////////////////////////////////
+    /**
+     * @param blockingCall Obj A blocking call object. Mainly we need the blockingAssignments object.
+     *
+     */
     processBlockingAssignments: function (blockingCall) {
       console.log("processBlockingAssignments() called with: ", blockingCall);
 
@@ -137,7 +144,7 @@
               let targets = [];
               let blockingRuleDescription = rule.description;
               if (foundAssignment === false) {
-                //                console.log(`Processing rule: ${rule.name}`);
+                console.log(`Processing rule: ${rule.name}`);
 
                 // Get the X coord for the rule
                 switch (rule.name) {
@@ -236,6 +243,14 @@
 
                     break;
 
+                  case 'last_outside':
+                    console.log("Look for last outside man");
+                    break;
+
+                  case 'second_outside':
+                    console.log("Look for second-to-last outside man");
+                    break;
+
                   default:
                     console.log("Nobody to block yet, defaulting to Down (playside)", blockingCall.playSide);
 
@@ -273,6 +288,8 @@
                       assignmentX.push(Number(myX) + Number(target));
                     });
                     break;
+
+
                 } // End Blocking Rules switch
 
 

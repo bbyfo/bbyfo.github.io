@@ -89,6 +89,9 @@
       let defensiveFileUrl = "data/defense/" + defenseFormation + ".json";
       //      console.log("defensiveFileUrl: ", defensiveFileUrl);
 
+      let playCallFileUrl = "data/offense/" + playCall + ".json";
+      console.log("playCallFileUrl: ", playCallFileUrl);
+
       //      console.log("offenseFormation: ", offenseFormation);
       //      console.log("defenseFormation: ", defenseFormation);
       //      console.log("blockingCall: ", blockingCall);
@@ -156,11 +159,11 @@
           return new Promise(function (resolve, reject) {
             $.ajax({
               url: offensiveFileUrl
-            }).then(function (formation) {
-              //              console.log("formation in then", formation);
+            }).then(function (offensiveFormation) {
+              console.log("offensiveFormation in then", offensiveFormation);
               $fieldElm = $("#offense");
               // Loop over the positions and populate them on the grid
-              formation.positions.forEach((position) => {
+              offensiveFormation.positions.forEach((position) => {
                 //                console.log("position: ", position);
                 // Instantiate a new Position
                 // Positions place themselves
@@ -170,9 +173,9 @@
               $fieldElm = $("#defense");
               $.ajax({
                 url: defensiveFileUrl
-              }).then(function (formation) {
-                //                console.log("formation in 2nd then: ", formation);
-                formation.positions.forEach((position) => {
+              }).then(function (defensiveFormation) {
+                console.log("defensiveFormation in 2nd then: ", defensiveFormation);
+                defensiveFormation.positions.forEach((position) => {
                   //                  console.log("position: ", position);
                   // Instantiate a new Position
                   // Positions place themselves
@@ -198,11 +201,11 @@
           return new Promise(function (resolve, reject) {
             $.ajax({
               url: offensiveFileUrl
-            }).then(function (formation) {
-              console.log("!! formation in then", formation);
+            }).then(function (offensiveFormation) {
+              console.log("!! offensiveFormation in then", offensiveFormation);
               $fieldElm = $("#offense");
               // Loop over the positions and populate them on the grid
-              formation.positions.forEach((position) => {
+              offensiveFormation.positions.forEach((position) => {
                 //                console.log("position: ", position);
                 // Instantiate a new Position
                 // Positions place themselves
@@ -212,9 +215,9 @@
               $fieldElm = $("#defense");
               $.ajax({
                 url: defensiveFileUrl
-              }).then(function (formation) {
-                console.log("@@ formation in 2nd then: ", formation);
-                formation.positions.forEach((position) => {
+              }).then(function (defensiveFormation) {
+                console.log("@@ defensiveFormation in 2nd then: ", defensiveFormation);
+                defensiveFormation.positions.forEach((position) => {
                   //                  console.log("position: ", position);
                   // Instantiate a new Position
                   // Positions place themselves
@@ -230,6 +233,65 @@
             });
           });
 
+
+          break;
+
+        case '1111':
+          console.log("Offense, Defense, Blocking Call, and Play Call");
+          let $wrapper = $('#FootballApp');
+          return new Promise(function (resolve, reject) {
+            $.ajax({
+              url: offensiveFileUrl
+            }).then(function (offensiveFormation) {
+              console.log("!! offensiveFormation in then", offensiveFormation);
+              $fieldElm = $("#offense");
+              // Loop over the positions and populate them on the grid
+              offensiveFormation.positions.forEach((position) => {
+                //                console.log("position: ", position);
+                // Instantiate a new Position
+                // Positions place themselves
+                let positionObj = new Position($fieldElm, position);
+              });
+            }).then(function () {
+              $fieldElm = $("#defense");
+              $.ajax({
+                url: defensiveFileUrl
+              }).then(function (defensiveFormation) {
+                console.log("@@ defensiveFormation in 2nd then: ", defensiveFormation);
+                defensiveFormation.positions.forEach((position) => {
+                  //                  console.log("position: ", position);
+                  // Instantiate a new Position
+                  // Positions place themselves
+                  let positionObj = new Position($fieldElm, position);
+                });
+                return "bobo jones!!";
+              }).then(function (data) {
+                console.log("### data in 3rd then: ", data);
+                let myBlocking = new Blocking($("#FootballApp"));
+                myBlocking.handleShowBlockingAll();
+                console.log("myBlocking: ", myBlocking);
+              }).then(function (data) {
+                console.log("$$$$ data in 4th then: ", data);
+                let myPlay = new Play($wrapper);
+                console.log("myPlay: ", myPlay);
+                $.ajax({
+                  url: playCallFileUrl
+                }).then(function (playCall) {
+                  console.log("playCall: ", playCall);
+
+                  // Process Blocking Assignments
+                  let myBlocking = new Blocking($("#FootballApp"));
+                  let blockingAssignements = playCall.blockingAssignments;
+                  let blockingCall = {};
+                  blockingCall.blockingAssignments = blockingAssignements;
+                  console.log("blockingCall: ", blockingCall);
+                  myBlocking.processBlockingAssignments(blockingCall);
+
+
+                });
+              });
+            });
+          });
 
           break;
 
