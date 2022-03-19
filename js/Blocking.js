@@ -293,12 +293,26 @@
                 } // End Blocking Rules switch
 
 
-                // Get the X coord for the rule
-                // the Y is defined in the blocking call and so its set directly.  *phew*
-                assignmentY = rule.depth;
+                // Get the Y coord (depth)
+                let assignmentY = null;
+                let ruleDepth = rule.depth;
+                //                console.log("rule.depth: ", rule.depth);
+                //                console.log("ruleDepth: ", ruleDepth);
+                //                console.log("assignmentY: ", assignmentY);
+                // If the rule is "any", we want to search all levels of the defense.
+                if (ruleDepth == "any") {
+                  let $wrapper = $('#FootballApp');
+                  let myFieldApp = new FieldApp($wrapper);
+                  assignmentY = myFieldApp.getDefensiveDepths().reverse();
+
+                } else {
+
+                  assignmentY = ruleDepth;
+                  //                  console.log("it's *else*", ruleDepth);
+                }
 
                 //              console.log("assignmentX: ", assignmentX);
-                console.log("assignmentY: ", assignmentY);
+                //                console.log("assignmentY: ", assignmentY);
 
 
                 // Check those coords for a position
@@ -307,17 +321,21 @@
 
                 // Build out the target list
                 let targetList = [];
-                assignmentX.forEach((x) => {
-                  targetList.push($(`.js-defense-${x}.depth--${assignmentY}`));
+                assignmentY.forEach((y) => {
+                  console.log("y: ", y);
+                  assignmentX.forEach((x) => {
+                    targetList.push($(`.js-defense-${x}.depth--${y}`));
+                  });
                 });
 
-                //                console.log("targetList: ", targetList);
+
+                console.log("targetList: ", targetList);
 
                 // If there is a position at the target coords, assign the blocking classes to the blocker and the target
                 // Also, set the foundAssignement to true so we stop processing.
                 targetList.every(($target) => {
 
-                  console.log("Processing ", rule.name);
+                  //                  console.log("Processing ", rule.name);
 
                   if ($target.children(".position-node").length > Number(0)) {
                     console.log("We have a target!!");

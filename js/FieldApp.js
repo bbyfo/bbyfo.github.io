@@ -402,7 +402,7 @@
 
       if ($formationId == '--none--') {
         //        console.log("Clear stuff, yo!");
-        let myPositionHelper = new FieldHelper;
+        let myPositionHelper = new FieldHelper();
         myPositionHelper.clearFieldSection($fieldElm);
         myFieldHelper.populateFieldWithEmptyGridItems($fieldElm);
       } else {
@@ -464,6 +464,10 @@
     handleBuildOffense: function () {
       console.log("handleBuildOffense() called");
 
+    },
+    getDefensiveDepths: function ($wrapper) {
+      let myFieldHelper = new FieldHelper($wrapper);
+      return myFieldHelper.getDefensiveDepths();
     }
 
 
@@ -474,7 +478,7 @@
   // Helper functionality //
   //////////////////////////	
   var FieldHelper = function ($wrapper) {
-    //    console.log("called FieldHelper with: ", $wrapper);
+    console.log("called FieldHelper with: ", $wrapper);
     this.$wrapper = $wrapper;
   }
 
