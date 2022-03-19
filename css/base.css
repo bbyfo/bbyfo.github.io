@@ -367,6 +367,18 @@ form label {
 }
 .blocking-identifier--RTE.blocking-rule-no-count {}
 /* 
+* Wide Reciever
+*/
+.blocking-identifier--WR {
+  border: 2px dashed white;
+  background-color: rgba(221, 0, 165, 1.00);
+  color: rgba(6, 185, 215, 1.00);
+}
+.blocking-identifier--WR.blocking-rule-icon {
+  color: rgba(255, 255, 255, 0.35);
+}
+.blocking-identifier--WR.blocking-rule-no-count {}
+/* 
 *Common Blocking Rule Styles 
 */
 .blocking-rule-no-count {

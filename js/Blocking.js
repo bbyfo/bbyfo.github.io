@@ -298,7 +298,7 @@
                 assignmentY = rule.depth;
 
                 //              console.log("assignmentX: ", assignmentX);
-                //              console.log("assignmentY: ", assignmentY);
+                console.log("assignmentY: ", assignmentY);
 
 
                 // Check those coords for a position

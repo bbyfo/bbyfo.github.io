@@ -1,7 +1,7 @@
 {
   "blockingCallName": "Run 28",
   "playSide": "right",
-  "description": "The 2 back gets the ball and runs to the 8 hole. The 3 and 4 backs make blocks. After handing off, the 1 back fake runs to opposite play side.",
+  "description": "The 1 back hands the ball to the 2 back, then fake runs to opposite play side. The 2 back takes the handoff and runs to the 8 hole. The 3 and 4 backs make blocks. ",
   "blockingAssignments": [{
       "appliesTo": ["#WR"],
       "rules": [{

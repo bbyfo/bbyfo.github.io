@@ -99,7 +99,7 @@
 
 
       // Clear the Field, because we're gonna rebuild it from scratch
-      this.resetField();
+      this.resetField(this);
       // Do different things depending on the status of the select elements
       // Build a string to use in the switch to figure out what to do
       let actionType = "";
@@ -443,7 +443,9 @@
     /////////////////////////////  
     // Build the initial field //
     /////////////////////////////
-    buildField: function ($wrapper) {
+    buildField: function ($wrapper, fieldCols = 21) {
+      console.log("buildField() called with $wrapper: ", $wrapper);
+      console.log("fieldCols: ", fieldCols);
       let myFieldHelper = new FieldHelper($wrapper);
       myFieldHelper.populateFieldWithEmptyGridItems();
       myFieldHelper.assignGaps();
@@ -452,12 +454,12 @@
     // Clear everything out of the field and rebuild it (empty). //
     ///////////////////////////////////////////////////////////////
     resetField: function ($wrapper) {
-      //      console.log("called resetField()", $wrapper);
+      console.log("called resetField() $wrapper", $wrapper);
       $('#defense > div, #los > div, #offense > div, #bocking-rule-description-wrapper span').remove();
 
 
       let myHelper = new FieldHelper($wrapper);
-      this.buildField();
+      this.buildField($wrapper);
     },
     handleBuildOffense: function () {
       console.log("handleBuildOffense() called");

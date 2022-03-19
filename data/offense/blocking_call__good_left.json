@@ -18,7 +18,7 @@
       }, {
         "name": "destroy_nearest",
         "depth": "defensive_los",
-        "description": "<strong>D</strong>estroy Playside: Is there anyone Down the playside? (the 'left' part of this call)"
+        "description": "<strong>D</strong>estroy Playside: Is there anyone <strong>D</strong>own the playside? (the 'left' part of this call)"
 
       }
 
