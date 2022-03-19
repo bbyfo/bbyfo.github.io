@@ -383,7 +383,9 @@
     ///////////////////////////////////////////////////////////////
     resetField: function ($wrapper) {
       console.log("called resetField()", $wrapper);
-      $('#defense > div, #los > div, #offense > div, bocking-rule-description-wrapper').remove();
+      $('#defense > div, #los > div, #offense > div, #bocking-rule-description-wrapper span').remove();
+
+
       let myHelper = new FieldHelper($wrapper);
       this.buildField();
     },

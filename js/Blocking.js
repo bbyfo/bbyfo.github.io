@@ -435,6 +435,8 @@
       e.preventDefault;
       console.log("handleClickCloseBlockingRuleDesc() called", e);
       $('.block-miss-wrapper').removeClass('visible');
+      $('#bocking-rule-description-wrapper span').remove();
+      $('#bocking-rule-description-wrapper').removeClass();
       this.unDimm();
     },
     dimExcept: function ($except) {
