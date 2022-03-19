@@ -28,7 +28,7 @@
     <form>
       <div class="container">
         <div class="row">
-          <div class="col-sm">
+          <div class="col-sm-4">
             <label for="picker_offense_formation">Pick Offensive Formation</label>
             <select id="picker_offense_formation" class="form-control" data-picker-type="offense">
               <option value="--default--">Pick Formation</option>
@@ -38,7 +38,7 @@
               <option value="formation__stampede_right">Stampede Right</option>
               <option value="formation__wishbone">Wishbone</option>
             </select>
-            <p>&nbsp;</p>
+            
             <!-- Slider main container -->
             <div class="swiper offensiveSwiper"> 
               <!-- Additional required wrapper -->
@@ -49,8 +49,37 @@
                 <div class="swiper-slide" data-formation-id="formation__bison_left">Bison Left</div>
                 <div class="swiper-slide" data-formation-id="formation__stampede_left">Stampede Right</div>
               </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
             </div>
-            <p>&nbsp;</p>
+          </div>
+          <div class="col-sm-4">
+            <label>Pick Defensive Package</label>
+            <select id="picker_defense_formation" class="form-control" data-picker-type="defense">
+              <option value="--default--">Pick Defensive Formation</option>
+              <option value="formation__5_3__base">5-3 Base</option>
+              <option value="formation__5_3__man">5-3 Man</option>
+              <option value="formation__6_2__base">6-2 Base</option>
+              <option value="formation__6_2__base_man">6-2 Base Man</option>
+            </select>
+            
+            <!-- Slider main container -->
+            <div class="swiper defensiveSwiper"> 
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper"> 
+                <!-- Slides -->
+                <div class="swiper-slide" data-formation-id="none">Pick an Defensive Formation</div>
+                <div class="swiper-slide" data-formation-id="formation__5_3__base">5-3 Base</div>
+                <div class="swiper-slide" data-formation-id="formation__5_3__man">5-3 Man</div>
+                <div class="swiper-slide" data-formation-id="formation__6_2__base">6-2 Base</div>
+                <div class="swiper-slide" data-formation-id="formation__6_2__base_man">6-2 Base Man</div>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+            <div id="pick_offense_first" class="alert-danger" style="display:none;">Make sure an Offensive Formation is selected</div>
+          </div>
+          <div class="col-sm-4">
             <label>Blocking Call?</label>
             <select id="picker_blocking_call" class="form-control" data-picker-type="blocking">
               <option value="--default--">Pick Blocking Call</option>
@@ -62,24 +91,32 @@
               <option value="blocking_call__gold_right">G.O.L.D. Right</option>
               <option value="blocking_call__gost">G.O.ST (pass)</option>
             </select>
-            <button type="button" id="show_blocking_all">Show All Blocking</button>
+            <!-- Slider main container -->
+            <div class="swiper blockingSwiper"> 
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper"> 
+                <!-- Slides -->
+                <div class="swiper-slide" data-formation-id="none">Pick Blocking Call</div>
+                <div class="swiper-slide" data-formation-id="blocking_call__good_left">G.O.O.D. Left</div>
+                <div class="swiper-slide" data-formation-id="blocking_call__good_middle">G.O.O.D. Middle</div>
+                <div class="swiper-slide" data-formation-id="blocking_call__good_right">G.O.O.D. Right</div>
+                <div class="swiper-slide" data-formation-id="blocking_call__gold_left">G.O.L.D. Left</div>
+                <div class="swiper-slide" data-formation-id="blocking_call__gold_right">G.O.L.D. Right</div>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+            <!--            <button type="button" id="show_blocking_all">Show All Blocking</button>-->
             <label>Play Call?</label>
           </div>
-          <div class="col-sm">
-            <label>Pick Defensive Package</label>
-            <select id="picker_defense_formation" class="form-control" data-picker-type="defense">
-              <option value="--default--">Pick Defensive Formation</option>
-              <option value="formation__5_3__base">5-3 Base</option>
-              <option value="formation__5_3__man">5-3 Man</option>
-              <option value="formation__6_2__base">6-2 Base</option>
-              <option value="formation__6_2__base_man">6-2 Base Man</option>
-            </select>
-            <div id="pick_offense_first" class="alert-danger" style="display:none;">Make sure an Offensive Formation is selected</div>
-          </div>
-          <div class="col-sm">
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
             <p>Debug / Testing Stuff:</p>
+            <!--
             <input type="checkbox" value="hide_txt" id="hide_text">
             Hide Defensive Position Names
+-->
             <button type="button" id="clear_field" class="form-control">Clear Field</button>
             <button type="button" id="XX__Placeholder__XX" class="form-control">XX__Placeholder__XX</button>
           </div>
@@ -104,18 +141,45 @@
 			
 			var blocking = new Blocking($wrapper);
 			
-			const offensiveSwiper = new Swiper('.offensiveSwiper',{
-				
-			});
+			let swiperSettings ={
+				centeredSlides: true,
+				 navigation: {
+				   nextEl: ".swiper-button-next",
+          		   prevEl: ".swiper-button-prev",
+                 }
+			}
+			
+			//////////////////////
+			// Offensive Swiper //
+			//////////////////////
+			const offensiveSwiper = new Swiper('.offensiveSwiper',swiperSettings);
 			
 			offensiveSwiper.on('slideChange', function (offensiveSwiper) {
 				let formationId = $(offensiveSwiper.slides[offensiveSwiper.activeIndex]).attr('data-formation-id');
 				console.log("formationId: ", formationId);
-  				
 				$('#picker_offense_formation').val(formationId).trigger('change');
-				
-				
 			 });
+			
+			//////////////////////
+			// Defensive Swiper //
+			//////////////////////
+			const defensiveSwiper = new Swiper('.defensiveSwiper',swiperSettings);
+			defensiveSwiper.on('slideChange', function (defensiveSwiper) {
+				let formationId = $(defensiveSwiper.slides[defensiveSwiper.activeIndex]).attr('data-formation-id');
+				console.log("formationId: ", formationId);
+				$('#picker_defense_formation').val(formationId).trigger('change');
+			 });
+			
+			/////////////////////
+			// Blocking Swiper //
+			/////////////////////
+			const blockingSwiper = new Swiper('.blockingSwiper',swiperSettings);
+			blockingSwiper.on('slideChange', function (blockingSwiper) {
+				let formationId = $(blockingSwiper.slides[blockingSwiper.activeIndex]).attr('data-formation-id');
+				console.log("formationId: ", formationId);
+				$('#picker_blocking_call').val(formationId).trigger('change');
+			 });
+			
         });
 	
     </script>
