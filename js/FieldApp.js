@@ -586,7 +586,8 @@
             fieldGridItem.classList.add('grid-item');
 
             fieldSection.append(fieldGridItem);
-
+//            fieldSection.append($('<div>NW</div>').addClass(['position-name-wrapper']));
+//            fieldSection.append($('<div>MBI</div>').addClass(['blocking-identifier-wrapper']));
 
             this.fieldColumnCurrent++;
           }

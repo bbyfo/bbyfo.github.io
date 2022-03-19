@@ -172,20 +172,9 @@
       // FINALLY!! Adding the position to the DOM
       $("[data-grid-coords|='" + gridPositionSelector + "']").append(positionDivImg);
 
+      // Mark this position's parent
+      positionDiv.parent().addClass(['position-container']);
 
-      //      // Handle the extra width of positions in gaps
-      //      if (Number(addExtendedEnding) > 0) {
-      //        //      console.log("Add Extended Ending bobo");
-      //        let myExtendedEnding = Number(gridPositionX) + Number(3);
-      //        //      console.log("myExtendedEnding: ", myExtendedEnding);
-      //        let myParent = positionDiv.parent(".grid-item-position");
-      //        //      console.log("myParent: ", myParent);
-      //        myParent.css({
-      //            gridColumnEnd: myExtendedEnding,
-      //            zIndex: 15,
-      //          }).addClass(['half-image', 'coord-x-hacked'])
-      //          .attr("data-grid-position-x-initial", myModdedAlignmentXInitial);
-      //      }
     }
   });
   /////////////////////

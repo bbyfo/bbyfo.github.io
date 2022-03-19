@@ -153,6 +153,9 @@
 #defense .grid-item {
   justify-content: flex-end;
 }
+#defense .grid-item.position-container {
+  flex-direction: column-reverse
+}
 #defense .has-double-team .helmet-image {
   max-width: 2.5vw;
 }
