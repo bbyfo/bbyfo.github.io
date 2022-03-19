@@ -21,16 +21,16 @@
     <div id="los"></div>
     <div id="offense"></div>
   </div>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div id="bocking-rule-description-wrapper"></div>
     </div>
   </div>
   <div id="builder">
     <form>
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <label for="picker_offense_formation">Pick Offensive Formation</label>
             <select id="picker_offense_formation" class="form-control" data-picker-type="offense">
               <option value="--default--">Pick Formation</option>
@@ -40,7 +40,7 @@
               <option value="formation__stampede_right">Stampede Right</option>
               <option value="formation__wishbone">Wishbone</option>
             </select>
-            
+            <div class="swiper-label">Offensive Formation</div>
             <!-- Slider main container -->
             <div class="swiper offensiveSwiper"> 
               <!-- Additional required wrapper -->
@@ -49,13 +49,13 @@
                 <div class="swiper-slide" data-formation-id="none">Pick an Offensive Formation</div>
                 <div class="swiper-slide" data-formation-id="formation__bison_right">Bison Right</div>
                 <div class="swiper-slide" data-formation-id="formation__bison_left">Bison Left</div>
-                <div class="swiper-slide" data-formation-id="formation__stampede_left">Stampede Right</div>
+                <div class="swiper-slide" data-formation-id="formation__stampede_left">Stampede Left</div>
               </div>
               <div class="swiper-button-next"></div>
               <div class="swiper-button-prev"></div>
             </div>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <label>Pick Defensive Package</label>
             <select id="picker_defense_formation" class="form-control" data-picker-type="defense">
               <option value="--default--">Pick Defensive Formation</option>
@@ -64,7 +64,7 @@
               <option value="formation__6_2__base">6-2 Base</option>
               <option value="formation__6_2__base_man">6-2 Base Man</option>
             </select>
-            
+            <div class="swiper-label">Defensive Formation</div>
             <!-- Slider main container -->
             <div class="swiper defensiveSwiper"> 
               <!-- Additional required wrapper -->
@@ -81,8 +81,8 @@
             </div>
             <div id="pick_offense_first" class="alert-danger" style="display:none;">Make sure an Offensive Formation is selected</div>
           </div>
-          <div class="col-sm-4">
-            <label>Blocking Call?</label>
+          <div class="col-sm-3">
+            <label>Blocking Call</label>
             <select id="picker_blocking_call" class="form-control" data-picker-type="blocking">
               <option value="--default--">Pick Blocking Call</option>
               <option value="blocking_call__good_left">G.O.O.D. Left</option>
@@ -93,6 +93,7 @@
               <option value="blocking_call__gold_right">G.O.L.D. Right</option>
               <option value="blocking_call__gost">G.O.ST (pass)</option>
             </select>
+            <div class="swiper-label">Blocking Call</div>
             <!-- Slider main container -->
             <div class="swiper blockingSwiper"> 
               <!-- Additional required wrapper -->
@@ -108,12 +109,35 @@
               <div class="swiper-button-next"></div>
               <div class="swiper-button-prev"></div>
             </div>
-            <!--            <button type="button" id="show_blocking_all">Show All Blocking</button>-->
-            <label>Play Call?</label>
+            <!--            <button type="button" id="show_blocking_all">Show All Blocking</button>--> 
+            
+          </div>
+          <div class="col-sm-3">
+            <label>Play Call</label>
+            <select id="picker_play_call" class="form-control" data-picker-type="play">
+              <option value="--default--">Play Call</option>
+              <option value="play_call__run_28">Run 28</option>
+              <option value="play_call__run_29">Run 29</option>
+            </select>
+            <div class="swiper-label">Play call</div>
+            <!-- Slider main container -->
+            <div class="swiper playSwiper"> 
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper"> 
+                <!-- Slides -->
+                <div class="swiper-slide" data-formation-id="none">Play Call</div>
+                <div class="swiper-slide" data-formation-id="play_call__run_28">Run 28</div>
+                <div class="swiper-slide" data-formation-id="play_call__run_29">Run 29</div>
+                <div class="swiper-slide" data-formation-id="play_call__run_18">Run 18</div>
+                <div class="swiper-slide" data-formation-id="play_call__run_19">Run 19</div>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-4">
+        <div class="row" style="margin-top:5em;">
+          <div class="col-sm">
             <p>Debug / Testing Stuff:</p>
             <!--
             <input type="checkbox" value="hide_txt" id="hide_text">
@@ -145,6 +169,7 @@
 			
 			let swiperSettings ={
 				centeredSlides: true,
+				 slidesPerView: 1,
 				 navigation: {
 				   nextEl: ".swiper-button-next",
           		   prevEl: ".swiper-button-prev",
@@ -179,7 +204,21 @@
 			blockingSwiper.on('slideChange', function (blockingSwiper) {
 				let formationId = $(blockingSwiper.slides[blockingSwiper.activeIndex]).attr('data-formation-id');
 				console.log("formationId: ", formationId);
+
 				$('#picker_blocking_call').val(formationId).trigger('change');
+
+			 });
+			
+			/////////////////
+			// Play Swiper //
+			/////////////////
+			const playSwiper = new Swiper('.playSwiper',swiperSettings);
+			playSwiper.on('slideChange', function (playSwiper) {
+				let formationId = $(playSwiper.slides[playSwiper.activeIndex]).attr('data-formation-id');
+				console.log("formationId: ", formationId);
+
+				$('#picker_play_call').val(formationId).trigger('change');
+
 			 });
 			
         });

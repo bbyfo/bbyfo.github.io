@@ -50,7 +50,7 @@
             "distance": 2
           },
           "depth": "offensive_los",
-          "positionTypes": ["offensive-lineman", "tight-end"]
+          "positionTypes": ["tight-end"]
         },
         {
           "id": 7,
@@ -90,7 +90,7 @@
             "distance": 2
           },
           "depth": "offensive_los",
-          "positionTypes": ["offensive-lineman", "tight-end"]
+          "positionTypes": ["tight-end"]
         },
 
         {

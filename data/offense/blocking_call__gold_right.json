@@ -2,7 +2,7 @@
   "blockingCallName": "G.O.L.D. Right",
   "playSide": "right",
   "blockingAssignments": [{
-    "appliesTo": [".offensive-lineman", ".tight-end"],
+    "appliesTo": [".offensive-lineman"],
     "rules": [{
       "name": "gap_inside",
       "depth": "defensive_los"

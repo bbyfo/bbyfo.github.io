@@ -83,10 +83,10 @@
       let $fieldElm = $(`#` + pickerType);
 
       let offensiveFileUrl = "data/offense/" + offenseFormation + ".json";
-      console.log("offensiveFileUrl: ", offensiveFileUrl);
+      //      console.log("offensiveFileUrl: ", offensiveFileUrl);
 
       let defensiveFileUrl = "data/defense/" + defenseFormation + ".json";
-      console.log("defensiveFileUrl: ", defensiveFileUrl);
+      //      console.log("defensiveFileUrl: ", defensiveFileUrl);
 
       //      console.log("offenseFormation: ", offenseFormation);
       //      console.log("defenseFormation: ", defenseFormation);
@@ -151,7 +151,7 @@
               $fieldElm = $("#offense");
               // Loop over the positions and populate them on the grid
               formation.positions.forEach((position) => {
-                console.log("position: ", position);
+                //                console.log("position: ", position);
                 // Instantiate a new Position
                 // Positions place themselves
                 let positionObj = new Position($fieldElm, position);
@@ -161,9 +161,9 @@
               $.ajax({
                 url: defensiveFileUrl
               }).then(function (formation) {
-                console.log("formation in 2nd then: ", formation);
+                //                console.log("formation in 2nd then: ", formation);
                 formation.positions.forEach((position) => {
-                  console.log("position: ", position);
+                  //                  console.log("position: ", position);
                   // Instantiate a new Position
                   // Positions place themselves
                   let positionObj = new Position($fieldElm, position);
@@ -193,7 +193,7 @@
               $fieldElm = $("#offense");
               // Loop over the positions and populate them on the grid
               formation.positions.forEach((position) => {
-                console.log("position: ", position);
+                //                console.log("position: ", position);
                 // Instantiate a new Position
                 // Positions place themselves
                 let positionObj = new Position($fieldElm, position);
@@ -205,7 +205,7 @@
               }).then(function (formation) {
                 console.log("@@ formation in 2nd then: ", formation);
                 formation.positions.forEach((position) => {
-                  console.log("position: ", position);
+                  //                  console.log("position: ", position);
                   // Instantiate a new Position
                   // Positions place themselves
                   let positionObj = new Position($fieldElm, position);
@@ -584,10 +584,10 @@
           id: 'E9',
           label: 'E 9'
         },
-        e9: {
+        e10: {
           distance: 9,
-          id: 'E9',
-          label: 'E 9'
+          id: 'E10',
+          label: 'E 10'
         }
       };
 
