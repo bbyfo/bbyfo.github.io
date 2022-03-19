@@ -6,6 +6,10 @@
 <link href="css/base.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+/>
 </head>
 
 <body>
@@ -34,6 +38,19 @@
               <option value="formation__stampede_right">Stampede Right</option>
               <option value="formation__wishbone">Wishbone</option>
             </select>
+            <p>&nbsp;</p>
+            <!-- Slider main container -->
+            <div class="swiper offensiveSwiper"> 
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper"> 
+                <!-- Slides -->
+                <div class="swiper-slide" data-formation-id="none">Pick an Offensive Formation</div>
+                <div class="swiper-slide" data-formation-id="formation__bison_right">Bison Right</div>
+                <div class="swiper-slide" data-formation-id="formation__bison_left">Bison Left</div>
+                <div class="swiper-slide" data-formation-id="formation__stampede_left">Stampede Right</div>
+              </div>
+            </div>
+            <p>&nbsp;</p>
             <label>Blocking Call?</label>
             <select id="picker_blocking_call" class="form-control" data-picker-type="blocking">
               <option value="--default--">Pick Blocking Call</option>
@@ -73,6 +90,7 @@
 </div>
 <script src="js/jquery-3.4.1.min.js"></script> 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script> 
 <script src="js/FieldApp.js"></script> 
 <script src="js/Position.js"></script> 
 <script src="js/FieldSettings.js"></script> 
@@ -85,6 +103,19 @@
 			fieldApp.buildField();
 			
 			var blocking = new Blocking($wrapper);
+			
+			const offensiveSwiper = new Swiper('.offensiveSwiper',{
+				
+			});
+			
+			offensiveSwiper.on('slideChange', function (offensiveSwiper) {
+				let formationId = $(offensiveSwiper.slides[offensiveSwiper.activeIndex]).attr('data-formation-id');
+				console.log("formationId: ", formationId);
+  				
+				$('#picker_offense_formation').val(formationId).trigger('change');
+				
+				
+			 });
         });
 	
     </script>
