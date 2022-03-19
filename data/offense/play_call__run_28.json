@@ -1,0 +1,12 @@
+{
+  "blockingCallName": "Run 28",
+  "playSide": "right",
+  "blockingAssignments": [{
+    "appliesTo": ["#WR"],
+    "rules": [{
+      "name": "last_outside",
+      "depth": "any",
+      "description": "Block the last man outside, on the playside."
+    }]
+  }]
+}

@@ -444,7 +444,7 @@ form label {
 /** Form Styling **/
 /******************/
 #picker_offense_formation, #picker_defense_formation, #picker_blocking_call {
-  display: none;
+  /*  display: none;*/
 }
 /********************/
 /** Swiper Styling **/

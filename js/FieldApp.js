@@ -61,7 +61,7 @@
     // Event Handler responding to a change in any of the main select lists.
     this.$wrapper.on(
       'change',
-      '#picker_defense_formation, #picker_offense_formation, #picker_blocking_call',
+      '#picker_defense_formation, #picker_offense_formation, #picker_blocking_call, #picker_play_call',
       this.handleSelectChange.bind(this)
     );
 
@@ -79,6 +79,7 @@
       let offenseFormation = $('#picker_offense_formation').val();
       let defenseFormation = $('#picker_defense_formation').val();
       let blockingCall = $('#picker_blocking_call').val();
+      let playCall = $('#picker_play_call').val();
       let pickerType = $(selectChanged).attr('data-picker-type');
       let $fieldElm = $(`#` + pickerType);
 
@@ -90,7 +91,7 @@
 
       //      console.log("offenseFormation: ", offenseFormation);
       //      console.log("defenseFormation: ", defenseFormation);
-      console.log("blockingCall: ", blockingCall);
+      //      console.log("blockingCall: ", blockingCall);
       //      console.log("$fieldElm: ", $fieldElm);
 
 
@@ -99,47 +100,56 @@
       // Do different things depending on the status of the select elements
       // Build a string to use in the switch to figure out what to do
       let actionType = "";
-      if (offenseFormation != '--default--') {
+      console.log("actionType (before Switch): ", actionType);
+
+      if (offenseFormation != '--none--') {
         actionType += 1;
       } else {
         actionType += 0;
       }
-      if (defenseFormation != '--default--') {
+      if (defenseFormation != '--none--') {
         actionType += 1;
       } else {
         actionType += 0;
       }
-      if (blockingCall != '--default--') {
+      if (blockingCall != '--none--') {
+        actionType += 1;
+      } else {
+        actionType += 0;
+      }
+      if (playCall != '--none--') {
         actionType += 1;
       } else {
         actionType += 0;
       }
 
+      console.log("actionType (after Switch): ", actionType);
+
       switch (actionType) {
-        // 000 Nothing Selected
-        case '000':
+        // 0000 Nothing Selected
+        case '0000':
           console.log("Nothing selected...should this be default?");
 
           break;
-          // 100 Offense only 
-        case '100':
+          // 1000 Offense only 
+        case '1000':
           console.log("Offense only");
 
           this.fetchAndProcessFormation('offense', offenseFormation, $fieldElm);
           break;
-          // 010 Defense only 
-        case '010':
+          // 0100 Defense only 
+        case '0100':
           console.log("Defense only");
           this.fetchAndProcessFormation('defense', defenseFormation, $fieldElm);
           break;
           // 001 Blocking only 
-        case '001':
+        case '0010':
           console.log("Blocking only");
 
           break;
           // 110 Offense and Defense 
           // This requires some ajax calls in serial, i.e. Offense gets placed, then defense gets placed
-        case '110':
+        case '1100':
           console.log("Offense and Defense");
 
 
@@ -147,7 +157,7 @@
             $.ajax({
               url: offensiveFileUrl
             }).then(function (formation) {
-              console.log("formation in then", formation);
+              //              console.log("formation in then", formation);
               $fieldElm = $("#offense");
               // Loop over the positions and populate them on the grid
               formation.positions.forEach((position) => {
@@ -183,7 +193,7 @@
           console.log("Defense and Blocking");
           break;
           // 111 Offense, Defense, and Blocking
-        case '111':
+        case '1110':
           console.log("Offense, Defense, and Blocking");
           return new Promise(function (resolve, reject) {
             $.ajax({
@@ -225,8 +235,6 @@
 
       }
 
-      console.log("actionType: ", actionType);
-
 
     },
     /////////////////////  
@@ -261,7 +269,7 @@
       let $formationId = $(e.currentTarget).val();
       //  console.log("$formationId", $formationId);
 
-      if ($formationId == '--default--') {
+      if ($formationId == '--none--') {
         console.log("clear stuff, yo");
 
       } else {
@@ -278,7 +286,7 @@
     fetchAndProcessFormation: function (formationType, formationId, $fieldElm) {
 
       let fileUrl = "data/" + formationType + "/" + formationId + ".json";
-      console.log("fileUrl", fileUrl);
+      //      console.log("fileUrl", fileUrl);
       fetch(fileUrl)
         .then(Response => Response.json())
         .then(formation => {
@@ -321,7 +329,7 @@
         console.log("Nope, there aren't 11 offenseive players on the field.");
         $("#pick_offense_first").show();
         let $self = $(e.currentTarget);
-        $self.val('--default--');
+        $self.val('--none--');
         //        console.log($self);
       }
 
@@ -330,7 +338,7 @@
 
       //      console.log("Formation to work with: ", $formationId);
 
-      if ($formationId == '--default--') {
+      if ($formationId == '--none--') {
         //        console.log("Clear stuff, yo!");
         let myPositionHelper = new FieldHelper;
         myPositionHelper.clearFieldSection($fieldElm);
@@ -382,7 +390,7 @@
     // Clear everything out of the field and rebuild it (empty). //
     ///////////////////////////////////////////////////////////////
     resetField: function ($wrapper) {
-      console.log("called resetField()", $wrapper);
+      //      console.log("called resetField()", $wrapper);
       $('#defense > div, #los > div, #offense > div, #bocking-rule-description-wrapper span').remove();
 
 

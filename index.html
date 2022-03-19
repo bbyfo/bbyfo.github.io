@@ -33,7 +33,7 @@
           <div class="col-sm-3">
             <label for="picker_offense_formation">Pick Offensive Formation</label>
             <select id="picker_offense_formation" class="form-control" data-picker-type="offense">
-              <option value="--default--">Pick Formation</option>
+              <option value="--none--">Pick Formation</option>
               <option value="formation__bison_right">Bison Right</option>
               <option value="formation__bison_left">Bison Left</option>
               <option value="formation__stampede_left">Stampede Left</option>
@@ -46,7 +46,7 @@
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper"> 
                 <!-- Slides -->
-                <div class="swiper-slide" data-formation-id="none">Pick an Offensive Formation</div>
+                <div class="swiper-slide" data-formation-id="--none--">Pick an Offensive Formation</div>
                 <div class="swiper-slide" data-formation-id="formation__bison_right">Bison Right</div>
                 <div class="swiper-slide" data-formation-id="formation__bison_left">Bison Left</div>
                 <div class="swiper-slide" data-formation-id="formation__stampede_left">Stampede Left</div>
@@ -58,7 +58,7 @@
           <div class="col-sm-3">
             <label>Pick Defensive Package</label>
             <select id="picker_defense_formation" class="form-control" data-picker-type="defense">
-              <option value="--default--">Pick Defensive Formation</option>
+              <option value="--none--">Pick Defensive Formation</option>
               <option value="formation__5_3__base">5-3 Base</option>
               <option value="formation__5_3__man">5-3 Man</option>
               <option value="formation__6_2__base">6-2 Base</option>
@@ -70,7 +70,7 @@
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper"> 
                 <!-- Slides -->
-                <div class="swiper-slide" data-formation-id="none">Pick an Defensive Formation</div>
+                <div class="swiper-slide" data-formation-id="--none--">Pick an Defensive Formation</div>
                 <div class="swiper-slide" data-formation-id="formation__5_3__base">5-3 Base</div>
                 <div class="swiper-slide" data-formation-id="formation__5_3__man">5-3 Man</div>
                 <div class="swiper-slide" data-formation-id="formation__6_2__base">6-2 Base</div>
@@ -84,7 +84,7 @@
           <div class="col-sm-3">
             <label>Blocking Call</label>
             <select id="picker_blocking_call" class="form-control" data-picker-type="blocking">
-              <option value="--default--">Pick Blocking Call</option>
+              <option value="--none--">Pick Blocking Call</option>
               <option value="blocking_call__good_left">G.O.O.D. Left</option>
               <option value="blocking_call__good_middle">G.O.O.D. Middle</option>
               <option value="blocking_call__good_right">G.O.O.D. Right</option>
@@ -99,7 +99,7 @@
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper"> 
                 <!-- Slides -->
-                <div class="swiper-slide" data-formation-id="none">Pick Blocking Call</div>
+                <div class="swiper-slide" data-formation-id="--none--">Pick Blocking Call</div>
                 <div class="swiper-slide" data-formation-id="blocking_call__good_left">G.O.O.D. Left</div>
                 <div class="swiper-slide" data-formation-id="blocking_call__good_middle">G.O.O.D. Middle</div>
                 <div class="swiper-slide" data-formation-id="blocking_call__good_right">G.O.O.D. Right</div>
@@ -115,7 +115,7 @@
           <div class="col-sm-3">
             <label>Play Call</label>
             <select id="picker_play_call" class="form-control" data-picker-type="play">
-              <option value="--default--">Play Call</option>
+              <option value="--none--">Play Call</option>
               <option value="play_call__run_28">Run 28</option>
               <option value="play_call__run_29">Run 29</option>
             </select>
@@ -125,7 +125,7 @@
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper"> 
                 <!-- Slides -->
-                <div class="swiper-slide" data-formation-id="none">Play Call</div>
+                <div class="swiper-slide" data-formation-id="--none--">Play Call</div>
                 <div class="swiper-slide" data-formation-id="play_call__run_28">Run 28</div>
                 <div class="swiper-slide" data-formation-id="play_call__run_29">Run 29</div>
                 <div class="swiper-slide" data-formation-id="play_call__run_18">Run 18</div>
@@ -158,6 +158,7 @@
 <script src="js/Position.js"></script> 
 <script src="js/FieldSettings.js"></script> 
 <script src="js/Blocking.js"></script> 
+<script src="js/Play.js"></script> 
 <script>
         $(document).ready(function() {
            	// Build the Field
@@ -183,7 +184,7 @@
 			
 			offensiveSwiper.on('slideChange', function (offensiveSwiper) {
 				let formationId = $(offensiveSwiper.slides[offensiveSwiper.activeIndex]).attr('data-formation-id');
-				console.log("formationId: ", formationId);
+//				console.log("formationId: ", formationId);
 				$('#picker_offense_formation').val(formationId).trigger('change');
 			 });
 			
@@ -193,7 +194,7 @@
 			const defensiveSwiper = new Swiper('.defensiveSwiper',swiperSettings);
 			defensiveSwiper.on('slideChange', function (defensiveSwiper) {
 				let formationId = $(defensiveSwiper.slides[defensiveSwiper.activeIndex]).attr('data-formation-id');
-				console.log("formationId: ", formationId);
+//				console.log("formationId: ", formationId);
 				$('#picker_defense_formation').val(formationId).trigger('change');
 			 });
 			
@@ -203,7 +204,7 @@
 			const blockingSwiper = new Swiper('.blockingSwiper',swiperSettings);
 			blockingSwiper.on('slideChange', function (blockingSwiper) {
 				let formationId = $(blockingSwiper.slides[blockingSwiper.activeIndex]).attr('data-formation-id');
-				console.log("formationId: ", formationId);
+//				console.log("formationId: ", formationId);
 
 				$('#picker_blocking_call').val(formationId).trigger('change');
 

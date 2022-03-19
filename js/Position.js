@@ -30,8 +30,8 @@
       let gridPositionSection = $fieldSection.attr('id');
 
       // Handle Positions in gaps (spoier, they gotta be wider)
-//      let addGapExtendedEnding = false;
-//      let myModdedAlignmentXInitial = Number(0);
+      //      let addGapExtendedEnding = false;
+      //      let myModdedAlignmentXInitial = Number(0);
       //      let addExtendedEnding = Number(0);
 
       let gridPositionX = "";
@@ -42,7 +42,7 @@
           // I'm just keeping this around for now.  Who knows what detonates after further testing 8^)
           // gridPositionX = position.positionX;
           // gridPositionY = position.positionY;
-           // break;
+          // break;
         case 'defense':
           //        console.log("----------------------");
           //        console.log("NOW we get the " + position.positionName + " Postion's position.");
@@ -93,7 +93,7 @@
           let myModdedAlignmentX = myPositionHelper.modMyAlignment(myGridPositionX, myInside, myAlignment, position);
 
           // Take note of the original X coord
-//          myModdedAlignmentXInitial = myModdedAlignmentX;
+          //          myModdedAlignmentXInitial = myModdedAlignmentX;
 
           // Even numbers are gaps. Handle the putting of postion nodes in Gaps.
           // We set the custom grid-column-end later
@@ -188,12 +188,16 @@
       //      }
     }
   });
-
+  /////////////////////
+  // Position Helper //
+  /////////////////////
   window.PositionHelper = function ($wrapper) {
     //    console.log("PositionHelper created with $wrapper: ", $wrapper);
     this.$wrapper = $wrapper;
   }
-
+  ////////////////////////////
+  // Extend Position Helper //
+  ////////////////////////////
   $.extend(PositionHelper.prototype, {
 
     whereIsMyInside(gridX) {

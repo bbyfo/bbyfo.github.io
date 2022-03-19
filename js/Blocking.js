@@ -44,7 +44,7 @@
       // console.log("blockingAssignment: ", blockingAssignment);
       // console.log("offensivePositionsCount: ", offensivePositionsCount);
       // console.log("defensivePositionsCount: ", defensivePositionsCount);
-      if ((offensivePositionsCount == 11 && defensivePositionsCount == 11) && blockingAssignment != '--default--') {
+      if ((offensivePositionsCount == 11 && defensivePositionsCount == 11) && blockingAssignment != '--none--') {
         return true;
       } else {
         return false;
