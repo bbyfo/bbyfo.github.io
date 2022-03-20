@@ -381,6 +381,18 @@ form label {
   color: rgba(255, 255, 255, 0.35);
 }
 .blocking-identifier--WR.blocking-rule-no-count {}
+/*
+* Fullback
+*/
+.blocking-identifier--FB {
+  border: 2px dashed black;
+  background-color: yellow;
+  color: black;
+}
+.blocking-identifier--FB.blocking-rule-icon {
+  color: rgba(255, 255, 255, 0.35);
+}
+.blocking-identifier--FB.blocking-rule-no-count {}
 /* 
 *Common Blocking Rule Styles 
 */

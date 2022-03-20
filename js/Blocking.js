@@ -69,7 +69,7 @@
       }
     },
     fetchAndProcess: function ($formElm) {
-//      console.log("$formElm: ", $formElm);
+      console.log("fetchAndProcess called(): ", $formElm);
 
 
       let blockingCallUrl = "data/offense/" + $formElm.val() + ".json"
@@ -97,9 +97,9 @@
      */
     processBlockingAssignments: function (blockingCall) {
       console.log("processBlockingAssignments() called with: ", blockingCall);
-
-      //      console.log("blockingAssignment.appliesTo: ", blockingAssignment.appliesTo);
-
+      // Clear out existing Blocking stuff
+      console.log("Clear out existing Blocking stuff");
+      $('.block-miss-wrapper, .offensive-blocking-identifier').remove();
 
       blockingCall.blockingAssignments.forEach((blockingAssignment) => {
 
@@ -124,9 +124,9 @@
 
             //          console.log("myX: ", myX);
             //          console.log("myInside: ", myInside);
-//            console.log(" ");
-//            console.log("##################");
-//            console.log("POSITION: ", $thisPosition.attr('id'), "myX:", myX, "myInside:", myInside);
+            //            console.log(" ");
+            //            console.log("##################");
+            //            console.log("POSITION: ", $thisPosition.attr('id'), "myX:", myX, "myInside:", myInside);
             //          console.log(rules);
             // Loop through rules and stop at the first 'yes'
             // @todo The big 'ol switch statement has to manually match all possible values in the blocking_call__XXXXX.json files.
@@ -144,7 +144,7 @@
               let targets = [];
               let blockingRuleDescription = rule.description;
               if (foundAssignment === false) {
-//                console.log(`Processing rule: ${rule.name}`);
+                //                console.log(`Processing rule: ${rule.name}`);
 
                 // Get the X coord for the rule
                 switch (rule.name) {
@@ -252,7 +252,7 @@
                     break;
 
                   default:
-//                    console.log("Nobody to block yet, defaulting to Down (playside)", blockingCall.playSide);
+                    //                    console.log("Nobody to block yet, defaulting to Down (playside)", blockingCall.playSide);
 
 
                     // The following commented-out code is useful to find the "nearest" position to block.
@@ -299,12 +299,16 @@
                 //                console.log("rule.depth: ", rule.depth);
                 //                console.log("ruleDepth: ", ruleDepth);
                 //                console.log("assignmentY: ", assignmentY);
+
                 // If the rule is "any", we want to search all levels of the defense.
                 if (ruleDepth == "any") {
                   let $wrapper = $('#FootballApp');
-                  let myFieldApp = new FieldApp($wrapper);
-                  assignmentY = myFieldApp.getDefensiveDepths().reverse();
-
+                  // Dang, looks like creating a new FieldApp is a buggar. It multiplies the loops run by something.
+                  // I dunno, it's late and I JUST figured this out.  UGH.
+                  // let myFieldApp = new FieldApp($wrapper);
+                  // assignmentY = myFieldApp.getDefensiveDepths().reverse();
+                  //                  console.log("Woobity", FieldApp);
+                  assignmentY = ['defensive_los', 'linebacker', 'safety', 'deep'];
                 } else {
 
                   assignmentY = ruleDepth;
@@ -322,14 +326,14 @@
                 // Build out the target list
                 let targetList = [];
                 assignmentY.forEach((y) => {
-//                  console.log("y: ", y);
+                  //                  console.log("y: ", y);
                   assignmentX.forEach((x) => {
                     targetList.push($(`.js-defense-${x}.depth--${y}`));
                   });
                 });
 
 
-//                console.log("targetList: ", targetList);
+                //                console.log("targetList: ", targetList);
 
                 // If there is a position at the target coords, assign the blocking classes to the blocker and the target
                 // Also, set the foundAssignement to true so we stop processing.
@@ -338,7 +342,7 @@
                   //                  console.log("Processing ", rule.name);
 
                   if ($target.children(".position-node").length > Number(0)) {
-//                    console.log("We have a target!!");
+                    //                    console.log("We have a target!!");
                     foundAssignment = true;
 
                     let $targetPosition = $target.children(".position-node");
@@ -385,7 +389,7 @@
                     //                    console.log("$target", $target[0]);
                     //                    console.log("$thisPosition", $thisPosition[0]);
 
-//                    console.log($thisPosition.attr('id'), `found nobody to block for rule ${rule.name} Miss #${blockingRuleNoCount}`);
+                    //                    console.log($thisPosition.attr('id'), `found nobody to block for rule ${rule.name} Miss #${blockingRuleNoCount}`);
 
                     blockingRuleDescription += " <strong>No.</strong> Go to next rule.";
 
@@ -420,7 +424,7 @@
 
 
                     blockingRuleNoCount++;
-//                    console.log("-----");
+                    //                    console.log("-----");
                     return true;
                   }
 

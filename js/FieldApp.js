@@ -81,7 +81,9 @@
       let blockingCall = $('#picker_blocking_call').val();
       let playCall = $('#picker_play_call').val();
       let pickerType = $(selectChanged).attr('data-picker-type');
-      let $fieldElm = $(`#` + pickerType);
+      //      let $fieldElm = $(`#` + pickerType);
+      //
+      //      console.log("$fieldElm:", $fieldElm);
 
       let offensiveFileUrl = "data/offense/" + offenseFormation + ".json";
       //      console.log("offensiveFileUrl: ", offensiveFileUrl);
@@ -129,7 +131,8 @@
         actionType += 0;
       }
 
-      console.log("actionType (after Switch): ", actionType);
+      let $fieldElm = null;
+      console.log("actionType (before Switch): ", actionType);
 
       switch (actionType) {
         // 0000 Nothing Selected
@@ -141,12 +144,37 @@
         case '1000':
           console.log("Offense only");
 
-          this.fetchAndProcessFormation('offense', offenseFormation, $fieldElm);
+          $.ajax({
+            url: offensiveFileUrl
+          }).then(function (offensiveFormation) {
+            //              console.log("offensiveFormation in then", offensiveFormation);
+            $fieldElm = $("#offense");
+            // Loop over the positions and populate them on the grid
+            offensiveFormation.positions.forEach((position) => {
+              //                console.log("position: ", position);
+              // Instantiate a new Position
+              // Positions place themselves
+              let positionObj = new Position($fieldElm, position);
+            });
+          });
           break;
           // 0100 Defense only 
         case '0100':
           console.log("Defense only");
-          this.fetchAndProcessFormation('defense', defenseFormation, $fieldElm);
+          $fieldElm = $("#defense");
+          $.ajax({
+            url: defensiveFileUrl
+          }).then(function (defensiveFormation) {
+            //              console.log("offensiveFormation in then", offensiveFormation);
+            $fieldElm = $("#offense");
+            // Loop over the positions and populate them on the grid
+            defensiveFormation.positions.forEach((position) => {
+              //                console.log("position: ", position);
+              // Instantiate a new Position
+              // Positions place themselves
+              let positionObj = new Position($fieldElm, position);
+            });
+          });
           break;
           // 001 Blocking only 
         case '0010':
@@ -200,12 +228,12 @@
           break;
           // 111 Offense, Defense, and Blocking
         case '1110':
-          console.log("Offense, Defense, and Blocking");
+          console.log("Offense, Defense, and Blocking", $fieldElm);
           return new Promise(function (resolve, reject) {
             $.ajax({
               url: offensiveFileUrl
             }).then(function (offensiveFormation) {
-              //              console.log("@@ offensiveFormation in then()", offensiveFormation);
+              console.log("@@ offensiveFormation in then()", offensiveFormation);
               $fieldElm = $("#offense");
               // Loop over the positions and populate them on the grid
               offensiveFormation.positions.forEach((position) => {
@@ -226,14 +254,17 @@
                   // Positions place themselves
                   let positionObj = new Position($fieldElm, position);
                 });
-                return "bobo jones!!";
+                //return "bobo jones!!";
               }).then(function (data) {
                 //                console.log("@@ data in then(): ", data);
+                // Clear out existing Blocking stuff
+                console.log("Clear out existing Blocking stuff");
+                $('.block-miss-wrapper, .offensive-blocking-identifier').remove();
                 let myBlocking = new Blocking($("#FootballApp"));
                 myBlocking.handleShowBlockingAll();
-                //                console.log("myBlocking: ", myBlocking);
+                console.log("Just called myBlocking(): ", myBlocking);
               });
-            });
+            })
           });
 
 
@@ -241,7 +272,7 @@
 
         case '1111':
           console.log("Offense, Defense, Blocking Call, and Play Call");
-          let $wrapper = $('#FootballApp');
+          //let $wrapper = $('#FootballApp');
           return new Promise(function (resolve, reject) {
             $.ajax({
               url: offensiveFileUrl
@@ -273,20 +304,25 @@
                   $.ajax({
                     url: blockingCallFileUrl
                   }).then(function (blockingCall) {
-                    console.log("@@ blockingCall in then()", blockingCall);
-                    console.log("@@ playCall in then()", playCall);
+                    //                    console.log("@@ blockingCall in then()", blockingCall);
+                    //                    console.log("@@ playCall in then()", playCall);
 
                     let blockingFromBlockingCall = blockingCall.blockingAssignments;
                     let blockingFromPlayCall = playCall.blockingAssignments;
-                    console.log("blockingFromBlockingCall: ", blockingFromBlockingCall);
-                    console.log("blockingFromPlayCall: ", blockingFromPlayCall);
+                    //                    console.log("blockingFromBlockingCall: ", blockingFromBlockingCall);
+                    //                    console.log("blockingFromPlayCall: ", blockingFromPlayCall);
                     // Add the Play Blocking Assignments to the Blocking Call Blocking Assignments
                     let combinedBlockingAssignments = {};
                     combinedBlockingAssignments.playSide = blockingCall.playSide;
                     combinedBlockingAssignments.blockingAssignments = blockingFromBlockingCall.concat(blockingFromPlayCall);
                     console.log("combinedBlockingAssignments: ", combinedBlockingAssignments);
+                    // Clear out existing Blocking stuff
+                    console.log("Clear out existing Blocking stuff");
+                    $('.block-miss-wrapper, .offensive-blocking-identifier').remove();
+
                     // Process the Blocking from the Blocking Call
                     let myBlockingCallBlocking = new Blocking($("#FootballApp"));
+
                     myBlockingCallBlocking.processBlockingAssignments(combinedBlockingAssignments);
 
 
@@ -320,6 +356,7 @@
     //////////////////////////////////////////  
     handlePickOffenseFormation: function (e) {
       let $fieldElm = $("#offense");
+      console.log("Gonna call FieldHelper() with ", $fieldElm);
       let myFieldHelper = new FieldHelper($fieldElm);
 
       // Clear the offense and rebuild it
@@ -351,7 +388,7 @@
     // Fetch a single formation and process it. //
     //////////////////////////////////////////////
     fetchAndProcessFormation: function (formationType, formationId, $fieldElm) {
-
+      console.log("called fetchAndProcessFormation()");
       let fileUrl = "data/" + formationType + "/" + formationId + ".json";
       //      console.log("fileUrl", fileUrl);
       fetch(fileUrl)
@@ -375,6 +412,7 @@
       console.log("handlePickDefenseFormation()");
       let $fieldElm = $('#defense');
       // Clear the Defensive side of the Field.
+      console.log("Gonna call FieldHelper() with nothing ");
       let myFieldHelper = new FieldHelper();
       myFieldHelper.clearFieldSection($fieldElm);
       myFieldHelper.populateFieldWithEmptyGridItems($fieldElm);
@@ -407,6 +445,7 @@
 
       if ($formationId == '--none--') {
         //        console.log("Clear stuff, yo!");
+        console.log("Gonna call FieldHelper() with nothing ");
         let myPositionHelper = new FieldHelper();
         myPositionHelper.clearFieldSection($fieldElm);
         myFieldHelper.populateFieldWithEmptyGridItems($fieldElm);
@@ -451,6 +490,7 @@
     buildField: function ($wrapper, fieldCols = 21) {
       //      console.log("buildField() called with $wrapper: ", $wrapper);
       //      console.log("fieldCols: ", fieldCols);
+      console.log("Gonna call FieldHelper() with $wrapper from buildField", $wrapper);
       let myFieldHelper = new FieldHelper($wrapper);
       myFieldHelper.populateFieldWithEmptyGridItems();
       myFieldHelper.assignGaps();
@@ -462,7 +502,7 @@
       console.log("called resetField() $wrapper", $wrapper);
       $('#defense > div, #los > div, #offense > div, #bocking-rule-description-wrapper span').remove();
 
-
+      console.log("Gonna call FieldHelper() with $wrapper from resetField", $wrapper);
       let myHelper = new FieldHelper($wrapper);
       this.buildField($wrapper);
     },
@@ -471,6 +511,7 @@
 
     },
     getDefensiveDepths: function ($wrapper) {
+      console.log("Gonna call FieldHelper() with $wrapper from getDefensiveDepths", $wrapper);
       let myFieldHelper = new FieldHelper($wrapper);
       return myFieldHelper.getDefensiveDepths();
     }
