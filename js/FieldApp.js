@@ -73,7 +73,7 @@
 
     handleSelectChange: function (e) {
 
-      console.log("handleSelectChange() called", this);
+      //      console.log("handleSelectChange() called", this);
       let selectChanged = e.currentTarget;
       // Get the current values for the select elements
       let offenseFormation = $('#picker_offense_formation').val();
@@ -490,7 +490,7 @@
     buildField: function ($wrapper, fieldCols = 21) {
       //      console.log("buildField() called with $wrapper: ", $wrapper);
       //      console.log("fieldCols: ", fieldCols);
-      console.log("Gonna call FieldHelper() with $wrapper from buildField", $wrapper);
+      //      console.log("Gonna call FieldHelper() with $wrapper from buildField", $wrapper);
       let myFieldHelper = new FieldHelper($wrapper);
       myFieldHelper.populateFieldWithEmptyGridItems();
       myFieldHelper.assignGaps();
@@ -499,19 +499,19 @@
     // Clear everything out of the field and rebuild it (empty). //
     ///////////////////////////////////////////////////////////////
     resetField: function ($wrapper) {
-      console.log("called resetField() $wrapper", $wrapper);
+      //      console.log("called resetField() $wrapper", $wrapper);
       $('#defense > div, #los > div, #offense > div, #bocking-rule-description-wrapper span').remove();
 
-      console.log("Gonna call FieldHelper() with $wrapper from resetField", $wrapper);
+      //      console.log("Gonna call FieldHelper() with $wrapper from resetField", $wrapper);
       let myHelper = new FieldHelper($wrapper);
       this.buildField($wrapper);
     },
     handleBuildOffense: function () {
-      console.log("handleBuildOffense() called");
+      //      console.log("handleBuildOffense() called");
 
     },
     getDefensiveDepths: function ($wrapper) {
-      console.log("Gonna call FieldHelper() with $wrapper from getDefensiveDepths", $wrapper);
+      //      console.log("Gonna call FieldHelper() with $wrapper from getDefensiveDepths", $wrapper);
       let myFieldHelper = new FieldHelper($wrapper);
       return myFieldHelper.getDefensiveDepths();
     }
@@ -524,7 +524,7 @@
   // Helper functionality //
   //////////////////////////	
   var FieldHelper = function ($wrapper) {
-    console.log("called FieldHelper with: ", $wrapper);
+    //    console.log("called FieldHelper with: ", $wrapper);
     this.$wrapper = $wrapper;
   }
 
@@ -631,9 +631,18 @@
             // Always add 'grid-item' class
             fieldGridItem.classList.add('grid-item');
 
+            // Add the Position Wrapper element
+            let positionWrapper = document.createElement("div");
+            positionWrapper.classList.add('position-wrapper');
+            fieldGridItem.append(positionWrapper);
+
+            // Add the Blocking Identifers Wrapper
+            let BlockingIdentifiersWrapper = document.createElement("div");
+            BlockingIdentifiersWrapper.classList.add('blocking-identifiers-wrapper')
+            fieldGridItem.append(BlockingIdentifiersWrapper);
+
+            // Add the Grid Item to the DOM
             fieldSection.append(fieldGridItem);
-            //            fieldSection.append($('<div>NW</div>').addClass(['position-name-wrapper']));
-            //            fieldSection.append($('<div>MBI</div>').addClass(['blocking-identifier-wrapper']));
 
             this.fieldColumnCurrent++;
           }

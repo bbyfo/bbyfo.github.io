@@ -401,9 +401,14 @@ form label {
   font-weight: bold;
   border: none;
 }
-.blocking-rule-icon {}
+.blocking-rule-icon.material-icons {
+  /* @todo get Alex to display these icons tastefully.	*/
+  display: none;
+}
 .block-miss-wrapper {
-  position: relative;
+/*  position: relative;*/
+  line-hieght: 0.8;
+  padding: 0 5px;
 }
 .blocking-rule-no-count, .blocking-rule-icon {
   font-size: 65%;
