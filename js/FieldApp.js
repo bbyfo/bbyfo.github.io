@@ -90,7 +90,7 @@
       //      console.log("defensiveFileUrl: ", defensiveFileUrl);
 
       let playCallFileUrl = "data/offense/" + playCall + ".json";
-      console.log("playCallFileUrl: ", playCallFileUrl);
+      //      console.log("playCallFileUrl: ", playCallFileUrl);
 
       //      console.log("offenseFormation: ", offenseFormation);
       //      console.log("defenseFormation: ", defenseFormation);
@@ -103,7 +103,7 @@
       // Do different things depending on the status of the select elements
       // Build a string to use in the switch to figure out what to do
       let actionType = "";
-      console.log("actionType (before Switch): ", actionType);
+      //      console.log("actionType (before Switch): ", actionType);
 
       if (offenseFormation != '--none--') {
         actionType += 1;
@@ -160,7 +160,7 @@
             $.ajax({
               url: offensiveFileUrl
             }).then(function (offensiveFormation) {
-              console.log("offensiveFormation in then", offensiveFormation);
+              //              console.log("offensiveFormation in then", offensiveFormation);
               $fieldElm = $("#offense");
               // Loop over the positions and populate them on the grid
               offensiveFormation.positions.forEach((position) => {
@@ -174,7 +174,7 @@
               $.ajax({
                 url: defensiveFileUrl
               }).then(function (defensiveFormation) {
-                console.log("defensiveFormation in 2nd then: ", defensiveFormation);
+                //                console.log("defensiveFormation in 2nd then: ", defensiveFormation);
                 defensiveFormation.positions.forEach((position) => {
                   //                  console.log("position: ", position);
                   // Instantiate a new Position
@@ -202,7 +202,7 @@
             $.ajax({
               url: offensiveFileUrl
             }).then(function (offensiveFormation) {
-              console.log("!! offensiveFormation in then", offensiveFormation);
+//              console.log("@@ offensiveFormation in then()", offensiveFormation);
               $fieldElm = $("#offense");
               // Loop over the positions and populate them on the grid
               offensiveFormation.positions.forEach((position) => {
@@ -216,7 +216,7 @@
               $.ajax({
                 url: defensiveFileUrl
               }).then(function (defensiveFormation) {
-                console.log("@@ defensiveFormation in 2nd then: ", defensiveFormation);
+                //                console.log("@@ defensiveFormation in then(): ", defensiveFormation);
                 defensiveFormation.positions.forEach((position) => {
                   //                  console.log("position: ", position);
                   // Instantiate a new Position
@@ -225,10 +225,10 @@
                 });
                 return "bobo jones!!";
               }).then(function (data) {
-                console.log("### data in 3rd then: ", data);
+                //                console.log("@@ data in then(): ", data);
                 let myBlocking = new Blocking($("#FootballApp"));
                 myBlocking.handleShowBlockingAll();
-                console.log("myBlocking: ", myBlocking);
+                //                console.log("myBlocking: ", myBlocking);
               });
             });
           });
@@ -243,7 +243,7 @@
             $.ajax({
               url: offensiveFileUrl
             }).then(function (offensiveFormation) {
-              console.log("!! offensiveFormation in then", offensiveFormation);
+              //              console.log("@@ offensiveFormation in then():", offensiveFormation);
               $fieldElm = $("#offense");
               // Loop over the positions and populate them on the grid
               offensiveFormation.positions.forEach((position) => {
@@ -257,7 +257,7 @@
               $.ajax({
                 url: defensiveFileUrl
               }).then(function (defensiveFormation) {
-                console.log("@@ defensiveFormation in 2nd then: ", defensiveFormation);
+                //                console.log("@@ defensiveFormation in then(): ", defensiveFormation);
                 defensiveFormation.positions.forEach((position) => {
                   //                  console.log("position: ", position);
                   // Instantiate a new Position
@@ -266,25 +266,25 @@
                 });
                 return "bobo jones!!";
               }).then(function (data) {
-                console.log("### data in 3rd then: ", data);
+                //                console.log("@@ data in Blocking then(): ", data);
                 let myBlocking = new Blocking($("#FootballApp"));
                 myBlocking.handleShowBlockingAll();
-                console.log("myBlocking: ", myBlocking);
+                //                console.log("myBlocking: ", myBlocking);
               }).then(function (data) {
-                console.log("$$$$ data in 4th then: ", data);
+                //                console.log("@@ data in PlayCall then(): ", data);
                 let myPlay = new Play($wrapper);
-                console.log("myPlay: ", myPlay);
+                //                console.log("myPlay: ", myPlay);
                 $.ajax({
                   url: playCallFileUrl
                 }).then(function (playCall) {
-                  console.log("playCall: ", playCall);
+                  //                  console.log("playCall : ", playCall);
 
                   // Process Blocking Assignments
                   let myBlocking = new Blocking($("#FootballApp"));
                   let blockingAssignements = playCall.blockingAssignments;
                   let blockingCall = {};
                   blockingCall.blockingAssignments = blockingAssignements;
-                  console.log("blockingCall: ", blockingCall);
+                  console.log("waddup blockingCall: ", blockingCall);
                   myBlocking.processBlockingAssignments(blockingCall);
 
 
@@ -444,8 +444,8 @@
     // Build the initial field //
     /////////////////////////////
     buildField: function ($wrapper, fieldCols = 21) {
-      console.log("buildField() called with $wrapper: ", $wrapper);
-      console.log("fieldCols: ", fieldCols);
+      //      console.log("buildField() called with $wrapper: ", $wrapper);
+      //      console.log("fieldCols: ", fieldCols);
       let myFieldHelper = new FieldHelper($wrapper);
       myFieldHelper.populateFieldWithEmptyGridItems();
       myFieldHelper.assignGaps();
@@ -586,8 +586,8 @@
             fieldGridItem.classList.add('grid-item');
 
             fieldSection.append(fieldGridItem);
-//            fieldSection.append($('<div>NW</div>').addClass(['position-name-wrapper']));
-//            fieldSection.append($('<div>MBI</div>').addClass(['blocking-identifier-wrapper']));
+            //            fieldSection.append($('<div>NW</div>').addClass(['position-name-wrapper']));
+            //            fieldSection.append($('<div>MBI</div>').addClass(['blocking-identifier-wrapper']));
 
             this.fieldColumnCurrent++;
           }
