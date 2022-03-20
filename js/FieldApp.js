@@ -634,6 +634,7 @@
             // Add the Position Wrapper element
             let positionWrapper = document.createElement("div");
             positionWrapper.classList.add('position-wrapper');
+
             fieldGridItem.append(positionWrapper);
 
             // Add the Blocking Identifers Wrapper
@@ -740,7 +741,8 @@
           .addClass(['grid-gap-item']);
         let targetX = Number(ballX) + Number(gapData[gap].distance);
         // Build the selector for the Grid item into which we're going to add our HTML
-        let targetCellSelector = '.js-los-' + targetX;
+        let targetCellSelector = '.js-los-' + targetX + ' .position-wrapper';
+        console.log("targetCellSelector: ", targetCellSelector);
         $(targetCellSelector).append(gapContent);
 
         //        console.log("gapContent", gapContent);

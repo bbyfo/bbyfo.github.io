@@ -76,10 +76,21 @@
 
           // Get the Parent of the Anchor (the parent contains the coordinate data)
           let $myAnchorElm = $(myAnchorElm);
-          let $myAnchorElmParent = $myAnchorElm.parent();
+          let $myAnchorElmParent = null;
+          console.log(positionName, "$myAnchorElm: ", $myAnchorElm);
+          if ($myAnchorElm.attr("id") == "ball") {
+            console.log("Anchor is ball, look for parent");
+            $myAnchorElmParent = $myAnchorElm.parent().parent();
+          } else {
+            console.log("Anchor is NOT ball, do look for grandparent");
+            $myAnchorElmParent = $myAnchorElm.parent().parent();
+          }
 
+
+          console.log("$myAnchorElmParent: ", $myAnchorElmParent);
           // Finally, get the X coord of the parent.
           let myAnchorsX = $myAnchorElmParent.css('grid-column-start');
+          console.log("myAnchorsX: ", myAnchorsX);
 
           myGridPositionX = myAnchorsX;
 
@@ -146,8 +157,8 @@
 
       // Here's how we select a specifc grid item!
       // @see https://www.geeksforgeeks.org/jquery-attributevalue-selector-4/
-      $("[data-grid-coords|='" + gridPositionSelector + "']")
-        .html(positionDiv);
+      $("[data-grid-coords|='" + gridPositionSelector + "'] .position-wrapper")
+        .append(positionDiv);
 
 
       ///////////////////////////////////
