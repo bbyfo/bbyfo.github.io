@@ -233,7 +233,7 @@
             $.ajax({
               url: offensiveFileUrl
             }).then(function (offensiveFormation) {
-              console.log("@@ offensiveFormation in then()", offensiveFormation);
+              //              console.log("@@ offensiveFormation in then()", offensiveFormation);
               $fieldElm = $("#offense");
               // Loop over the positions and populate them on the grid
               offensiveFormation.positions.forEach((position) => {
@@ -258,11 +258,11 @@
               }).then(function (data) {
                 //                console.log("@@ data in then(): ", data);
                 // Clear out existing Blocking stuff
-                console.log("Clear out existing Blocking stuff");
+                //                console.log("Clear out existing Blocking stuff");
                 $('.block-miss-wrapper, .offensive-blocking-identifier').remove();
                 let myBlocking = new Blocking($("#FootballApp"));
                 myBlocking.handleShowBlockingAll();
-                console.log("Just called myBlocking(): ", myBlocking);
+                //                console.log("Just called myBlocking(): ", myBlocking);
               });
             })
           });
@@ -277,7 +277,7 @@
             $.ajax({
               url: offensiveFileUrl
             }).then(function (offensiveFormation) {
-              console.log("@@ offensiveFormation in then()", offensiveFormation);
+              //              console.log("@@ offensiveFormation in then()", offensiveFormation);
               $fieldElm = $("#offense");
               // Loop over the positions and populate them on the grid
               offensiveFormation.positions.forEach((position) => {
@@ -290,7 +290,7 @@
               $.ajax({
                 url: defensiveFileUrl
               }).then(function (defensiveFormation) {
-                console.log("@@ defensiveFormation in then()", defensiveFormation);
+                //                console.log("@@ defensiveFormation in then()", defensiveFormation);
                 defensiveFormation.positions.forEach((position) => {
                   $fieldElm = $("#defense");
                   let positionObj = new Position($fieldElm, position);
@@ -300,7 +300,7 @@
                 $.ajax({
                   url: playCallFileUrl
                 }).then(function (playCall) {
-                  console.log("@@ playCall in then()", playCall);
+                  //                  console.log("@@ playCall in then()", playCall);
                   $.ajax({
                     url: blockingCallFileUrl
                   }).then(function (blockingCall) {
@@ -315,9 +315,9 @@
                     let combinedBlockingAssignments = {};
                     combinedBlockingAssignments.playSide = blockingCall.playSide;
                     combinedBlockingAssignments.blockingAssignments = blockingFromBlockingCall.concat(blockingFromPlayCall);
-                    console.log("combinedBlockingAssignments: ", combinedBlockingAssignments);
+                    //                    console.log("combinedBlockingAssignments: ", combinedBlockingAssignments);
                     // Clear out existing Blocking stuff
-                    console.log("Clear out existing Blocking stuff");
+                    //                    console.log("Clear out existing Blocking stuff");
                     $('.block-miss-wrapper, .offensive-blocking-identifier').remove();
 
                     // Process the Blocking from the Blocking Call
@@ -742,7 +742,7 @@
         let targetX = Number(ballX) + Number(gapData[gap].distance);
         // Build the selector for the Grid item into which we're going to add our HTML
         let targetCellSelector = '.js-los-' + targetX + ' .position-wrapper';
-        console.log("targetCellSelector: ", targetCellSelector);
+        //        console.log("targetCellSelector: ", targetCellSelector);
         $(targetCellSelector).append(gapContent);
 
         //        console.log("gapContent", gapContent);

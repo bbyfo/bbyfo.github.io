@@ -76,21 +76,13 @@
 
           // Get the Parent of the Anchor (the parent contains the coordinate data)
           let $myAnchorElm = $(myAnchorElm);
-          let $myAnchorElmParent = null;
-          console.log(positionName, "$myAnchorElm: ", $myAnchorElm);
-          if ($myAnchorElm.attr("id") == "ball") {
-            console.log("Anchor is ball, look for parent");
-            $myAnchorElmParent = $myAnchorElm.parent().parent();
-          } else {
-            console.log("Anchor is NOT ball, do look for grandparent");
-            $myAnchorElmParent = $myAnchorElm.parent().parent();
-          }
+          let $myAnchorElmParent = $myAnchorElm.parent().parent();
+//          console.log(positionName, "$myAnchorElm: ", $myAnchorElm);
 
-
-          console.log("$myAnchorElmParent: ", $myAnchorElmParent);
+//          console.log("$myAnchorElmParent: ", $myAnchorElmParent);
           // Finally, get the X coord of the parent.
           let myAnchorsX = $myAnchorElmParent.css('grid-column-start');
-          console.log("myAnchorsX: ", myAnchorsX);
+//          console.log("myAnchorsX: ", myAnchorsX);
 
           myGridPositionX = myAnchorsX;
 

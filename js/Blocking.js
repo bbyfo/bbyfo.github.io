@@ -53,7 +53,7 @@
     },
 
     handleShowBlockingAll: function (e) {
-      console.log("handleShowBlockingAll()", e);
+      //      console.log("handleShowBlockingAll()", e);
 
       // Remove all blocking things now
       $('.block-miss-wrapper, .offensive-blocking-identifier').remove();
@@ -69,7 +69,7 @@
       }
     },
     fetchAndProcess: function ($formElm) {
-      console.log("fetchAndProcess called(): ", $formElm);
+      //      console.log("fetchAndProcess called(): ", $formElm);
 
 
       let blockingCallUrl = "data/offense/" + $formElm.val() + ".json"
@@ -96,9 +96,9 @@
      *
      */
     processBlockingAssignments: function (blockingCall) {
-      console.log("processBlockingAssignments() called with: ", blockingCall);
+      //      console.log("processBlockingAssignments() called with: ", blockingCall);
       // Clear out existing Blocking stuff
-      console.log("Clear out existing Blocking stuff");
+      //      console.log("Clear out existing Blocking stuff");
       $('.block-miss-wrapper, .offensive-blocking-identifier').remove();
 
       blockingCall.blockingAssignments.forEach((blockingAssignment) => {
@@ -107,7 +107,7 @@
           //        console.log("positionClass: ", positionClass);
 
           let $positionsByClass = $(positionClass);
-          //        console.log("$positionsByClass: ", $positionsByClass);
+          //          console.log("$positionsByClass: ", $positionsByClass);
 
           $positionsByClass.each((i, position) => {
             //          console.log("position: ", position);
@@ -118,7 +118,7 @@
 
 
             // Find my X
-            let myX = Number($thisPosition.parent().css("grid-column-start"));
+            let myX = Number($thisPosition.parent().parent().css("grid-column-start"));
             // Find my Inside
             let myInside = positionHelper.whereIsMyInside(myX);
 
@@ -340,12 +340,12 @@
                 targetList.every(($target) => {
 
                   //                  console.log("Processing ", rule.name);
-
-                  if ($target.children(".position-node").length > Number(0)) {
+                  //                  console.log("$target: ", $target);
+                  if ($target.find(".position-node").length > Number(0)) {
                     //                    console.log("We have a target!!");
                     foundAssignment = true;
 
-                    let $targetPosition = $target.children(".position-node");
+                    let $targetPosition = $target.find(".position-node");
                     let $targetPositionParent = $targetPosition.parent();
 
                     // Mark this position with a blocking identifier
@@ -398,7 +398,11 @@
                     $blockMissWrapper.attr('data-blocking-rule-desc', blockingRuleDescription);
                     let blockingMissCssIdentifier = 'blocking-identifier--' + $thisPosition.attr('id');
                     $blockMissWrapper.attr('data-blocking-identifier-class', blockingMissCssIdentifier);
-                    $target.prepend($blockMissWrapper);
+                    //                    console.log("$target: ", $target);
+                    let $targetWrapper = $target.children('.blocking-identifiers-wrapper');
+                    //                    console.log("$targetWrapper: ", $targetWrapper);
+
+                    $targetWrapper.prepend($blockMissWrapper);
 
 
                     // Set up the "nobody to block" icon
