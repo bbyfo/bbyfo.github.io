@@ -89,6 +89,9 @@
       let defensiveFileUrl = "data/defense/" + defenseFormation + ".json";
       //      console.log("defensiveFileUrl: ", defensiveFileUrl);
 
+      let blockingCallFileUrl = "data/offense/" + blockingCall + ".json";
+      //console.log("blockingCallFileUrl: ", blockingCallFileUrl);
+
       let playCallFileUrl = "data/offense/" + playCall + ".json";
       //      console.log("playCallFileUrl: ", playCallFileUrl);
 
@@ -202,7 +205,7 @@
             $.ajax({
               url: offensiveFileUrl
             }).then(function (offensiveFormation) {
-//              console.log("@@ offensiveFormation in then()", offensiveFormation);
+              //              console.log("@@ offensiveFormation in then()", offensiveFormation);
               $fieldElm = $("#offense");
               // Loop over the positions and populate them on the grid
               offensiveFormation.positions.forEach((position) => {
@@ -243,7 +246,7 @@
             $.ajax({
               url: offensiveFileUrl
             }).then(function (offensiveFormation) {
-              //              console.log("@@ offensiveFormation in then():", offensiveFormation);
+              console.log("@@ offensiveFormation in then()", offensiveFormation);
               $fieldElm = $("#offense");
               // Loop over the positions and populate them on the grid
               offensiveFormation.positions.forEach((position) => {
@@ -253,44 +256,46 @@
                 let positionObj = new Position($fieldElm, position);
               });
             }).then(function () {
-              $fieldElm = $("#defense");
               $.ajax({
                 url: defensiveFileUrl
               }).then(function (defensiveFormation) {
-                //                console.log("@@ defensiveFormation in then(): ", defensiveFormation);
+                console.log("@@ defensiveFormation in then()", defensiveFormation);
                 defensiveFormation.positions.forEach((position) => {
-                  //                  console.log("position: ", position);
-                  // Instantiate a new Position
-                  // Positions place themselves
+                  $fieldElm = $("#defense");
                   let positionObj = new Position($fieldElm, position);
                 });
-                return "bobo jones!!";
-              }).then(function (data) {
-                //                console.log("@@ data in Blocking then(): ", data);
-                let myBlocking = new Blocking($("#FootballApp"));
-                myBlocking.handleShowBlockingAll();
-                //                console.log("myBlocking: ", myBlocking);
-              }).then(function (data) {
-                //                console.log("@@ data in PlayCall then(): ", data);
-                let myPlay = new Play($wrapper);
-                //                console.log("myPlay: ", myPlay);
+              }).then(function () {
+                console.log("Positions are looking good.  Now we need to Load the Play and the do the Blocking...");
                 $.ajax({
                   url: playCallFileUrl
                 }).then(function (playCall) {
-                  //                  console.log("playCall : ", playCall);
+                  console.log("@@ playCall in then()", playCall);
+                  $.ajax({
+                    url: blockingCallFileUrl
+                  }).then(function (blockingCall) {
+                    console.log("@@ blockingCall in then()", blockingCall);
+                    console.log("@@ playCall in then()", playCall);
 
-                  // Process Blocking Assignments
-                  let myBlocking = new Blocking($("#FootballApp"));
-                  let blockingAssignements = playCall.blockingAssignments;
-                  let blockingCall = {};
-                  blockingCall.blockingAssignments = blockingAssignements;
-                  console.log("waddup blockingCall: ", blockingCall);
-                  myBlocking.processBlockingAssignments(blockingCall);
+                    let blockingFromBlockingCall = blockingCall.blockingAssignments;
+                    let blockingFromPlayCall = playCall.blockingAssignments;
+                    console.log("blockingFromBlockingCall: ", blockingFromBlockingCall);
+                    console.log("blockingFromPlayCall: ", blockingFromPlayCall);
+                    // Add the Play Blocking Assignments to the Blocking Call Blocking Assignments
+                    let combinedBlockingAssignments = {};
+                    combinedBlockingAssignments.playSide = blockingCall.playSide;
+                    combinedBlockingAssignments.blockingAssignments = blockingFromBlockingCall.concat(blockingFromPlayCall);
+                    console.log("combinedBlockingAssignments: ", combinedBlockingAssignments);
+                    // Process the Blocking from the Blocking Call
+                    let myBlockingCallBlocking = new Blocking($("#FootballApp"));
+                    myBlockingCallBlocking.processBlockingAssignments(combinedBlockingAssignments);
 
 
-                });
-              });
+                  })
+                })
+              })
             });
+
+
           });
 
           break;
