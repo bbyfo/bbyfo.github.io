@@ -188,7 +188,7 @@
 * Position Background Images (or not)
 */
 .position-node {
-  width: 100%;
+  /*  width: 100%;*/
   text-align: center;
   font-weight: bold;
   ;
@@ -266,7 +266,13 @@ form label {
   grid-column-start: 20;
   grid-row-start: 1;
 }
-/* Blocking Identifier Styles */
+/**
+* Blocking Identifier Styles 
+*/
+.blocking-identifiers-wrapper {
+  display: flex;
+  flex-direction: row;
+}
 .blocking-identifier--QB {
   border: 2px solid black;
   background-color: red;
@@ -405,11 +411,7 @@ form label {
   /* @todo get Alex to display these icons tastefully.	*/
   display: none;
 }
-.block-miss-wrapper {
-/*  position: relative;*/
-  line-hieght: 0.8;
-  padding: 0 5px;
-}
+.block-miss-wrapper {}
 .blocking-rule-no-count, .blocking-rule-icon {
   font-size: 65%;
 }
@@ -475,8 +477,8 @@ form label {
 /******************/
 /** Form Styling **/
 /******************/
-#picker_offense_formation, #picker_defense_formation, #picker_blocking_call {
-  /*  display: none;*/
+#picker_offense_formation, #picker_defense_formation, #picker_blocking_call, #picker_play_call {
+  display: none;
 }
 /********************/
 /** Swiper Styling **/
