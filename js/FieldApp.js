@@ -37,6 +37,13 @@
     //      this.handlePickDefenseFormation.bind(this)
     //    );
 
+    // Event handler for Showing / Hiding Block Rule "nos"
+    this.$wrapper.on(
+      'change',
+      '#show_block_nos',
+      this.handleShowBlockNos.bind(this)
+    );
+
     // Event Handler for Showing / Hiding Defensive Position Text
     this.$wrapper.on(
       'change',
@@ -71,6 +78,10 @@
 
   $.extend(window.FieldApp.prototype, {
 
+    handleShowBlockNos: function (e) {
+		$("#field").toggleClass('show-block-miss-wrapper');
+
+    },
     handleSelectChange: function (e) {
 
       //      console.log("handleSelectChange() called", this);
@@ -752,7 +763,7 @@
     },
     getDefensiveDepths: function () {
       return [
-        'deep',
+        'deep_defense',
         'safety',
         'linebacker',
         'defensive_los'
@@ -763,7 +774,7 @@
         'offensive_los',
         'off',
         'shotgun',
-        'deep'
+        'deep_offense'
       ];
     }
 

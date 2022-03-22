@@ -32,13 +32,13 @@
 }
 #los {}
 #defense {
-  grid-template-rows: [deep] minmax(50px, 6fr) [safety] minmax(50px, 6fr) [linebacker] minmax(50px, 6fr) [defensive_los] minmax(50px, 6fr);
+  grid-template-rows: [deep_defense] minmax(50px, 6fr) [safety] minmax(50px, 6fr) [linebacker] minmax(50px, 6fr) [defensive_los] minmax(50px, 6fr);
   grid-row-start: 1;
   grid-row-end: 4;
   /*  grid-auto-rows: auto;*/
 }
 #offense {
-  grid-template-rows: [offensive_los] minmax(50px, 6fr) [off] minmax(50px, 6fr) [shotgun] minmax(50px, 6fr) [deep] minmax(50px, 6fr);
+  grid-template-rows: [offensive_los] minmax(50px, 6fr) [off] minmax(50px, 6fr) [shotgun] minmax(50px, 6fr) [deep_offense] minmax(50px, 6fr);
   /*  grid-auto-rows: auto;*/
   grid-row-start: 5;
   grid-row-end: 8;
@@ -153,8 +153,9 @@
 #defense .grid-item {
   justify-content: flex-end;
 }
-#defense .grid-item.position-container {
-  flex-direction: column-reverse
+#defense .grid-item .position-container {
+  display: flex;
+  flex-direction: column-reverse;
 }
 #defense .has-double-team .helmet-image {
   max-width: 2.5vw;
@@ -437,6 +438,12 @@ form label {
   visibility: visible;
 }
 */
+.blocking-identifiers-wrapper {
+  display: none;
+}
+.show-block-miss-wrapper .blocking-identifiers-wrapper {
+  display: flex;
+}
 #bocking-rule-description-wrapper {
   padding: 0.5em;
 }

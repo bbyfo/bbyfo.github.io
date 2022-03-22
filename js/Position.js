@@ -66,13 +66,6 @@
 
           });
 
-          /**
-           * Issue #12. The Anchor Element Parent is buggin out.
-           * We're trying to put the Position into the .grid-item .position-wrapper and
-           * the Blocking Identifier into the .grid-item .blocking-identifiers-wrapper
-           * The .position-wrapper and .blocking-identifiers-wrapper are being correctly placed  at FieldApp ~637 but
-           * doing this causes a bug where we don't properly locate the parent element. Ugh.
-           */
 
           // Get the Parent of the Anchor (the parent contains the coordinate data)
           let $myAnchorElm = $(myAnchorElm);
