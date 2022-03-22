@@ -63,6 +63,7 @@
               <option value="formation__5_3__man">5-3 Man</option>
               <option value="formation__6_2__base">6-2 Base</option>
               <option value="formation__6_2__base_man">6-2 Base Man</option>
+              <option value="formation__4_4__base">4-4 Base</option>
             </select>
             <div class="swiper-label">Defensive Formation</div>
             <!-- Slider main container -->
@@ -75,6 +76,7 @@
                 <div class="swiper-slide" data-formation-id="formation__5_3__man">5-3 Man</div>
                 <div class="swiper-slide" data-formation-id="formation__6_2__base">6-2 Base</div>
                 <div class="swiper-slide" data-formation-id="formation__6_2__base_man">6-2 Base Man</div>
+                <div class="swiper-slide" data-formation-id="formation__4_4__base">4-4 Base</div>
               </div>
               <div class="swiper-button-next"></div>
               <div class="swiper-button-prev"></div>
@@ -109,6 +111,8 @@
               <div class="swiper-button-next"></div>
               <div class="swiper-button-prev"></div>
             </div>
+            <input type="checkbox" id="show_block_nos" value="yes">
+            Show Blocking Rule Progression? 
             <!--            <button type="button" id="show_blocking_all">Show All Blocking</button>--> 
             
           </div>
@@ -143,8 +147,7 @@
             <input type="checkbox" value="hide_txt" id="hide_text">
             Hide Defensive Position Names
 -->
-            <input type="checkbox" id="show_block_nos" value="yes">
-            Show Blocking Rule "Nos"?
+            
             <button type="button" id="clear_field" class="form-control">Clear Field</button>
             <button type="button" id="XX__Placeholder__XX" class="form-control">XX__Placeholder__XX</button>
           </div>
@@ -196,7 +199,7 @@
 			const defensiveSwiper = new Swiper('.defensiveSwiper',swiperSettings);
 			defensiveSwiper.on('slideChange', function (defensiveSwiper) {
 				let formationId = $(defensiveSwiper.slides[defensiveSwiper.activeIndex]).attr('data-formation-id');
-//				console.log("formationId: ", formationId);
+				console.log("formationId: ", formationId);
 				$('#picker_defense_formation').val(formationId).trigger('change');
 			 });
 			

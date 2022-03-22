@@ -79,7 +79,7 @@
   $.extend(window.FieldApp.prototype, {
 
     handleShowBlockNos: function (e) {
-		$("#field").toggleClass('show-block-miss-wrapper');
+      $("#field").toggleClass('show-block-miss-wrapper');
 
     },
     handleSelectChange: function (e) {
@@ -171,7 +171,7 @@
           break;
           // 0100 Defense only 
         case '0100':
-          console.log("Defense only");
+          console.log("Defense only", defensiveFileUrl);
           $fieldElm = $("#defense");
           $.ajax({
             url: defensiveFileUrl
@@ -216,7 +216,7 @@
               $.ajax({
                 url: defensiveFileUrl
               }).then(function (defensiveFormation) {
-                //                console.log("defensiveFormation in 2nd then: ", defensiveFormation);
+                                console.log("defensiveFormation in 2nd then: ", defensiveFormation);
                 defensiveFormation.positions.forEach((position) => {
                   //                  console.log("position: ", position);
                   // Instantiate a new Position
@@ -301,7 +301,7 @@
               $.ajax({
                 url: defensiveFileUrl
               }).then(function (defensiveFormation) {
-                //                console.log("@@ defensiveFormation in then()", defensiveFormation);
+                console.log("@@ defensiveFormation in then()", defensiveFormation);
                 defensiveFormation.positions.forEach((position) => {
                   $fieldElm = $("#defense");
                   let positionObj = new Position($fieldElm, position);
