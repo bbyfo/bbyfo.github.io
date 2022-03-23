@@ -1,6 +1,6 @@
 #field {
   font-family: 'Courier New', Courier, monospace;
-  font-size: clamp(1vw, 2vw, 3vw);
+  font-size: clamp(1em, 2em, 3em);
   /*  background-color: white;*/
   width: 90vw;
   margin: 0 auto;
@@ -30,7 +30,15 @@
 #defense, #offense {
   height: 30vh;
 }
-#los {}
+#los {
+  height: 3vh;
+  grid-template-rows: [los] 1fr;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  background-color: white;
+  color: black;
+  align-items: center;
+}
 #defense {
   grid-template-rows: [deep_defense] minmax(50px, 6fr) [safety] minmax(50px, 6fr) [linebacker] minmax(50px, 6fr) [defensive_los] minmax(50px, 6fr);
   grid-row-start: 1;
@@ -70,14 +78,7 @@
 #offense, #defense {
   /*  row-gap: 5px;*/
 }
-#los {
-  grid-row-start: 4;
-  grid-row-end: 5;
-  background-color: white;
-  color: black;
-  align-items: center;
-  grid-template-rows: [los] 0.5fr;
-}
+#los {}
 #defense > div:hover {
   /*  background-color: cyan;*/
 }

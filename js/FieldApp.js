@@ -12,9 +12,16 @@
    * Add Event Handlers.
    */
   window.FieldApp = function ($wrapper) {
-    //    console.log("$wrapper", $wrapper);
+    console.log("$wrapper new FieldApp", $wrapper);
+
     this.$wrapper = $wrapper;
 
+    this.fieldColumnCount = 21;
+
+
+    this.getfieldColumnCount = function () {
+      return this.fieldColumnCount;
+    }
 
     // Event Handler for clicking on the ball
     this.$wrapper.on(
@@ -83,7 +90,6 @@
 
     },
     handleSelectChange: function (e) {
-
       //      console.log("handleSelectChange() called", this);
       let selectChanged = e.currentTarget;
       // Get the current values for the select elements
@@ -115,7 +121,7 @@
 
 
       // Clear the Field, because we're gonna rebuild it from scratch
-      this.resetField(this);
+      this.resetField($('#FieldApp'));
       // Do different things depending on the status of the select elements
       // Build a string to use in the switch to figure out what to do
       let actionType = "";
@@ -216,7 +222,7 @@
               $.ajax({
                 url: defensiveFileUrl
               }).then(function (defensiveFormation) {
-                                console.log("defensiveFormation in 2nd then: ", defensiveFormation);
+                console.log("defensiveFormation in 2nd then: ", defensiveFormation);
                 defensiveFormation.positions.forEach((position) => {
                   //                  console.log("position: ", position);
                   // Instantiate a new Position
@@ -397,9 +403,11 @@
     },
     //////////////////////////////////////////////
     // Fetch a single formation and process it. //
+    // Who calls this? And when? And why?       //
     //////////////////////////////////////////////
     fetchAndProcessFormation: function (formationType, formationId, $fieldElm) {
       console.log("called fetchAndProcessFormation()");
+
       let fileUrl = "data/" + formationType + "/" + formationId + ".json";
       //      console.log("fileUrl", fileUrl);
       fetch(fileUrl)
@@ -421,6 +429,8 @@
     /////////////////////////////////////////  
     handlePickDefenseFormation: function (e) {
       console.log("handlePickDefenseFormation()");
+
+
       let $fieldElm = $('#defense');
       // Clear the Defensive side of the Field.
       console.log("Gonna call FieldHelper() with nothing ");
@@ -498,9 +508,9 @@
     /////////////////////////////  
     // Build the initial field //
     /////////////////////////////
-    buildField: function ($wrapper, fieldCols = 21) {
+    buildField: function ($wrapper) {
       //      console.log("buildField() called with $wrapper: ", $wrapper);
-      //      console.log("fieldCols: ", fieldCols);
+
       //      console.log("Gonna call FieldHelper() with $wrapper from buildField", $wrapper);
       let myFieldHelper = new FieldHelper($wrapper);
       myFieldHelper.populateFieldWithEmptyGridItems();
@@ -513,7 +523,7 @@
       //      console.log("called resetField() $wrapper", $wrapper);
       $('#defense > div, #los > div, #offense > div, #bocking-rule-description-wrapper span').remove();
 
-      //      console.log("Gonna call FieldHelper() with $wrapper from resetField", $wrapper);
+      console.log("$wrapper in resetField", $wrapper);
       let myHelper = new FieldHelper($wrapper);
       this.buildField($wrapper);
     },
@@ -581,6 +591,12 @@
         ]
       }
 
+
+      let myFieldApp = new FieldApp($('#FieldApp'));
+      let fieldColumnCount = myFieldApp.getfieldColumnCount();
+      //      console.log("fieldColumnCount: ", fieldColumnCount);
+
+
       // Loop over the Field Sections
       this.fieldSections.forEach((fieldSection) => {
         let thisFieldSection = fieldSection.attr("id");
@@ -603,8 +619,10 @@
         // Loop over the Row Names 
         this.fieldRowNames.forEach((fieldRowName) => {
           //        console.log(fieldRowName);
+
+          console.log("fieldColumnCount:", fieldColumnCount);
           this.fieldColumnCurrent = 1;
-          this.fieldColumnMax = 21;
+          this.fieldColumnMax = fieldColumnCount;
 
           // this is where we finally build out the grid item placeholder divs
           while (this.fieldColumnCurrent <= this.fieldColumnMax) {
