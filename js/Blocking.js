@@ -96,7 +96,7 @@
      *
      */
     processBlockingAssignments: function (blockingCall) {
-      //      console.log("processBlockingAssignments() called with: ", blockingCall);
+      console.log("processBlockingAssignments() called with: ", blockingCall);
       // Clear out existing Blocking stuff
       //      console.log("Clear out existing Blocking stuff");
       $('.block-miss-wrapper, .offensive-blocking-identifier').remove();
@@ -127,7 +127,7 @@
             //            console.log(" ");
             //            console.log("##################");
             //            console.log("POSITION: ", $thisPosition.attr('id'), "myX:", myX, "myInside:", myInside);
-            //          console.log(rules);
+            //                      console.log(rules);
             // Loop through rules and stop at the first 'yes'
             // @todo The big 'ol switch statement has to manually match all possible values in the blocking_call__XXXXX.json files.
             // Not optimal, but it's what we've got for now.
@@ -135,7 +135,7 @@
             let foundAssignment = false;
 
             let blockingRuleNoCount = Number(1);
-
+            let playSide = blockingCall.playSide;
 
             rules.forEach((rule) => {
               let assignmentX = [];
@@ -143,6 +143,7 @@
               let $targetToCheck = null;
               let targets = [];
               let blockingRuleDescription = rule.description;
+              let traverseFirst = "horizontal";
               if (foundAssignment === false) {
                 //                console.log(`Processing rule: ${rule.name}`);
 
@@ -244,11 +245,33 @@
                     break;
 
                   case 'last_outside':
-                    console.log("Look for last outside man");
+                    console.log("% % Look for last outside man");
+                    console.log("playSide", playSide);
+                    if (blockingCall.playSide == "right") {
+                      assignmentX = [Number(21), Number(20), Number(19), Number(18)];
+                    } else if (blockingCall.playSide == "left") {
+                      assignmentX = [Number(1), Number(2), Number(3), Number(4)];
+                    } else {
+                      console.log("No playSide on last_outside Blocking.js");
+                    }
+                    // Vertical works for finding the farthest outside
+                    traverseFirst = "vertical";
+
+
                     break;
 
                   case 'second_outside':
-                    console.log("Look for second-to-last outside man");
+                    console.log("% % Look for second-to-last outside man");
+                    console.log("playSide", playSide);
+                    if (blockingCall.playSide == "right") {
+                      assignmentX = [Number(20), Number(19), Number(18), Number(17)];
+                    } else if (blockingCall.playSide == "left") {
+                      assignmentX = [Number(2), Number(3), Number(4), Number(5)];
+                    } else {
+                      console.log("No playSide on last_outside Blocking.js");
+                    }
+                    // Vertical works for finding the farthest outside
+                    traverseFirst = "vertical";
                     break;
 
                   default:
@@ -308,7 +331,10 @@
                   // let myFieldApp = new FieldApp($wrapper);
                   // assignmentY = myFieldApp.getDefensiveDepths().reverse();
                   //                  console.log("Woobity", FieldApp);
-                  assignmentY = ['defensive_los', 'linebacker', 'safety', 'deep'];
+
+
+                  assignmentY = ['defensive_los', 'linebacker', 'safety', 'deep_defense'];
+
                 } else {
 
                   assignmentY = ruleDepth;
@@ -325,12 +351,27 @@
 
                 // Build out the target list
                 let targetList = [];
-                assignmentY.forEach((y) => {
-                  //                  console.log("y: ", y);
-                  assignmentX.forEach((x) => {
-                    targetList.push($(`.js-defense-${x}.depth--${y}`));
+
+                console.log("traverseFirst: ", traverseFirst);
+                // Start at the vertical end (y) and travel horizontally (x)
+                if (traverseFirst == "horizontal") {
+                  assignmentY.forEach((y) => {
+                    //                  console.log("y: ", y);
+                    assignmentX.forEach((x) => {
+                      targetList.push($(`.js-defense-${x}.depth--${y}`));
+                    });
                   });
-                });
+                } else if (traverseFirst == "vertical") {
+                  // The reverse of above. Start at the horizontal end (x) and travel vertically (y) 
+                  assignmentX.forEach((x) => {
+                    //                  console.log("y: ", y);
+                    assignmentY.forEach((y) => {
+                      targetList.push($(`.js-defense-${x}.depth--${y}`));
+                    });
+                  });
+
+
+                }
 
 
                 //                console.log("targetList: ", targetList);

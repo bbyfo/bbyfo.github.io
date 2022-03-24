@@ -307,7 +307,7 @@
               $.ajax({
                 url: defensiveFileUrl
               }).then(function (defensiveFormation) {
-                console.log("@@ defensiveFormation in then()", defensiveFormation);
+                //                console.log("@@ defensiveFormation in then()", defensiveFormation);
                 defensiveFormation.positions.forEach((position) => {
                   $fieldElm = $("#defense");
                   let positionObj = new Position($fieldElm, position);
@@ -317,22 +317,24 @@
                 $.ajax({
                   url: playCallFileUrl
                 }).then(function (playCall) {
+
                   //                  console.log("@@ playCall in then()", playCall);
                   $.ajax({
                     url: blockingCallFileUrl
                   }).then(function (blockingCall) {
                     //                    console.log("@@ blockingCall in then()", blockingCall);
-                    //                    console.log("@@ playCall in then()", playCall);
+                    console.log("@@ playCall in then()", playCall);
 
                     let blockingFromBlockingCall = blockingCall.blockingAssignments;
                     let blockingFromPlayCall = playCall.blockingAssignments;
+                    //                    console.log("blockingCall: ", blockingCall);
                     //                    console.log("blockingFromBlockingCall: ", blockingFromBlockingCall);
                     //                    console.log("blockingFromPlayCall: ", blockingFromPlayCall);
                     // Add the Play Blocking Assignments to the Blocking Call Blocking Assignments
                     let combinedBlockingAssignments = {};
-                    combinedBlockingAssignments.playSide = blockingCall.playSide;
+                    combinedBlockingAssignments.playSide = playCall.playSide;
                     combinedBlockingAssignments.blockingAssignments = blockingFromBlockingCall.concat(blockingFromPlayCall);
-                    //                    console.log("combinedBlockingAssignments: ", combinedBlockingAssignments);
+                    console.log("combinedBlockingAssignments: ", combinedBlockingAssignments);
                     // Clear out existing Blocking stuff
                     //                    console.log("Clear out existing Blocking stuff");
                     $('.block-miss-wrapper, .offensive-blocking-identifier').remove();

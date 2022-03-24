@@ -7,6 +7,7 @@
       "rules": [{
         "name": "last_outside",
         "depth": "any",
+        "traverseFirst": "horizontal",
         "description": "Block the last man outside, on the playside."
       }, {
         "name": "destroy_nearest",
