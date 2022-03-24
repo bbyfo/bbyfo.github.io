@@ -766,8 +766,19 @@
         //        console.log(`${gap}: ${gapData[gap].label}`);
         //        console.log("label: ", gapData[gap].label);
         //        console.log("id: ", gapData[gap].id);
+        // Here we add \n characters so the text will go vertical on narrow screens
+        let gapContentTextWithNewLinesPenultimate = gapData[gap].label;
+        let gapContentTextWithNewLinesFinal = "";
+        gapContentTextWithNewLinesPenultimate = gapContentTextWithNewLinesPenultimate.split('');
+        gapContentTextWithNewLinesPenultimate = gapContentTextWithNewLinesPenultimate.forEach((letter, i) => {
+          //        console.log("letter:", letter, i);
+          return gapContentTextWithNewLinesFinal += letter + "\n";
+
+        });
+
+
         let gapContent = $("<div></div>")
-          .html(gapData[gap].label)
+          .text(gapContentTextWithNewLinesFinal)
           .attr('id', gapData[gap].id)
           .addClass(['grid-gap-item']);
         let targetX = Number(ballX) + Number(gapData[gap].distance);
@@ -776,7 +787,7 @@
         //        console.log("targetCellSelector: ", targetCellSelector);
         $(targetCellSelector).append(gapContent);
 
-        //        console.log("gapContent", gapContent);
+        console.log("gapContent:", gapContent);
         //        console.log("targetCellSelector: ", targetCellSelector);
       }
 

@@ -32,7 +32,7 @@
 }
 #los {
   /*  height: 3vh;*/
-  grid-template-rows: [los] 1fr;
+  grid-template-rows: [los] minmax(50px, max-content);
   grid-row-start: 4;
   grid-row-end: 5;
   background-color: white;
@@ -70,7 +70,6 @@
 }
 #los > div {
   align-content: space-around;
-  font-size: 1rem;
 }
 #offense > div {
   align-content: flex-start;
@@ -199,13 +198,16 @@
 /**
 * Position Background Images (or not)
 */
-.position-node {
+.position-node, .grid-gap-item {
   /*  width: 100%;*/
   text-align: center;
   font-weight: bold;
   z-index: 10;
   line-height: 0.8;
   color: rgba(255, 255, 255, 1); /* hahaha, hope this works! */
+}
+.grid-gap-item {
+  color: black;
 }
 #defense.hide-position-text .position-node {
   color: rgba(0, 0, 0, 0); /* hahaha, hope this works! */
