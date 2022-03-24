@@ -664,6 +664,7 @@
 
             // Add the Position Wrapper element
             let positionWrapper = document.createElement("div");
+            //positionWrapper.append("X");
             positionWrapper.classList.add('position-wrapper');
 
             fieldGridItem.append(positionWrapper);
@@ -743,7 +744,7 @@
           id: 'D8',
           label: 'D 8'
         },
-        d9: {
+        e9: {
           distance: -9,
           id: 'E9',
           label: 'E 9'
