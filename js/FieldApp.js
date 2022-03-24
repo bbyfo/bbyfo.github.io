@@ -12,7 +12,7 @@
    * Add Event Handlers.
    */
   window.FieldApp = function ($wrapper) {
-    console.log("$wrapper new FieldApp", $wrapper);
+    //    console.log("$wrapper new FieldApp", $wrapper);
 
     this.$wrapper = $wrapper;
 
@@ -222,7 +222,7 @@
               $.ajax({
                 url: defensiveFileUrl
               }).then(function (defensiveFormation) {
-                console.log("defensiveFormation in 2nd then: ", defensiveFormation);
+                //                console.log("defensiveFormation in 2nd then: ", defensiveFormation);
                 defensiveFormation.positions.forEach((position) => {
                   //                  console.log("position: ", position);
                   // Instantiate a new Position
@@ -523,7 +523,7 @@
       //      console.log("called resetField() $wrapper", $wrapper);
       $('#defense > div, #los > div, #offense > div, #bocking-rule-description-wrapper span').remove();
 
-      console.log("$wrapper in resetField", $wrapper);
+      //      console.log("$wrapper in resetField", $wrapper);
       let myHelper = new FieldHelper($wrapper);
       this.buildField($wrapper);
     },
@@ -620,7 +620,7 @@
         this.fieldRowNames.forEach((fieldRowName) => {
           //        console.log(fieldRowName);
 
-          console.log("fieldColumnCount:", fieldColumnCount);
+          //          console.log("fieldColumnCount:", fieldColumnCount);
           this.fieldColumnCurrent = 1;
           this.fieldColumnMax = fieldColumnCount;
 
@@ -699,7 +699,7 @@
         ball: {
           distance: 0,
           id: 'ball',
-          label: 'Ball'
+          label: 'B'
         },
         a1: {
           distance: -1,

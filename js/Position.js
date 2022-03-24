@@ -70,12 +70,12 @@
           // Get the Parent of the Anchor (the parent contains the coordinate data)
           let $myAnchorElm = $(myAnchorElm);
           let $myAnchorElmParent = $myAnchorElm.parent().parent();
-//          console.log(positionName, "$myAnchorElm: ", $myAnchorElm);
+          //          console.log(positionName, "$myAnchorElm: ", $myAnchorElm);
 
-//          console.log("$myAnchorElmParent: ", $myAnchorElmParent);
+          //          console.log("$myAnchorElmParent: ", $myAnchorElmParent);
           // Finally, get the X coord of the parent.
           let myAnchorsX = $myAnchorElmParent.css('grid-column-start');
-//          console.log("myAnchorsX: ", myAnchorsX);
+          //          console.log("myAnchorsX: ", myAnchorsX);
 
           myGridPositionX = myAnchorsX;
 
@@ -122,9 +122,20 @@
 
       //          console.log("Grid Positions in Position: ", gridPositionSection, gridPositionX, gridPositionY, gridPositionSelector, position.positionTypes);
 
+      let positionNameWithNewLinesPenultimate = positionName;
+      let positionNameWithNewLinesFinal = "";
+      positionNameWithNewLinesPenultimate = positionNameWithNewLinesPenultimate.split('');
+      positionNameWithNewLinesPenultimate = positionNameWithNewLinesPenultimate.forEach((letter, i) => {
+        //        console.log("letter:", letter, i);
+        return positionNameWithNewLinesFinal += letter + "\n";
+
+      });
+
+      //      console.log("positionNameWithNewLinesFinal: ", positionNameWithNewLinesFinal);
+
 
       // Create the position element placeholder
-      var positionDiv = $("<div></div>").html(positionName);
+      var positionDiv = $("<div></div>").text(positionNameWithNewLinesFinal);
 
       // Provide classes and the ID
       positionDiv.addClass('position-node');

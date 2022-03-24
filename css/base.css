@@ -1,6 +1,6 @@
 #field {
   font-family: 'Courier New', Courier, monospace;
-  font-size: clamp(1em, 2em, 3em);
+  font-size: clamp(1rem, 2rem, 3rem);
   /*  background-color: white;*/
   width: 90vw;
   margin: 0 auto;
@@ -28,10 +28,10 @@
   /*  grid-auto-rows: auto;*/
 }
 #defense, #offense {
-  height: 30vh;
+  /*  height: 30vh;*/
 }
 #los {
-  height: 3vh;
+  /*  height: 3vh;*/
   grid-template-rows: [los] 1fr;
   grid-row-start: 4;
   grid-row-end: 5;
@@ -40,13 +40,14 @@
   align-items: center;
 }
 #defense {
-  grid-template-rows: [deep_defense] minmax(50px, 6fr) [safety] minmax(50px, 6fr) [linebacker] minmax(50px, 6fr) [defensive_los] minmax(50px, 6fr);
+  /*  grid-template-rows: [deep_defense] minmax(50px, 10rem) [safety] minmax(50px, 10rem) [linebacker] minmax(50px, 10rem) [defensive_los] minmax(50px, 10rem);*/
+  grid-template-rows: [deep_defense] minmax(50px, max-content) [safety] minmax(50px, max-content) [linebacker] minmax(50px, max-content) [defensive_los] minmax(50px, max-content);
   grid-row-start: 1;
   grid-row-end: 4;
   /*  grid-auto-rows: auto;*/
 }
 #offense {
-  grid-template-rows: [offensive_los] minmax(50px, 6fr) [off] minmax(50px, 6fr) [shotgun] minmax(50px, 6fr) [deep_offense] minmax(50px, 6fr);
+  grid-template-rows: [offensive_los] minmax(50px, max-content) [off] minmax(50px, max-content) [shotgun] minmax(50px, max-content) [deep_offense] minmax(50px, max-content);
   /*  grid-auto-rows: auto;*/
   grid-row-start: 5;
   grid-row-end: 8;
@@ -93,6 +94,12 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+#ball {
+  font-size: 2rem;
+  font-weight: 900;
+  color: red;
+  text-shadow: 1px 1px white;
+}
 #field > div > div {
   /* justify-self: center;
     align-self: center;
@@ -109,6 +116,9 @@
   background-position: center;
 }
 */
+.position-container {
+  overflow-y: hidden;
+}
 #defense .position-node, #defense .helmet-image {
   /*  position: absolute;*/
 }
@@ -193,8 +203,8 @@
   /*  width: 100%;*/
   text-align: center;
   font-weight: bold;
-  ;
   z-index: 10;
+  line-height: 0.8;
   color: rgba(255, 255, 255, 1); /* hahaha, hope this works! */
 }
 #defense.hide-position-text .position-node {
@@ -213,7 +223,7 @@
   line-height: 70%;
 }
 .position-offense {
-  line-height: 1;
+  /*  line-height: 1;*/
 }
 .coord-x-hacked .position-node {
   width: auto;
@@ -510,5 +520,6 @@ form label {
   align-items: center;
 }
 .swiper-label {
-  text-align: center;
+  /*  text-align: center;*/
+  visibility: hidden;
 }

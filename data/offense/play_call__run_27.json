@@ -1,0 +1,30 @@
+{
+  "playCallName": "Run 27",
+  "playSide": "left",
+  "description": "The 1 back hands the ball to the 2 back, then fake runs to opposite play side. The 2 back takes the handoff and runs to the 7 hole. The 3 and 4 backs make blocks. ",
+  "blockingAssignments": [{
+      "appliesTo": ["#WR"],
+      "rules": [{
+        "name": "last_outside",
+        "depth": "any",
+        "description": "Block the last man outside, on the playside."
+      }, {
+        "name": "destroy_nearest",
+        "depth": ["defensive_los", "linebacker"],
+        "description": "<strong>D</strong>estroy Playside: Is there anyone Down the playside? (the 'right' part of this call)"
+      }]
+    },
+    {
+      "appliesTo": ["#FB"],
+      "rules": [{
+        "name": "second_outside",
+        "depth": "any",
+        "description": "Block the second-to-last man outside, on the playside."
+      }, {
+        "name": "destroy_nearest",
+        "depth": ["defensive_los", "linebacker"],
+        "description": "<strong>D</strong>estroy Playside: Is there anyone Down the playside? (the 'right' part of this call)"
+      }]
+    }
+  ]
+}
