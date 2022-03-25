@@ -22,22 +22,24 @@
   $.extend(window.Play.prototype, {
 
     moveBallCarrier: function (playCall) {
-      console.log("moveBallCarrier()", playCall);
-      console.log("playCall.ballCarrier", playCall.ballCarrier.appliesTo);
+      //      console.log("moveBallCarrier()", playCall);
+      //      console.log("playCall.ballCarrier", playCall.ballCarrier.appliesTo);
       // Get the ball carrier
 
       let ballCarrierID = playCall.ballCarrier.appliesTo;
+//      console.log("ballCarrierID: ", ballCarrierID);
+
 
       let $ballCarrier = $(ballCarrierID);
-      $ballCarrier.addClass(['blocking-identifier--RB']);
-      console.log("$ballCarrier: ", $ballCarrier);
+      $ballCarrier.addClass(['blocking-identifier--' + ballCarrierID.replace('#', '')]);
+      //      console.log("$ballCarrier: ", $ballCarrier);
 
 
       // Clone the ballcarrier here
       let $ballCarrierClone = $ballCarrier.clone().removeAttr('id').addClass(['ima-clone']);
       // Get the clone's parent
       let $ballCarrierCloneParent = $ballCarrier.parent();
-      console.log("$ballCarrierCloneParent: ", $ballCarrierCloneParent);
+      //      console.log("$ballCarrierCloneParent: ", $ballCarrierCloneParent);
 
       // Place the clone here
       $ballCarrierCloneParent.append($ballCarrierClone);
@@ -47,19 +49,19 @@
 
       // Get the ballcarrier's destination coords
       let $destinationElm = $(playCall.ballCarrier.destination).parent().parent();
-      console.log("$destinationElm: ", $destinationElm);
+      //      console.log("$destinationElm: ", $destinationElm);
       //		let gridPositionSection = "offensive_los";
       let gridPositionX = $destinationElm.data('grid-position-x');
-      console.log("gridPositionX: ", gridPositionX);
+      //      console.log("gridPositionX: ", gridPositionX);
       let gridPositionY = "offensive_los";
-      console.log("gridPositionY: ", gridPositionY);
+      //      console.log("gridPositionY: ", gridPositionY);
 
       //		
       let gridPositionSelector = 'offense-' + gridPositionX + '-' + gridPositionY;
-      console.log("gridPositionSelector: ", gridPositionSelector);
+      //      console.log("gridPositionSelector: ", gridPositionSelector);
 
       let $finalDestination = $("[data-grid-coords|='" + gridPositionSelector + "']");
-      console.log("$finalDestination: ", $finalDestination);
+      //      console.log("$finalDestination: ", $finalDestination);
       // Move the original to the destination
       $finalDestination.find('.position-wrapper').append($ballCarrier);
 

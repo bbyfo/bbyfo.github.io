@@ -361,7 +361,7 @@
 
                   }).then(() => {
                     // Move the ballcarrier
-                    console.log("Move the ballcarrier");
+//                    console.log("Move the ballcarrier");
                     let myPlay = new Play($("#FootballApp"));
                     myPlay.moveBallCarrier(playCall);
                   })

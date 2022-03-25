@@ -96,7 +96,7 @@
      *
      */
     processBlockingAssignments: function (blockingCall) {
-      //      console.log("processBlockingAssignments() called with: ", blockingCall);
+      console.log("processBlockingAssignments() called with blockingCall: ", blockingCall);
       // Clear out existing Blocking stuff
       //      console.log("Clear out existing Blocking stuff");
       $('.block-miss-wrapper, .offensive-blocking-identifier').remove();
@@ -202,6 +202,7 @@
                     break;
                   case 'linebacker':
 
+
                     if (blockingCall.playSide == "right") {
                       assignmentX[0] = Number(myX) - Number(1); // Easy LB
                       assignmentX[1] = Number(myX); // On Me LB
@@ -272,6 +273,19 @@
                     }
                     // Vertical works for finding the farthest outside
                     traverseFirst = "vertical";
+                    break;
+
+                  case 'at_hole':
+                    console.log("at_hole blocking rule", rule);
+                    let $hole = $(rule.hole);
+                    let holeX = $hole.parent().parent().data('grid-position-x');
+                    console.log("holeX: ", holeX);
+                    assignmentX = [Number(holeX)];
+                    break;
+
+                  case 'bobo':
+                    console.log("BOBO ISN'T REAL. Change me!");
+                    console.log("line blocking rule", rule);
                     break;
 
                   default:

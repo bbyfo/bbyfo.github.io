@@ -1,30 +1,32 @@
 {
   "playCallName": "Run 23",
   "playSide": "left",
-  "description": "The 1 back hands the ball to the 2 back, then fake runs to opposite play side. The 2 back takes the handoff and runs to the 3 hole. The 3 and 4 backs make blocks. ",
+  "description": "The 1 back hands the ball to the 2 back, then fake runs to opposite play side. The 2 back takes the handoff and runs to the 3 hole. The 3 and 4 backs make blocks.",
   "blockingAssignments": [{
       "appliesTo": ["#WR"],
       "rules": [{
-        "name": "last_outside",
-        "depth": "any",
-        "traverseFirst": "horizontal",
-        "description": "Block the last man outside, on the playside."
+        "name": "bobo",
+        "depth": ["defensive_los"],
+        "hole": "#B3",
+
+        "description": "Anybody in the Hole? Blow 'em up!'"
       }, {
-        "name": "destroy_nearest",
-        "depth": ["defensive_los", "linebacker"],
-        "description": "<strong>D</strong>estroy Playside: Is there anyone Down the playside? (the 'right' part of this call)"
+        "name": "line",
+        "depth": ["linebacker"],
+        "description": "<strong>L</strong>inebackers near the hole?  Block them."
       }]
     },
     {
       "appliesTo": ["#FB"],
       "rules": [{
-        "name": "on_me",
-        "depth": ["defensive_los", "linebacker"],
-        "description": "This needs a better writeup."
+        "name": "bobo",
+        "hole": "#B3",
+        "depth": ["defensive_los"],
+        "description": "Anybody in the Hole? Blow 'em up!'"
       }, {
-        "name": "linebacker",
+        "name": "line",
         "depth": ["linebacker"],
-        "description": "<strong>D</strong>estroy Playside: Is there anyone Down the playside? (the 'right' part of this call)"
+        "description": "<strong>L</strong>inebackers near the hole?  Block them."
       }]
     }
   ],
