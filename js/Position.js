@@ -120,7 +120,7 @@
       // Here we assign the coordinates
       let gridPositionSelector = gridPositionSection + '-' + gridPositionX + '-' + gridPositionY;
 
-      //          console.log("Grid Positions in Position: ", gridPositionSection, gridPositionX, gridPositionY, gridPositionSelector, position.positionTypes);
+                //console.log("Grid Positions in Position: ", gridPositionSection, gridPositionX, gridPositionY, gridPositionSelector, position.positionTypes);
 
       let positionNameWithNewLinesPenultimate = positionName;
       let positionNameWithNewLinesFinal = "";

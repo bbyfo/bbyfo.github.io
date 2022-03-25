@@ -29,11 +29,54 @@
   <div id="builder">
     <form>
       <div class="container-fluid">
-        <div class="row">
+        <div class="row"> 
+          <!--
+				///////////////////
+				// Blocking Call //
+				///////////////////
+			-->
+          <div class="col-sm-3">
+            <label>Blocking Call</label>
+            <select id="picker_blocking_call" class="form-control" data-picker-type="blocking">
+              <!--              <option value="--none--">Pick Blocking Call</option>-->
+              <option value="blocking_call__good_left">G.O.O.D. Left</option>
+              <option value="blocking_call__good_middle">G.O.O.D. Middle</option>
+              <option value="blocking_call__good_right">G.O.O.D. Right</option>
+              <option value="blocking_call__gold_left">G.O.L.D. Left</option>
+              <!--              <option value="blocking_call__gold_middle">G.O.L.D. Middle</option>-->
+              <option value="blocking_call__gold_right">G.O.L.D. Right</option>
+              <option value="blocking_call__gost">G.O.ST (pass)</option>
+            </select>
+            <div class="swiper-label">Blocking Call</div>
+            <!-- Slider main container -->
+            <div class="swiper blockingSwiper"> 
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper"> 
+                <!-- Slides --> 
+                <!--                <div class="swiper-slide" data-formation-id="--none--">Pick Blocking Call</div>-->
+                <div class="swiper-slide" data-formation-id="blocking_call__good_left">G.O.O.D. Left</div>
+                <div class="swiper-slide" data-formation-id="blocking_call__good_middle">G.O.O.D. Middle</div>
+                <div class="swiper-slide" data-formation-id="blocking_call__good_right">G.O.O.D. Right</div>
+                <div class="swiper-slide" data-formation-id="blocking_call__gold_left">G.O.L.D. Left</div>
+                <div class="swiper-slide" data-formation-id="blocking_call__gold_right">G.O.L.D. Right</div>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+            <input type="checkbox" id="show_block_nos" value="yes">
+            Show Blocking Rule Progression? 
+            <!--            <button type="button" id="show_blocking_all">Show All Blocking</button>--> 
+            
+          </div>
+          <!--
+				/////////////////////////
+				// Offensive Formation //
+				/////////////////////////
+			-->
           <div class="col-sm-3">
             <label for="picker_offense_formation">Pick Offensive Formation</label>
             <select id="picker_offense_formation" class="form-control" data-picker-type="offense">
-              <option value="--none--">Pick Formation</option>
+              <!--              <option value="--none--">Pick Formation</option>-->
               <option value="formation__bison_left">Bison Left</option>
               <option value="formation__bison_right">Bison Right</option>
               <option value="formation__stampede_left">Stampede Left</option>
@@ -45,8 +88,8 @@
             <div class="swiper offensiveSwiper"> 
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper"> 
-                <!-- Slides -->
-                <div class="swiper-slide" data-formation-id="--none--">Pick an Offensive Formation</div>
+                <!-- Slides --> 
+                <!--                <div class="swiper-slide" data-formation-id="--none--">Pick an Offensive Formation</div>-->
                 <div class="swiper-slide" data-formation-id="formation__bison_left">Bison Left</div>
                 <div class="swiper-slide" data-formation-id="formation__bison_right">Bison Right</div>
                 <div class="swiper-slide" data-formation-id="formation__stampede_left">Stampede Left</div>
@@ -55,6 +98,46 @@
               <div class="swiper-button-prev"></div>
             </div>
           </div>
+          
+          <!--
+				///////////////
+				// Play Call //
+				///////////////
+			-->
+          <div class="col-sm-3">
+            <label>Play Call</label>
+            <select id="picker_play_call" class="form-control" data-picker-type="play">
+              <option value="--none--">Play Call</option>
+              <option value="play_call__run_23">Run 23</option>
+              <option value="play_call__run_27">Run 27</option>
+              <option value="play_call__run_28">Run 28</option>
+            </select>
+            <div class="swiper-label">Play call</div>
+            <!-- Slider main container -->
+            <div class="swiper playSwiper"> 
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper"> 
+                <!-- Slides -->
+                <div class="swiper-slide" data-formation-id="--none--">Play Call</div>
+                <div class="swiper-slide" data-formation-id="play_call__run_23">Run 23</div>
+                <div class="swiper-slide" data-formation-id="play_call__run_27">Run 27</div>
+                <div class="swiper-slide" data-formation-id="play_call__run_28">Run 28</div>
+                <!--
+                <div class="swiper-slide" data-formation-id="play_call__run_29">Run 29</div>
+                <div class="swiper-slide" data-formation-id="play_call__run_18">Run 18</div>
+                <div class="swiper-slide" data-formation-id="play_call__run_19">Run 19</div>
+--> 
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+          </div>
+          
+          <!--
+				///////////////////////
+				// Defensive Package //
+				///////////////////////
+			-->
           <div class="col-sm-3">
             <label>Pick Defensive Package</label>
             <select id="picker_defense_formation" class="form-control" data-picker-type="defense">
@@ -82,63 +165,6 @@
               <div class="swiper-button-prev"></div>
             </div>
             <div id="pick_offense_first" class="alert-danger" style="display:none;">Make sure an Offensive Formation is selected</div>
-          </div>
-          <div class="col-sm-3">
-            <label>Blocking Call</label>
-            <select id="picker_blocking_call" class="form-control" data-picker-type="blocking">
-              <option value="--none--">Pick Blocking Call</option>
-              <option value="blocking_call__good_left">G.O.O.D. Left</option>
-              <option value="blocking_call__good_middle">G.O.O.D. Middle</option>
-              <option value="blocking_call__good_right">G.O.O.D. Right</option>
-              <option value="blocking_call__gold_left">G.O.L.D. Left</option>
-              <!--              <option value="blocking_call__gold_middle">G.O.L.D. Middle</option>-->
-              <option value="blocking_call__gold_right">G.O.L.D. Right</option>
-              <option value="blocking_call__gost">G.O.ST (pass)</option>
-            </select>
-            <div class="swiper-label">Blocking Call</div>
-            <!-- Slider main container -->
-            <div class="swiper blockingSwiper"> 
-              <!-- Additional required wrapper -->
-              <div class="swiper-wrapper"> 
-                <!-- Slides -->
-                <div class="swiper-slide" data-formation-id="--none--">Pick Blocking Call</div>
-                <div class="swiper-slide" data-formation-id="blocking_call__good_left">G.O.O.D. Left</div>
-                <div class="swiper-slide" data-formation-id="blocking_call__good_middle">G.O.O.D. Middle</div>
-                <div class="swiper-slide" data-formation-id="blocking_call__good_right">G.O.O.D. Right</div>
-                <div class="swiper-slide" data-formation-id="blocking_call__gold_left">G.O.L.D. Left</div>
-                <div class="swiper-slide" data-formation-id="blocking_call__gold_right">G.O.L.D. Right</div>
-              </div>
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-            </div>
-            <input type="checkbox" id="show_block_nos" value="yes">
-            Show Blocking Rule Progression? 
-            <!--            <button type="button" id="show_blocking_all">Show All Blocking</button>--> 
-            
-          </div>
-          <div class="col-sm-3">
-            <label>Play Call</label>
-            <select id="picker_play_call" class="form-control" data-picker-type="play">
-              <option value="--none--">Play Call</option>
-              <option value="play_call__run_28">Run 28</option>
-              <option value="play_call__run_27">Run 27</option>
-            </select>
-            <div class="swiper-label">Play call</div>
-            <!-- Slider main container -->
-            <div class="swiper playSwiper"> 
-              <!-- Additional required wrapper -->
-              <div class="swiper-wrapper"> 
-                <!-- Slides -->
-                <div class="swiper-slide" data-formation-id="--none--">Play Call</div>
-                <div class="swiper-slide" data-formation-id="play_call__run_27">Run 27</div>
-                <div class="swiper-slide" data-formation-id="play_call__run_28">Run 28</div>
-                <div class="swiper-slide" data-formation-id="play_call__run_29">Run 29</div>
-                <div class="swiper-slide" data-formation-id="play_call__run_18">Run 18</div>
-                <div class="swiper-slide" data-formation-id="play_call__run_19">Run 19</div>
-              </div>
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-            </div>
           </div>
         </div>
         <div class="row" style="margin-top:5em;">
@@ -232,6 +258,8 @@
 				$('#picker_play_call').val(formationId).trigger('change');
 
 			 });
+			
+			$("#picker_offense_formation").trigger('change');
 			
         });
 	

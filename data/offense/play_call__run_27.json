@@ -27,5 +27,9 @@
         "description": "<strong>D</strong>estroy Playside: Is there anyone Down the playside? (the 'right' part of this call)"
       }]
     }
-  ]
+  ],
+  "ballCarrier": {
+    "appliesTo": "#RB",
+    "destination": "#D7"
+  }
 }

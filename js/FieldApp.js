@@ -148,18 +148,34 @@
         actionType += 0;
       }
 
+
+      /*
+      1 1 1 1
+      O D B P
+      f e l l
+      f f o a
+      e e c c
+      n n k a
+      s s i l
+      e e n l
+          g
+      */
+
+
       let $fieldElm = null;
       console.log("actionType (before Switch): ", actionType);
 
       switch (actionType) {
-        // 0000 Nothing Selected
-        case '0000':
+
+        case '0000': // Nothing Selected
           console.log("Nothing selected...should this be default?");
 
           break;
-          // 1000 Offense only 
-        case '1000':
-          console.log("Offense only");
+
+        case '1000': // Offense only
+        case '1010': // Offense and Blocking
+        case '1011': // Offense and Blocking and Playcall
+          console.log("Offense only, or Offense and Blocking");
 
           $.ajax({
             url: offensiveFileUrl
@@ -235,10 +251,8 @@
 
 
           break;
-          // 101 Offense and Blocking
-        case '101':
-          console.log("Offense and Blocking")
-          break;
+
+
           // 011 Defense and Blocking
         case '011':
           console.log("Defense and Blocking");
@@ -313,7 +327,7 @@
                   let positionObj = new Position($fieldElm, position);
                 });
               }).then(function () {
-                console.log("Positions are looking good.  Now we need to Load the Play and the do the Blocking...");
+                //                console.log("Positions are looking good.  Now we need to Load the Play and the do the Blocking...");
                 $.ajax({
                   url: playCallFileUrl
                 }).then(function (playCall) {
@@ -323,7 +337,7 @@
                     url: blockingCallFileUrl
                   }).then(function (blockingCall) {
                     //                    console.log("@@ blockingCall in then()", blockingCall);
-                    console.log("@@ playCall in then()", playCall);
+                    //                    console.log("@@ playCall in then()", playCall);
 
                     let blockingFromBlockingCall = blockingCall.blockingAssignments;
                     let blockingFromPlayCall = playCall.blockingAssignments;
@@ -334,7 +348,7 @@
                     let combinedBlockingAssignments = {};
                     combinedBlockingAssignments.playSide = playCall.playSide;
                     combinedBlockingAssignments.blockingAssignments = blockingFromBlockingCall.concat(blockingFromPlayCall);
-                    console.log("combinedBlockingAssignments: ", combinedBlockingAssignments);
+                    //                    console.log("combinedBlockingAssignments: ", combinedBlockingAssignments);
                     // Clear out existing Blocking stuff
                     //                    console.log("Clear out existing Blocking stuff");
                     $('.block-miss-wrapper, .offensive-blocking-identifier').remove();
@@ -343,8 +357,13 @@
                     let myBlockingCallBlocking = new Blocking($("#FootballApp"));
 
                     myBlockingCallBlocking.processBlockingAssignments(combinedBlockingAssignments);
+                    return "Jones, double-bobo Jones.";
 
-
+                  }).then(() => {
+                    // Move the ballcarrier
+                    console.log("Move the ballcarrier");
+                    let myPlay = new Play($("#FootballApp"));
+                    myPlay.moveBallCarrier(playCall);
                   })
                 })
               })
@@ -788,7 +807,7 @@
         //        console.log("targetCellSelector: ", targetCellSelector);
         $(targetCellSelector).append(gapContent);
 
-        console.log("gapContent:", gapContent);
+        //        console.log("gapContent:", gapContent);
         //        console.log("targetCellSelector: ", targetCellSelector);
       }
 

@@ -1,7 +1,7 @@
 {
-  "playCallName": "Run 28",
-  "playSide": "right",
-  "description": "The 1 back hands the ball to the 2 back, then fake runs to opposite play side. The 2 back takes the handoff and runs to the 8 hole. The 3 and 4 backs make blocks. ",
+  "playCallName": "Run 23",
+  "playSide": "left",
+  "description": "The 1 back hands the ball to the 2 back, then fake runs to opposite play side. The 2 back takes the handoff and runs to the 3 hole. The 3 and 4 backs make blocks. ",
   "blockingAssignments": [{
       "appliesTo": ["#WR"],
       "rules": [{
@@ -18,18 +18,18 @@
     {
       "appliesTo": ["#FB"],
       "rules": [{
-        "name": "second_outside",
-        "depth": "any",
-        "description": "Block the second-to-last man outside, on the playside."
-      }, {
-        "name": "destroy_nearest",
+        "name": "on_me",
         "depth": ["defensive_los", "linebacker"],
+        "description": "This needs a better writeup."
+      }, {
+        "name": "linebacker",
+        "depth": ["linebacker"],
         "description": "<strong>D</strong>estroy Playside: Is there anyone Down the playside? (the 'right' part of this call)"
       }]
     }
   ],
   "ballCarrier": {
     "appliesTo": "#RB",
-    "destination": "#D8"
+    "destination": "#B3"
   }
 }

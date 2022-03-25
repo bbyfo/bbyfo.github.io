@@ -96,7 +96,7 @@
      *
      */
     processBlockingAssignments: function (blockingCall) {
-      console.log("processBlockingAssignments() called with: ", blockingCall);
+      //      console.log("processBlockingAssignments() called with: ", blockingCall);
       // Clear out existing Blocking stuff
       //      console.log("Clear out existing Blocking stuff");
       $('.block-miss-wrapper, .offensive-blocking-identifier').remove();
@@ -245,8 +245,8 @@
                     break;
 
                   case 'last_outside':
-                    console.log("% % Look for last outside man");
-                    console.log("playSide", playSide);
+                    //                    console.log("% % Look for last outside man");
+                    //                    console.log("playSide", playSide);
                     if (blockingCall.playSide == "right") {
                       assignmentX = [Number(21), Number(20), Number(19), Number(18)];
                     } else if (blockingCall.playSide == "left") {
@@ -261,14 +261,14 @@
                     break;
 
                   case 'second_outside':
-                    console.log("% % Look for second-to-last outside man");
-                    console.log("playSide", playSide);
+                    //                    console.log("% % Look for second-to-last outside man");
+                    //                    console.log("playSide", playSide);
                     if (blockingCall.playSide == "right") {
                       assignmentX = [Number(20), Number(19), Number(18), Number(17)];
                     } else if (blockingCall.playSide == "left") {
                       assignmentX = [Number(2), Number(3), Number(4), Number(5)];
                     } else {
-                      console.log("No playSide on last_outside Blocking.js");
+                      //                      console.log("No playSide on last_outside Blocking.js");
                     }
                     // Vertical works for finding the farthest outside
                     traverseFirst = "vertical";
@@ -352,7 +352,7 @@
                 // Build out the target list
                 let targetList = [];
 
-                console.log("traverseFirst: ", traverseFirst);
+                //                console.log("traverseFirst: ", traverseFirst);
                 // Start at the vertical end (y) and travel horizontally (x)
                 if (traverseFirst == "horizontal") {
                   assignmentY.forEach((y) => {
