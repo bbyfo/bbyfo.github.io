@@ -144,6 +144,8 @@
               let targets = [];
               let blockingRuleDescription = rule.description;
               let traverseFirst = "horizontal";
+              let $hole = null;
+              let holeX = null;
               if (foundAssignment === false) {
                 //                console.log(`Processing rule: ${rule.name}`);
 
@@ -276,16 +278,20 @@
                     break;
 
                   case 'at_hole':
-                    console.log("at_hole blocking rule", rule);
-                    let $hole = $(rule.hole);
-                    let holeX = $hole.parent().parent().data('grid-position-x');
-                    console.log("holeX: ", holeX);
+                    //                    console.log("at_hole blocking rule", rule);
+                    $hole = $(rule.hole);
+                    holeX = $hole.parent().parent().data('grid-position-x');
+                    //                    console.log("holeX: ", holeX);
                     assignmentX = [Number(holeX)];
                     break;
 
-                  case 'bobo':
-                    console.log("BOBO ISN'T REAL. Change me!");
-                    console.log("line blocking rule", rule);
+                  case 'at_hole_3x1':
+
+                    //                    console.log("line blocking rule", rule);
+                    $hole = $(rule.hole);
+                    holeX = $hole.parent().parent().data('grid-position-x');
+                    assignmentX = [Number(holeX), Number(holeX - 1), Number(holeX + 1)];
+                    //                    console.warn($hole, '$hole');
                     break;
 
                   default:

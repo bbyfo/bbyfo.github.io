@@ -5,13 +5,14 @@
   "blockingAssignments": [{
       "appliesTo": ["#WR"],
       "rules": [{
-        "name": "bobo",
+        "name": "at_hole",
         "depth": ["defensive_los"],
         "hole": "#B3",
 
         "description": "Anybody in the Hole? Blow 'em up!'"
       }, {
-        "name": "line",
+        "name": "at_hole_3x1",
+        "hole": "#B3",
         "depth": ["linebacker"],
         "description": "<strong>L</strong>inebackers near the hole?  Block them."
       }]
@@ -19,12 +20,13 @@
     {
       "appliesTo": ["#FB"],
       "rules": [{
-        "name": "bobo",
+        "name": "at_hole",
         "hole": "#B3",
         "depth": ["defensive_los"],
         "description": "Anybody in the Hole? Blow 'em up!'"
       }, {
-        "name": "line",
+        "name": "at_hole_3x1",
+        "hole": "#B3",
         "depth": ["linebacker"],
         "description": "<strong>L</strong>inebackers near the hole?  Block them."
       }]

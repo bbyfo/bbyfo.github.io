@@ -119,6 +119,7 @@
       //      console.log("blockingCall: ", blockingCall);
       //      console.log("$fieldElm: ", $fieldElm);
 
+      let huddleCall = {};
 
       // Clear the Field, because we're gonna rebuild it from scratch
       this.resetField($('#FieldApp'));
@@ -154,11 +155,12 @@
       O D B P
       f e l l
       f f o a
-      e e c c
-      n n k a
-      s s i l
+      e e c y 
+	  n n k c
+      s s i a
       e e n l
-          g
+          g l
+          
       */
 
 
@@ -189,7 +191,10 @@
               // Positions place themselves
               let positionObj = new Position($fieldElm, position);
             });
+            return offensiveFormation;
           });
+
+
           break;
           // 0100 Defense only 
         case '0100':
@@ -317,6 +322,9 @@
                 // Positions place themselves
                 let positionObj = new Position($fieldElm, position);
               });
+
+              console.log("setting offensiveFormation Huddle Call: ", offensiveFormation.formationHuddleCall);
+              huddleCall.offensiveFormation = offensiveFormation.formationHuddleCall;
             }).then(function () {
               $.ajax({
                 url: defensiveFileUrl
@@ -332,7 +340,10 @@
                   url: playCallFileUrl
                 }).then(function (playCall) {
 
-                  //                  console.log("@@ playCall in then()", playCall);
+                  //console.log("@@ playCall in then()", playCall);
+                  console.log("setting playCall Huddle Call: ", playCall.playCallName);
+                  huddleCall.playCall = playCall.playCallName;
+
                   $.ajax({
                     url: blockingCallFileUrl
                   }).then(function (blockingCall) {
@@ -357,26 +368,48 @@
                     let myBlockingCallBlocking = new Blocking($("#FootballApp"));
 
                     myBlockingCallBlocking.processBlockingAssignments(combinedBlockingAssignments);
+                    console.log("setting blockingCall Huddle Call: ", blockingCall.blockingCallHuddleCall);
+                    huddleCall.blocking = blockingCall.blockingCallHuddleCall;
+
+
                     return "Jones, double-bobo Jones.";
 
                   }).then(() => {
                     // Move the ballcarrier
-//                    console.log("Move the ballcarrier");
+                    //                    console.log("Move the ballcarrier");
                     let myPlay = new Play($("#FootballApp"));
                     myPlay.moveBallCarrier(playCall);
-                  })
-                })
-              })
-            });
+                  }).then(() => {
+                    // Update the Huddle call
+                    console.log("about to update huddleCall: ", huddleCall);
+                    let huddleCallString = `Huddle Call: ${huddleCall.blocking}. ${huddleCall.blocking}. -- ${huddleCall.offensiveFormation} ${huddleCall.playCall}. ${huddleCall.offensiveFormation} ${huddleCall.playCall}.`;
+                    console.log("huddleCallString: ", huddleCallString);
+                    let $huddleCallWrapper = $("#huddle-call-wrapper");
+
+                    $huddleCallWrapper.find('span').remove();
+                    let $huddleCallElm = $('<span></span>');
+                    //$huddleCallElm.addClass(['huddle-call']);
+                    $huddleCallElm.text(huddleCallString);
+                    console.log("$huddleCallWrapper: ", $huddleCallWrapper);
+                    console.log("$huddleCallElm: ", $huddleCallElm);
+                    $huddleCallElm.appendTo($huddleCallWrapper);
+                  });
+                });
+              });
+            })
 
 
           });
 
+
           break;
 
-      }
+      } // End switch
 
 
+    },
+    updateHuddleCall: function (huddleCall) {
+      console.log("updateHuddleCall() with huddleCall: ", huddleCall);
     },
     /////////////////////  
     // Ball is clicked //

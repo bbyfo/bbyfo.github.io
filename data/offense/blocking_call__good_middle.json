@@ -1,5 +1,7 @@
 {
   "blockingCallName": "G.O.O.D. Middle",
+  "blockingCallHuddleCall": "Shield GOOD MIDDLE",
+
   "playSide": "middle",
   "blockingAssignments": [{
     "appliesTo": [".offensive-lineman", ".tight-end"],

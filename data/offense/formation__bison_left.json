@@ -1,5 +1,6 @@
     {
       "formationName": "Bison Left",
+      "formationHuddleCall": "Sword BISON LEFT",
       "positions": [{
           "id": 5,
           "positionName": "C",

@@ -1,5 +1,7 @@
     {
       "formationName": "Stampede Left",
+      "formationHuddleCall": "Sword STAMPEDE LEFT",
+
       "positions": [{
           "id": 5,
           "positionName": "C",
