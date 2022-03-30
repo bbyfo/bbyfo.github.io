@@ -96,9 +96,9 @@
      *
      */
     processBlockingAssignments: function (blockingCall) {
-      console.log("processBlockingAssignments() called with blockingCall: ", blockingCall);
+      // console.log("processBlockingAssignments() called with blockingCall: ", blockingCall);
       // Clear out existing Blocking stuff
-      //      console.log("Clear out existing Blocking stuff");
+      // console.log("Clear out existing Blocking stuff");
       $('.block-miss-wrapper, .offensive-blocking-identifier').remove();
 
       blockingCall.blockingAssignments.forEach((blockingAssignment) => {
@@ -137,15 +137,25 @@
             let blockingRuleNoCount = Number(1);
             let playSide = blockingCall.playSide;
 
+            let positionResponsibilities = "";
+            let positionResponsibilitiesCount = Number(1);
             rules.forEach((rule) => {
               let assignmentX = [];
               let assignmentY = null;
               let $targetToCheck = null;
               let targets = [];
               let blockingRuleDescription = rule.description;
+              let blockingRuleTitle = rule.title;
               let traverseFirst = "horizontal";
               let $hole = null;
               let holeX = null;
+
+              positionResponsibilities += positionResponsibilitiesCount + ' ' + blockingRuleTitle + '\n\n';
+              positionResponsibilitiesCount++;
+              //              console.log($thisPosition, positionResponsibilities);
+
+              $thisPosition.attr('data-position-responsibilities', positionResponsibilities);
+
               if (foundAssignment === false) {
                 //                console.log(`Processing rule: ${rule.name}`);
 
@@ -400,10 +410,16 @@
                 // Also, set the foundAssignement to true so we stop processing.
                 targetList.every(($target) => {
 
-                  //                  console.log("Processing ", rule.name);
-                  //                  console.log("$target: ", $target);
+                  // console.log("Processing ", rule.name);
+                  // console.log("$target: ", $target);
+
                   if ($target.find(".position-node").length > Number(0)) {
-                    //                    console.log("We have a target!!");
+                    // console.log("We have a target!!");
+                    /////////////////////////////
+                    // Found a target to block //
+                    /////////////////////////////
+
+
                     foundAssignment = true;
 
                     let $targetPosition = $target.find(".position-node");

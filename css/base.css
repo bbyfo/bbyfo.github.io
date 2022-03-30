@@ -123,6 +123,22 @@
   background-position: center;
 }
 */
+.show-responsibility.position-node::after {
+  content: attr(data-position-responsibilities);
+  padding: 4px 8px;
+  color: #333;
+  position: absolute;
+  left: -50%;
+  top: 100%;
+  font-size: 75%;
+  text-align: left;
+  /*  width: 20em;*/
+  white-space: pre;
+  z-index: 20;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px #222;
+  background-image: linear-gradient(#eeeeee, #cccccc);
+}
 .position-container {
   overflow-y: hidden;
 }

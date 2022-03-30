@@ -1,19 +1,19 @@
 {
-  "playCallName": "Run 23",
-  "playSide": "left",
-  "description": "The 1 back hands the ball to the 2 back, then fake runs to opposite play side. The 2 back takes the handoff and runs to the 3 hole. The 3 and 4 backs make blocks.",
+  "playCallName": "Run 24",
+  "playSide": "right",
+  "description": "The 1 back hands the ball to the 2 back, then fake runs to opposite play side. The 2 back takes the handoff and runs to the 4 hole. The 3 and 4 backs make blocks.",
   "blockingAssignments": [{
       "appliesTo": ["#WR"],
       "rules": [{
         "name": "at_hole",
         "depth": ["defensive_los"],
-        "hole": "#B3",
+        "hole": "#B4",
         "title": "Block anyone in the hole",
 
         "description": "Anybody in the Hole? Blow 'em up!'"
       }, {
         "name": "at_hole_3x1",
-        "hole": "#B3",
+        "hole": "#B4",
         "depth": ["linebacker"],
         "title": "Block linebackers near the hole",
 
@@ -24,14 +24,14 @@
       "appliesTo": ["#FB"],
       "rules": [{
         "name": "at_hole",
-        "hole": "#B3",
+        "hole": "#B4",
         "depth": ["defensive_los"],
         "title": "Block anyone in the hole",
 
         "description": "Anybody in the Hole? Blow 'em up!'"
       }, {
         "name": "at_hole_3x1",
-        "hole": "#B3",
+        "hole": "#B4",
         "depth": ["linebacker"],
         "title": "Block linebackers near the hole",
 
@@ -41,6 +41,6 @@
   ],
   "ballCarrier": {
     "appliesTo": "#RB",
-    "destination": "#B3"
+    "destination": "#B4"
   }
 }

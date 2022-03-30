@@ -1,5 +1,6 @@
 {
   "blockingCallName": "G.O.L.D. Left",
+  "blockingCallHuddleCall": "Shield GOLD LEFT",
   "playSide": "left",
   "blockingAssignments": [{
     "appliesTo": [".offensive-lineman", ".tight-end"],

@@ -8,10 +8,14 @@
         "name": "last_outside",
         "depth": "any",
         "traverseFirst": "horizontal",
+        "title": "Last man outside",
+
         "description": "Block the last man outside, on the playside."
       }, {
         "name": "destroy_nearest",
         "depth": ["defensive_los", "linebacker"],
+        "title": "Destroy (Playside)",
+
         "description": "<strong>D</strong>estroy Playside: Is there anyone Down the playside? (the 'right' part of this call)"
       }]
     },
@@ -20,10 +24,14 @@
       "rules": [{
         "name": "second_outside",
         "depth": "any",
+        "title": "Second-to-last man outside",
+
         "description": "Block the second-to-last man outside, on the playside."
       }, {
         "name": "destroy_nearest",
         "depth": ["defensive_los", "linebacker"],
+        "title": "Destroy (Playside)",
+
         "description": "<strong>D</strong>estroy Playside: Is there anyone Down the playside? (the 'right' part of this call)"
       }]
     }

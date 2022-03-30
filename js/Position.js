@@ -23,7 +23,7 @@
   /////////////////////
   $.extend(window.Position.prototype, {
     placePosition: function ($fieldSection, position) {
-      //      console.log("Position instantiated as: ", $fieldSection, position);
+      //      console.log("Position instantiated as: ", position);
       let positionName = position.positionName;
 
 
@@ -120,7 +120,7 @@
       // Here we assign the coordinates
       let gridPositionSelector = gridPositionSection + '-' + gridPositionX + '-' + gridPositionY;
 
-                //console.log("Grid Positions in Position: ", gridPositionSection, gridPositionX, gridPositionY, gridPositionSelector, position.positionTypes);
+      //console.log("Grid Positions in Position: ", gridPositionSection, gridPositionX, gridPositionY, gridPositionSelector, position.positionTypes);
 
       let positionNameWithNewLinesPenultimate = positionName;
       let positionNameWithNewLinesFinal = "";
@@ -135,26 +135,26 @@
 
 
       // Create the position element placeholder
-      var positionDiv = $("<div></div>").text(positionNameWithNewLinesFinal);
+      var $positionDiv = $("<div></div>").text(positionNameWithNewLinesFinal);
 
       // Provide classes and the ID
-      positionDiv.addClass('position-node');
-      positionDiv.attr('id', position.positionName);
+      $positionDiv.addClass('position-node');
+      $positionDiv.attr('id', position.positionName);
 
       // Add the position section (offense or defense)
-      positionDiv.addClass(['position-' + gridPositionSection]);
+      $positionDiv.addClass(['position-' + gridPositionSection]);
 
 
       // Add the position type(s) class(es).
       if (position.positionTypes) {
-        positionDiv.addClass(position.positionTypes);
+        $positionDiv.addClass(position.positionTypes);
       }
 
 
       // Here's how we select a specifc grid item!
       // @see https://www.geeksforgeeks.org/jquery-attributevalue-selector-4/
       $("[data-grid-coords|='" + gridPositionSelector + "'] .position-wrapper")
-        .append(positionDiv);
+        .append($positionDiv);
 
 
       ///////////////////////////////////
@@ -179,15 +179,18 @@
        */
 
       // Add the Helmet Image
-      var positionDivImg = $("<img/>").attr({
+      var $positionDivImg = $("<img/>").attr({
         src: 'images/' + imgHelmetStyle + '.svg'
       }).addClass("helmet-image");
 
       // FINALLY!! Adding the position to the DOM
-      $("[data-grid-coords|='" + gridPositionSelector + "']").append(positionDivImg);
+      $("[data-grid-coords|='" + gridPositionSelector + "']").append($positionDivImg);
+
+      // Add the Position Responsibility Wrapper
+      $positionDiv.parent().append($("<div></div>").addClass(['position-responsibility-wrapper']));
 
       // Mark this position's parent
-      positionDiv.parent().addClass(['position-container']);
+      $positionDiv.parent().addClass(['position-container']);
 
     }
   });

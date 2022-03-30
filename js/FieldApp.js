@@ -79,12 +79,24 @@
       this.handleSelectChange.bind(this)
     );
 
+    // Event Handler responding to click on a Position
+    this.$wrapper.on(
+      'click',
+      '.position-node',
+      this.positionResponsabilities.bind(this)
+    );
+
 
   }; // end window.FieldApp
 
 
   $.extend(window.FieldApp.prototype, {
 
+    positionResponsabilities: function (e) {
+      //      console.log("positionResponsabilities()", e, this)
+      let $target = $(e.currentTarget);
+      $target.toggleClass('show-responsibility');
+    },
     handleShowBlockNos: function (e) {
       $("#field").toggleClass('show-block-miss-wrapper');
 
@@ -323,7 +335,7 @@
                 let positionObj = new Position($fieldElm, position);
               });
 
-              console.log("setting offensiveFormation Huddle Call: ", offensiveFormation.formationHuddleCall);
+              //              console.log("setting offensiveFormation Huddle Call: ", offensiveFormation.formationHuddleCall);
               huddleCall.offensiveFormation = offensiveFormation.formationHuddleCall;
             }).then(function () {
               $.ajax({
@@ -341,7 +353,7 @@
                 }).then(function (playCall) {
 
                   //console.log("@@ playCall in then()", playCall);
-                  console.log("setting playCall Huddle Call: ", playCall.playCallName);
+                  //                  console.log("setting playCall Huddle Call: ", playCall.playCallName);
                   huddleCall.playCall = playCall.playCallName;
 
                   $.ajax({
@@ -368,7 +380,7 @@
                     let myBlockingCallBlocking = new Blocking($("#FootballApp"));
 
                     myBlockingCallBlocking.processBlockingAssignments(combinedBlockingAssignments);
-                    console.log("setting blockingCall Huddle Call: ", blockingCall.blockingCallHuddleCall);
+                    //                    console.log("setting blockingCall Huddle Call: ", blockingCall.blockingCallHuddleCall);
                     huddleCall.blocking = blockingCall.blockingCallHuddleCall;
 
 
@@ -381,17 +393,17 @@
                     myPlay.moveBallCarrier(playCall);
                   }).then(() => {
                     // Update the Huddle call
-                    console.log("about to update huddleCall: ", huddleCall);
+                    //                    console.log("about to update huddleCall: ", huddleCall);
                     let huddleCallString = `Huddle Call: ${huddleCall.blocking}. ${huddleCall.blocking}. -- ${huddleCall.offensiveFormation} ${huddleCall.playCall}. ${huddleCall.offensiveFormation} ${huddleCall.playCall}.`;
-                    console.log("huddleCallString: ", huddleCallString);
+                    //                    console.log("huddleCallString: ", huddleCallString);
                     let $huddleCallWrapper = $("#huddle-call-wrapper");
 
                     $huddleCallWrapper.find('span').remove();
                     let $huddleCallElm = $('<span></span>');
                     //$huddleCallElm.addClass(['huddle-call']);
                     $huddleCallElm.text(huddleCallString);
-                    console.log("$huddleCallWrapper: ", $huddleCallWrapper);
-                    console.log("$huddleCallElm: ", $huddleCallElm);
+                    //                    console.log("$huddleCallWrapper: ", $huddleCallWrapper);
+                    //                    console.log("$huddleCallElm: ", $huddleCallElm);
                     $huddleCallElm.appendTo($huddleCallWrapper);
                   });
                 });
