@@ -137,7 +137,15 @@
             let blockingRuleNoCount = Number(1);
             let playSide = blockingCall.playSide;
 
+            // This is not great code.
+            // We want to determine the proper "label" for the PositionResponsability list.
+            // Basically Linemen get their calls from the Blocking Call, and everyone else gets it from the Play Call.
+            // Initially, I treat Tight Ends as Offensive Lineman. I don't think this is flexable enough though.
             let positionResponsibilities = "";
+            if ($thisPosition.is('.offensive-lineman, .tight-end')) {
+              positionResponsibilities = blockingCall.blockingCallName + '\n\n';
+            }
+
             let positionResponsibilitiesCount = Number(1);
             rules.forEach((rule) => {
               let assignmentX = [];

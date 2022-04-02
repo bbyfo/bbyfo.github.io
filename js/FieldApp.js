@@ -102,12 +102,12 @@
       let $exceptElms = $(exceptSelectorString);
       //      console.log("$target: ", $target);
       //      console.log("exceptSelectorString: ", exceptSelectorString);
-//      console.log("$exceptElms: ", $exceptElms);
+      //      console.log("$exceptElms: ", $exceptElms);
       this.dimExcept($exceptElms);
 
     },
     dimExcept: function ($except) {
-//      console.log("dimExcept() called", $except);
+      //      console.log("dimExcept() called", $except);
       $('#offense div, #defense div').not($except).toggleClass(['i-been-dimmed']);
 
     },
@@ -383,9 +383,10 @@
                     //                    console.log("blockingFromPlayCall: ", blockingFromPlayCall);
                     // Add the Play Blocking Assignments to the Blocking Call Blocking Assignments
                     let combinedBlockingAssignments = {};
+                    combinedBlockingAssignments.blockingCallName = blockingCall.blockingCallName;
                     combinedBlockingAssignments.playSide = playCall.playSide;
                     combinedBlockingAssignments.blockingAssignments = blockingFromBlockingCall.concat(blockingFromPlayCall);
-                    //                    console.log("combinedBlockingAssignments: ", combinedBlockingAssignments);
+                    console.log("combinedBlockingAssignments: ", combinedBlockingAssignments);
                     // Clear out existing Blocking stuff
                     //                    console.log("Clear out existing Blocking stuff");
                     $('.block-miss-wrapper, .offensive-blocking-identifier').remove();

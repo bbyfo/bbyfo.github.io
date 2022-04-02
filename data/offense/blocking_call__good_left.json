@@ -18,7 +18,6 @@
         "name": "gap_outside",
         "depth": ["defensive_los"],
         "title": "Outside",
-
         "description": "Outside me? Is there anyone in my Outside Gap (away from the ball)?"
       }, {
         "name": "destroy_nearest",
