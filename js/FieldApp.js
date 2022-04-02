@@ -96,6 +96,20 @@
       //      console.log("positionResponsabilities()", e, this)
       let $target = $(e.currentTarget);
       $target.toggleClass('show-responsibility');
+
+      // Also, dim the rest of the field
+      let exceptSelectorString = '.blocking-identifier--' + $target.attr('id');
+      let $exceptElms = $(exceptSelectorString);
+      //      console.log("$target: ", $target);
+      //      console.log("exceptSelectorString: ", exceptSelectorString);
+//      console.log("$exceptElms: ", $exceptElms);
+      this.dimExcept($exceptElms);
+
+    },
+    dimExcept: function ($except) {
+//      console.log("dimExcept() called", $except);
+      $('#offense div, #defense div').not($except).toggleClass(['i-been-dimmed']);
+
     },
     handleShowBlockNos: function (e) {
       $("#field").toggleClass('show-block-miss-wrapper');

@@ -13,7 +13,6 @@
         "name": "on_me",
         "depth": ["defensive_los"],
         "title": "On me",
-
         "description": "On me? Is there anyone On me (right across from me)?"
       }, {
         "name": "gap_outside",
@@ -25,7 +24,6 @@
         "name": "destroy_nearest",
         "depth": ["defensive_los", "linebacker"],
         "title": "Destroy (Playside)",
-
         "description": "Destroy Playside: Is there anyone Down the playside? (the 'left' part of this call)"
 
       }

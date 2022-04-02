@@ -7,18 +7,22 @@
     "rules": [{
       "name": "gap_inside",
       "depth": ["defensive_los"],
+      "title": "Gap (inside)",
       "description": "<strong>G</strong>ap: Is there anyone in my Gap (inside, closest to the ball)?"
     }, {
       "name": "on_me",
       "depth": ["defensive_los"],
+      "title": "On me",
       "description": "<strong>O</strong>n me: Is there anyone On me (right across from me)?"
     }, {
       "name": "linebacker",
       "depth": ["linebacker"],
+      "title": "Linebacker",
       "description": "<strong>L</strong>inebacker: Is there a Linebacker to block?"
     }, {
       "name": "destroy_nearest",
       "depth": ["defensive_los", "linebacker"],
+      "title": "Destroy (Playside)",
       "description": "<strong>D</strong>estroy Playside: Is there anyone Down the playside? (the 'left' part of this call)"
     }]
   }]

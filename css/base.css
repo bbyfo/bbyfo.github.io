@@ -497,6 +497,7 @@ form label {
 }
 .show-block-miss-wrapper .blocking-identifiers-wrapper {
   display: flex;
+  flex-wrap: wrap;
 }
 #bocking-rule-description-wrapper {
   padding: 0.5em;
@@ -531,8 +532,9 @@ form label {
   background-color: #9B9B9B;
 }
 .position-node.i-been-dimmed, .block-miss-wrapper.i-been-dimmed {
-  background-color: #313131;
-  color: #AAAAAA;
+  background-color: rgba(50, 50, 50, 0.25);
+  color: rgba(170, 170, 170, 0.5);
+  );
   border-color: #8A8A8A;
 }
 /******************/

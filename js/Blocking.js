@@ -7,7 +7,7 @@
    * Add Event Handlers.
    */
   window.Blocking = function ($wrapper, $blockingPositions) {
-    //    console.log("Blocking instantiated.", $wrapper);
+    // console.log("Blocking instantiated.", $wrapper);
     this.$wrapper = $wrapper;
     // Event Handler for Picking the Blocking Call
     this.$wrapper.on(
@@ -36,7 +36,7 @@
   $.extend(window.Blocking.prototype, {
 
     validateFieldForBlocking: function () {
-      //      console.log("validateField() called");
+      // console.log("validateField() called");
       // Make sure there are 11 offensive positions and 11 defensive positions.
       var offensivePositionsCount = $(".position-node.position-offense").length;
       var defensivePositionsCount = $(".position-node.position-defense").length;
@@ -53,7 +53,7 @@
     },
 
     handleShowBlockingAll: function (e) {
-      //      console.log("handleShowBlockingAll()", e);
+      // console.log("handleShowBlockingAll()", e);
 
       // Remove all blocking things now
       $('.block-miss-wrapper, .offensive-blocking-identifier').remove();
@@ -69,7 +69,7 @@
       }
     },
     fetchAndProcess: function ($formElm) {
-      //      console.log("fetchAndProcess called(): ", $formElm);
+      // console.log("fetchAndProcess called(): ", $formElm);
 
 
       let blockingCallUrl = "data/offense/" + $formElm.val() + ".json"
@@ -96,7 +96,7 @@
      *
      */
     processBlockingAssignments: function (blockingCall) {
-      // console.log("processBlockingAssignments() called with blockingCall: ", blockingCall);
+      //      console.log("processBlockingAssignments() called with blockingCall: ", blockingCall);
       // Clear out existing Blocking stuff
       // console.log("Clear out existing Blocking stuff");
       $('.block-miss-wrapper, .offensive-blocking-identifier').remove();
@@ -104,13 +104,13 @@
       blockingCall.blockingAssignments.forEach((blockingAssignment) => {
 
         blockingAssignment.appliesTo.forEach((positionClass) => {
-          //        console.log("positionClass: ", positionClass);
+          // console.log("positionClass: ", positionClass);
 
           let $positionsByClass = $(positionClass);
-          //          console.log("$positionsByClass: ", $positionsByClass);
+          // console.log("$positionsByClass: ", $positionsByClass);
 
           $positionsByClass.each((i, position) => {
-            //          console.log("position: ", position);
+            // console.log("position: ", position);
             let $thisPosition = $(position);
             let blockingAssignmentOffensivePosition = 'blocking-identifier--' + $thisPosition.attr('id');
             let positionHelper = new PositionHelper();
@@ -122,12 +122,12 @@
             // Find my Inside
             let myInside = positionHelper.whereIsMyInside(myX);
 
-            //          console.log("myX: ", myX);
-            //          console.log("myInside: ", myInside);
-            //            console.log(" ");
-            //            console.log("##################");
-            //            console.log("POSITION: ", $thisPosition.attr('id'), "myX:", myX, "myInside:", myInside);
-            //                      console.log(rules);
+            // console.log("myX: ", myX);
+            // console.log("myInside: ", myInside);
+            // console.log(" ");
+            // console.log("##################");
+            // console.log("POSITION: ", $thisPosition.attr('id'), "myX:", myX, "myInside:", myInside);
+            // console.log(rules);
             // Loop through rules and stop at the first 'yes'
             // @todo The big 'ol switch statement has to manually match all possible values in the blocking_call__XXXXX.json files.
             // Not optimal, but it's what we've got for now.
@@ -152,12 +152,12 @@
 
               positionResponsibilities += positionResponsibilitiesCount + ' ' + blockingRuleTitle + '\n\n';
               positionResponsibilitiesCount++;
-              //              console.log($thisPosition, positionResponsibilities);
+              // console.log($thisPosition, positionResponsibilities);
 
               $thisPosition.attr('data-position-responsibilities', positionResponsibilities);
 
               if (foundAssignment === false) {
-                //                console.log(`Processing rule: ${rule.name}`);
+                // console.log(`Processing rule: ${rule.name}`);
 
                 // Get the X coord for the rule
                 switch (rule.name) {
@@ -170,7 +170,7 @@
 
                     } else if (myInside == "onball") {
                       // Use the playSide of the Blocking call to determine the inside gap  
-                      //                    console.log("blockingCall: ", blockingCall);
+                      // console.log("blockingCall: ", blockingCall);
                       if (blockingCall.playSide == "right") {
                         assignmentX[0] = myX + Number(1);
                       } else if (blockingCall.playSide == "left") {
@@ -198,7 +198,7 @@
 
                     } else if (myInside == "onball") {
                       // Use the playSide of the Blocking call to determine the inside gap  
-                      //                    console.log("blockingCall: ", blockingCall);
+                      // console.log("blockingCall: ", blockingCall);
                       if (blockingCall.playSide == "right") {
                         assignmentX[0] = myX + Number(1);
                       } else if (blockingCall.playSide == "left") {
@@ -258,8 +258,8 @@
                     break;
 
                   case 'last_outside':
-                    //                    console.log("% % Look for last outside man");
-                    //                    console.log("playSide", playSide);
+                    // console.log("% % Look for last outside man");
+                    // console.log("playSide", playSide);
                     if (blockingCall.playSide == "right") {
                       assignmentX = [Number(21), Number(20), Number(19), Number(18)];
                     } else if (blockingCall.playSide == "left") {
@@ -274,38 +274,38 @@
                     break;
 
                   case 'second_outside':
-                    //                    console.log("% % Look for second-to-last outside man");
-                    //                    console.log("playSide", playSide);
+                    // console.log("% % Look for second-to-last outside man");
+                    // console.log("playSide", playSide);
                     if (blockingCall.playSide == "right") {
                       assignmentX = [Number(20), Number(19), Number(18), Number(17)];
                     } else if (blockingCall.playSide == "left") {
                       assignmentX = [Number(2), Number(3), Number(4), Number(5)];
                     } else {
-                      //                      console.log("No playSide on last_outside Blocking.js");
+                      // console.log("No playSide on last_outside Blocking.js");
                     }
                     // Vertical works for finding the farthest outside
                     traverseFirst = "vertical";
                     break;
 
                   case 'at_hole':
-                    //                    console.log("at_hole blocking rule", rule);
+                    // console.log("at_hole blocking rule", rule);
                     $hole = $(rule.hole);
                     holeX = $hole.parent().parent().data('grid-position-x');
-                    //                    console.log("holeX: ", holeX);
+                    // console.log("holeX: ", holeX);
                     assignmentX = [Number(holeX)];
                     break;
 
                   case 'at_hole_3x1':
 
-                    //                    console.log("line blocking rule", rule);
+                    // console.log("line blocking rule", rule);
                     $hole = $(rule.hole);
                     holeX = $hole.parent().parent().data('grid-position-x');
                     assignmentX = [Number(holeX), Number(holeX - 1), Number(holeX + 1)];
-                    //                    console.warn($hole, '$hole');
+                    // console.warn($hole, '$hole');
                     break;
 
                   default:
-                    //                    console.log("Nobody to block yet, defaulting to Down (playside)", blockingCall.playSide);
+                    // console.log("Nobody to block yet, defaulting to Down (playside)", blockingCall.playSide);
 
 
                     // The following commented-out code is useful to find the "nearest" position to block.
@@ -321,7 +321,7 @@
                     //                        targets = [Number(0), Number(-1), Number(1), Number(-2), Number(2), Number(-3), Number(3), Number(-4), Number(4), Number(-5), Number(5)];
                     //
                     //                      } else {
-                    //                        console.log("Wow, nobody?  Bueller?  Bueller?");
+                    // console.log("Wow, nobody?  Bueller?  Bueller?");
                     //                      }
                     //                    }
 
@@ -337,7 +337,7 @@
                     }
 
                     targets.forEach((target) => {
-                      //                      console.log(target);
+                      // console.log(target);
                       assignmentX.push(Number(myX) + Number(target));
                     });
                     break;
@@ -349,9 +349,9 @@
                 // Get the Y coord (depth)
                 let assignmentY = null;
                 let ruleDepth = rule.depth;
-                //                console.log("rule.depth: ", rule.depth);
-                //                console.log("ruleDepth: ", ruleDepth);
-                //                console.log("assignmentY: ", assignmentY);
+                // console.log("rule.depth: ", rule.depth);
+                // console.log("ruleDepth: ", ruleDepth);
+                // console.log("assignmentY: ", assignmentY);
 
                 // If the rule is "any", we want to search all levels of the defense.
                 if (ruleDepth == "any") {
@@ -360,7 +360,7 @@
                   // I dunno, it's late and I JUST figured this out.  UGH.
                   // let myFieldApp = new FieldApp($wrapper);
                   // assignmentY = myFieldApp.getDefensiveDepths().reverse();
-                  //                  console.log("Woobity", FieldApp);
+                  // console.log("Woobity", FieldApp);
 
 
                   assignmentY = ['defensive_los', 'linebacker', 'safety', 'deep_defense'];
@@ -368,11 +368,11 @@
                 } else {
 
                   assignmentY = ruleDepth;
-                  //                  console.log("it's *else*", ruleDepth);
+                  // console.log("it's *else*", ruleDepth);
                 }
 
-                //              console.log("assignmentX: ", assignmentX);
-                //                console.log("assignmentY: ", assignmentY);
+                // console.log("assignmentX: ", assignmentX);
+                // console.log("assignmentY: ", assignmentY);
 
 
                 // Check those coords for a position
@@ -382,11 +382,11 @@
                 // Build out the target list
                 let targetList = [];
 
-                //                console.log("traverseFirst: ", traverseFirst);
+                // console.log("traverseFirst: ", traverseFirst);
                 // Start at the vertical end (y) and travel horizontally (x)
                 if (traverseFirst == "horizontal") {
                   assignmentY.forEach((y) => {
-                    //                  console.log("y: ", y);
+                    // console.log("y: ", y);
                     assignmentX.forEach((x) => {
                       targetList.push($(`.js-defense-${x}.depth--${y}`));
                     });
@@ -394,7 +394,7 @@
                 } else if (traverseFirst == "vertical") {
                   // The reverse of above. Start at the horizontal end (x) and travel vertically (y) 
                   assignmentX.forEach((x) => {
-                    //                  console.log("y: ", y);
+                    // console.log("y: ", y);
                     assignmentY.forEach((y) => {
                       targetList.push($(`.js-defense-${x}.depth--${y}`));
                     });
@@ -404,7 +404,7 @@
                 }
 
 
-                //                console.log("targetList: ", targetList);
+                // console.log("targetList: ", targetList);
 
                 // If there is a position at the target coords, assign the blocking classes to the blocker and the target
                 // Also, set the foundAssignement to true so we stop processing.
@@ -430,10 +430,10 @@
 
                     $thisPosition.addClass(blockingAssignmentOffensivePosition);
 
-                    //                    console.log("$thisPosition: ", $thisPosition[0]);
-                    //                    console.log("$targetPosition: ", $targetPosition[0]);
-                    //                    console.log("$targetPosition parent: ", $targetPositionParent[0]);
-                    //                    console.log("rule.description", rule.description);
+                    // console.log("$thisPosition: ", $thisPosition[0]);
+                    // console.log("$targetPosition: ", $targetPosition[0]);
+                    // console.log("$targetPosition parent: ", $targetPositionParent[0]);
+                    // console.log("rule.description", rule.description);
 
                     let blockingRuleDescription = rule.description + " <strong>Yes!</strong>  Block him!";
                     let $blockingIdElm = $("<div></div>")
@@ -441,7 +441,7 @@
                       .attr('data-blocking-rule-desc', blockingRuleDescription)
                       .addClass([blockingAssignmentOffensivePosition, 'position-node', 'offensive-blocking-identifier', 'material-icons']);
 
-                    //                    console.log("$blockingIdElm: ", $blockingIdElm[0]);
+                    // console.log("$blockingIdElm: ", $blockingIdElm[0]);
                     $targetPosition.parent().prepend($blockingIdElm);
 
                     // Check for a Double Team
@@ -449,7 +449,7 @@
                       // We've got a double team.  We need to show that.
                       // Instead of adding another blocking identifier class to the target position, can we clone the target position and add the blocking identifier
                       // to that newly cloned element.
-                      //                      console.log(`Doubleteam found!`);
+                      // console.log(`Doubleteam found!`);
                       $targetPosition.addClass(["js-is-double-teamed"]);
                       $targetPosition.parent().addClass(["has-double-team"]);
 
@@ -463,10 +463,10 @@
                     // Didn't find anyone to block in this space. //
                     ////////////////////////////////////////////////
 
-                    //                    console.log("$target", $target[0]);
-                    //                    console.log("$thisPosition", $thisPosition[0]);
+                    // console.log("$target", $target[0]);
+                    // console.log("$thisPosition", $thisPosition[0]);
 
-                    //                    console.log($thisPosition.attr('id'), `found nobody to block for rule ${rule.name} Miss #${blockingRuleNoCount}`);
+                    // console.log($thisPosition.attr('id'), `found nobody to block for rule ${rule.name} Miss #${blockingRuleNoCount}`);
 
                     blockingRuleDescription += " <strong>No.</strong> Go to next rule.";
 
@@ -475,9 +475,9 @@
                     $blockMissWrapper.attr('data-blocking-rule-desc', blockingRuleDescription);
                     let blockingMissCssIdentifier = 'blocking-identifier--' + $thisPosition.attr('id');
                     $blockMissWrapper.attr('data-blocking-identifier-class', blockingMissCssIdentifier);
-                    //                    console.log("$target: ", $target);
+                    // console.log("$target: ", $target);
                     let $targetWrapper = $target.children('.blocking-identifiers-wrapper');
-                    //                    console.log("$targetWrapper: ", $targetWrapper);
+                    // console.log("$targetWrapper: ", $targetWrapper);
 
                     $targetWrapper.prepend($blockMissWrapper);
 
@@ -505,7 +505,7 @@
 
 
                     blockingRuleNoCount++;
-                    //                    console.log("-----");
+                    // console.log("-----");
                     return true;
                   }
 
