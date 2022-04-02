@@ -523,9 +523,9 @@
     handleClickMissedBlockIdentifier: function (e) {
       e.stopPropagation();
       $('.block-miss-wrapper').removeClass('visible');
-      console.log("handleClick Missed Block Identifier() called", e);
+      //      console.log("handleClick Missed Block Identifier() called", e);
       let $target = $(e.currentTarget);
-      console.log("$target;: ", $target);
+      //      console.log("$target;: ", $target);
       $target.addClass('visible');
 
       let exceptSelector = $target.attr('data-blocking-identifier-class');
@@ -545,22 +545,22 @@
 
       exceptSelector = "." + exceptSelector;
       let $exceptElms = $(exceptSelector);
-      console.log("exceptSelector: ", exceptSelector);
-      console.log("$exceptElms: ", $exceptElms);
+      //      console.log("exceptSelector: ", exceptSelector);
+      //      console.log("$exceptElms: ", $exceptElms);
       this.dimExcept($exceptElms);
 
     },
     handleClickCloseBlockingRuleDesc: function (e) {
       e.stopPropagation();
       e.preventDefault;
-      console.log("handleClickCloseBlockingRuleDesc() called", e);
+      //      console.log("handleClickCloseBlockingRuleDesc() called", e);
       $('.block-miss-wrapper').removeClass('visible');
       $('#bocking-rule-description-wrapper span').remove();
       $('#bocking-rule-description-wrapper').removeClass();
       this.unDimm();
     },
     dimExcept: function ($except) {
-      console.log("dimExcept() called", $except);
+      //      console.log("dimExcept() called", $except);
       $('#offense div, #defense div').not($except).addClass(['i-been-dimmed']);
 
     },
