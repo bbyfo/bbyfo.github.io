@@ -1,9 +1,11 @@
+#FootballApp {
+  width: 95vw;
+  margin: 0 auto;
+}
 #field {
   font-family: 'Courier New', Courier, monospace;
   font-size: clamp(1rem, 2rem, 3rem);
   /*  background-color: white;*/
-  width: 90vw;
-  margin: 0 auto;
   /*  height: 75vh;*/
   background-color: #68BB59;
 }
@@ -162,6 +164,10 @@
 #defense .position-node {
   /*	  bottom: 0;*/
 }
+#defense .position-node.position-defense {
+  border: 2px solid black;
+  background-color: rgba(0, 0, 0, 0.25);
+}
 #defense .position-node.offensive-blocking-identifier {
   font-size: clamp(0.5rem, 1rem, 2rem);
   border-width: 1px;
@@ -183,8 +189,6 @@
 }
 .grid-item-gap {
   text-align: center;
-  /*  font-size: clamp(1vw, 1.5vw, 2vw);*/
-  z-index: 10;
 }
 .grid-item-gap .helmet-image {
   /*  max-width: 48%;*/
@@ -580,4 +584,7 @@ form label {
 .swiper-label {
   text-align: center;
   /*  visibility: hidden;*/
+}
+#huddle-call-wrapper {
+  font-size: 1.25rem;
 }

@@ -22,15 +22,22 @@
   $.extend(window.Play.prototype, {
 
     moveBallCarrier: function (playCall) {
-      //      console.log("moveBallCarrier()", playCall);
+      console.log("moveBallCarrier()", playCall);
       //      console.log("playCall.ballCarrier", playCall.ballCarrier.appliesTo);
       // Get the ball carrier
 
       let ballCarrierID = playCall.ballCarrier.appliesTo;
-//      console.log("ballCarrierID: ", ballCarrierID);
+      //      console.log("ballCarrierID: ", ballCarrierID);
 
 
       let $ballCarrier = $(ballCarrierID);
+
+      // Add Ball Carrier's responsabilities
+      let ballCarrierResponsabilities = playCall.ballCarrier.responsibility;
+
+      $ballCarrier.attr('data-position-responsibilities', ballCarrierResponsabilities);
+
+
       $ballCarrier.addClass(['blocking-identifier--' + ballCarrierID.replace('#', '')]);
       //      console.log("$ballCarrier: ", $ballCarrier);
 

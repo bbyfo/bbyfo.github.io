@@ -41,6 +41,7 @@
   ],
   "ballCarrier": {
     "appliesTo": "#RB",
-    "destination": "#B4"
+    "destination": "#B4",
+    "responsibility": "Take handoff from QB\n\nSecure the ball.\n\nRun to 4 hole."
   }
 }

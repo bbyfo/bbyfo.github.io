@@ -409,14 +409,22 @@
                   }).then(() => {
                     // Update the Huddle call
                     //                    console.log("about to update huddleCall: ", huddleCall);
-                    let huddleCallString = `Huddle Call: ${huddleCall.blocking}. ${huddleCall.blocking}. -- ${huddleCall.offensiveFormation} ${huddleCall.playCall}. ${huddleCall.offensiveFormation} ${huddleCall.playCall}.`;
+                    let huddleCallString = `
+<h2>Huddle Call</h2>
+${huddleCall.blocking} (x2)
+<br/> 
+(Lineman go line up)
+<br />
+${huddleCall.offensiveFormation} ${huddleCall.playCall} (x2)
+<br />
+(Sill Positions go line up)`;
                     //                    console.log("huddleCallString: ", huddleCallString);
                     let $huddleCallWrapper = $("#huddle-call-wrapper");
 
                     $huddleCallWrapper.find('span').remove();
                     let $huddleCallElm = $('<span></span>');
                     //$huddleCallElm.addClass(['huddle-call']);
-                    $huddleCallElm.text(huddleCallString);
+                    $huddleCallElm.html(huddleCallString);
                     //                    console.log("$huddleCallWrapper: ", $huddleCallWrapper);
                     //                    console.log("$huddleCallElm: ", $huddleCallElm);
                     $huddleCallElm.appendTo($huddleCallWrapper);
