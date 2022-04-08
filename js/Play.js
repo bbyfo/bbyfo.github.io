@@ -22,7 +22,7 @@
   $.extend(window.Play.prototype, {
 
     moveBallCarrier: function (playCall) {
-      console.log("moveBallCarrier()", playCall);
+      //      console.log("moveBallCarrier()", playCall);
       //      console.log("playCall.ballCarrier", playCall.ballCarrier.appliesTo);
       // Get the ball carrier
 
@@ -33,7 +33,7 @@
       let $ballCarrier = $(ballCarrierID);
 
       // Add Ball Carrier's responsabilities
-      let ballCarrierResponsabilities = playCall.ballCarrier.responsibility;
+      let ballCarrierResponsabilities = $ballCarrier.attr('id') + ' Responsibilities:\n\n' + playCall.ballCarrier.responsibility;
 
       $ballCarrier.attr('data-position-responsibilities', ballCarrierResponsabilities);
 

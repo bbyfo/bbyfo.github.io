@@ -157,6 +157,7 @@
 }
 .position-container {
   overflow-y: hidden;
+  cursor: pointer;
 }
 #defense .position-node, #defense .helmet-image {
   /*  position: absolute;*/
