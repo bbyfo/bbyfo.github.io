@@ -36,7 +36,7 @@
 				// Blocking Call //
 				///////////////////
 			-->
-          <div class="col-sm-3">
+          <div class="col-md-3">
             <label>Blocking Call</label>
             <select id="picker_blocking_call" class="form-control" data-picker-type="blocking">
               <!--              <option value="--none--">Pick Blocking Call</option>-->
@@ -66,13 +66,35 @@
             </div>
             <input type="checkbox" id="show_block_nos" value="yes">
             <div style="display:inline-block;">Show Blocking Rule Progression</div>
+            <div class="instructions">
+              <h2 class="label">Blocking Help</h2>
+              <div class="body dynamic">
+                <ul>
+                  <li>Instruct on G.O.O.D (and other blocking calls). </li>
+                </ul>
+              </div>
+              <div class="body static">
+                <p>The Blocking Call has two parts, the <em>Assignment</em> and the <em>Playside</em>. The <em>Assignment</em> tells you <strong>who</strong> to block.
+                  The <em>Playside</em> tells you <strong>which direction</strong> to block.</p>
+                <p>The <em>Assignment</em> is an acronym, like G.O.O.D. or G.O.L.D. Each letter in the acronym represents an assignment to check - G for Gap (inside), O for On Me, etc... </p>
+				  
+				  <ul>
+                  <li>G.O. is always the base</li>
+                  <li>G. is always INSIDE gap (closest to the ball)</li>
+                  <li>Color Coding (more fun than teaching)</li>
+                </ul>
+              </div>
+				
+				<h3 class="label">Another Label</h3>
+				
+            </div>
           </div>
           <!--
 				/////////////////////////
 				// Offensive Formation //
 				/////////////////////////
 			-->
-          <div class="col-sm-3">
+          <div class="col-md-3">
             <label for="picker_offense_formation">Pick Offensive Formation</label>
             <select id="picker_offense_formation" class="form-control" data-picker-type="offense">
               <!--              <option value="--none--">Pick Formation</option>-->
@@ -99,6 +121,14 @@
               <div class="swiper-button-next"></div>
               <div class="swiper-button-prev"></div>
             </div>
+            <div class="instructions">
+              <div class="label">Offense Help</div>
+              <div class="body">
+                <ul>
+                  <li>Instruct on Offensive stuff. </li>
+                </ul>
+              </div>
+            </div>
           </div>
           
           <!--
@@ -106,7 +136,7 @@
 				// Play Call //
 				///////////////
 			-->
-          <div class="col-sm-3">
+          <div class="col-md-3">
             <label>Play Call</label>
             <select id="picker_play_call" class="form-control" data-picker-type="play">
               <option value="--none--">Play Call</option>
@@ -135,6 +165,14 @@
               <div class="swiper-button-next"></div>
               <div class="swiper-button-prev"></div>
             </div>
+            <div class="instructions">
+              <div class="label">Play Call Help</div>
+              <div class="body">
+                <ul>
+                  <li>Instruct on Play Call stuff. </li>
+                </ul>
+              </div>
+            </div>
           </div>
           
           <!--
@@ -142,7 +180,7 @@
 				// Defensive Package //
 				///////////////////////
 			-->
-          <div class="col-sm-3">
+          <div class="col-md-3">
             <label>Pick Defensive Formation</label>
             <select id="picker_defense_formation" class="form-control" data-picker-type="defense">
               <option value="--none--">Pick Defensive Formation</option>
@@ -169,21 +207,13 @@
               <div class="swiper-button-prev"></div>
             </div>
             <div id="pick_offense_first" class="alert-danger" style="display:none;">Make sure an Offensive Formation is selected</div>
-          </div>
-        </div>
-        <div class="row instructions">
-          <div class="col-sm-3">
-            <div class="label">Offense Help</div>
-            <div class="body">
-              <ul>
-                <li>Instruct on G.O.O.D (and other blocking calls).
-                  <ul>
-                    <li>G.O. is <strong>always</strong> the base</li>
-                    <li>G. is <strong>always</strong> INSIDE gap</li>
-                    <li>Color Coding (more fun than teaching)</li>
-                  </ul>
-                </li>
-              </ul>
+            <div class="instructions">
+              <div class="label">Defensive Help</div>
+              <div class="body">
+                <ul>
+                  <li>Instruct on Defensive stuff. </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
