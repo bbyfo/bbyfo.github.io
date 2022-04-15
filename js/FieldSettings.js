@@ -7,7 +7,7 @@
    * Add Event Handlers.
    */
   window.FieldSettings = function () {
-
+    console.log("FieldSettings");
   }
 
 })(window, jQuery);

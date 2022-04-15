@@ -51,7 +51,7 @@
   const playSwiper = new Swiper('.playSwiper', swiperSettings);
   playSwiper.on('slideChange', function (playSwiper) {
     let formationId = $(playSwiper.slides[playSwiper.activeIndex]).attr('data-formation-id');
-    console.log("formationId: ", formationId);
+//    console.log("formationId: ", formationId);
 
     $('#picker_play_call').val(formationId).trigger('change');
 

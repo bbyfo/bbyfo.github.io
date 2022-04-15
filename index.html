@@ -65,9 +65,7 @@
               <div class="swiper-button-prev"></div>
             </div>
             <input type="checkbox" id="show_block_nos" value="yes">
-            Show Blocking Rule Progression? 
-            <!--            <button type="button" id="show_blocking_all">Show All Blocking</button>--> 
-            
+            <div style="display:inline-block;">Show Blocking Rule Progression</div>
           </div>
           <!--
 				/////////////////////////
@@ -125,8 +123,8 @@
                 <!-- Slides -->
                 <div class="swiper-slide" data-formation-id="--none--">Play Call</div>
                 <div class="swiper-slide" data-formation-id="play_call__run_23">Run 23</div>
-                <div class="swiper-slide" data-formation-id="play_call__run_24">Run 24</div>
                 <div class="swiper-slide" data-formation-id="play_call__run_27">Run 27</div>
+                <div class="swiper-slide" data-formation-id="play_call__run_24">Run 24</div>
                 <div class="swiper-slide" data-formation-id="play_call__run_28">Run 28</div>
                 <!--
                 <div class="swiper-slide" data-formation-id="play_call__run_29">Run 29</div>
@@ -145,7 +143,7 @@
 				///////////////////////
 			-->
           <div class="col-sm-3">
-            <label>Pick Defensive Package</label>
+            <label>Pick Defensive Formation</label>
             <select id="picker_defense_formation" class="form-control" data-picker-type="defense">
               <option value="--none--">Pick Defensive Formation</option>
               <option value="formation__5_3__base">5-3 Base</option>
@@ -160,7 +158,7 @@
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper"> 
                 <!-- Slides -->
-                <div class="swiper-slide" data-formation-id="--none--">Pick an Defensive Formation</div>
+                <div class="swiper-slide" data-formation-id="--none--">Defensive Formation</div>
                 <div class="swiper-slide" data-formation-id="formation__5_3__base">5-3 Base</div>
                 <div class="swiper-slide" data-formation-id="formation__5_3__man">5-3 Man</div>
                 <div class="swiper-slide" data-formation-id="formation__6_2__base">6-2 Base</div>
@@ -173,22 +171,29 @@
             <div id="pick_offense_first" class="alert-danger" style="display:none;">Make sure an Offensive Formation is selected</div>
           </div>
         </div>
-        <div class="row" style="margin-top:5em;">
-          <div class="col-sm">
-            <p>Debug / Testing Stuff:</p>
-            <!--
-            <input type="checkbox" value="hide_txt" id="hide_text">
-            Hide Defensive Position Names
--->
-            
-            <button type="button" id="clear_field" class="form-control">Clear Field</button>
-            <button type="button" id="XX__Placeholder__XX" class="form-control">XX__Placeholder__XX</button>
+        <div class="row instructions">
+          <div class="col-sm-3">
+            <div class="label">Offense Help</div>
+            <div class="body">
+              <ul>
+                <li>Instruct on G.O.O.D (and other blocking calls).
+                  <ul>
+                    <li>G.O. is <strong>always</strong> the base</li>
+                    <li>G. is <strong>always</strong> INSIDE gap</li>
+                    <li>Color Coding (more fun than teaching)</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </form>
   </div>
 </div>
+
+<!--<button id="debug-action">click me</button>--> 
+
 <script src="js/jquery-3.4.1.min.js"></script> 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
 <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script> 
@@ -206,6 +211,9 @@
 			fieldApp.buildField($wrapper);
 			
 			var blocking = new Blocking($wrapper);
+			
+			// Triggering the picker will populate the field on page load
+$("#picker_offense_formation").trigger('change');
 			
         });
 	

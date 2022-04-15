@@ -138,8 +138,10 @@
       var $positionDiv = $("<div></div>").text(positionNameWithNewLinesFinal);
 
       // Provide classes and the ID
-      $positionDiv.addClass('position-node');
       $positionDiv.attr('id', position.positionName);
+      let blockingIdentifierStylesSelector = 'blocking-identifier--' + $positionDiv.attr('id');
+      $positionDiv.addClass(['position-node', blockingIdentifierStylesSelector]);
+
 
       // Add the position section (offense or defense)
       $positionDiv.addClass(['position-' + gridPositionSection]);

@@ -47,10 +47,10 @@
             "RT"
           ],
           "alignment": {
-            "direction": "right",
-            "distance": 1
+            "direction": "on",
+            "distance": 2
           },
-          "depth": "off",
+          "depth": "shotgun",
           "positionTypes": ["tight-end"]
         },
         {
@@ -87,10 +87,10 @@
             "LT"
           ],
           "alignment": {
-            "direction": "left",
-            "distance": 1
+            "direction": "on",
+            "distance": 0
           },
-          "depth": "off",
+          "depth": "shotgun",
           "positionTypes": ["tight-end"]
         },
 

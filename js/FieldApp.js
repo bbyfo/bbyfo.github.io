@@ -23,6 +23,7 @@
       return this.fieldColumnCount;
     }
 
+
     // Event Handler for clicking on the ball
     this.$wrapper.on(
       'click',
@@ -201,7 +202,6 @@
           break;
 
         case '1000': // Offense only
-        case '1010': // Offense and Blocking
         case '1011': // Offense and Blocking and Playcall
           console.log("Offense only, or Offense and Blocking");
 
@@ -222,6 +222,7 @@
 
 
           break;
+
           // 0100 Defense only 
         case '0100':
           console.log("Defense only", defensiveFileUrl);
@@ -245,6 +246,34 @@
           console.log("Blocking only");
 
           break;
+
+
+        case '1010': // Offense and Blocking
+          console.log("Offense and Blocking");
+
+
+          return new Promise(function (resolve, reject) {
+            $.ajax({
+              url: offensiveFileUrl
+            }).then(function (offensiveFormation) {
+              //              console.log("offensiveFormation in then", offensiveFormation);
+              $fieldElm = $("#offense");
+              // Loop over the positions and populate them on the grid
+              offensiveFormation.positions.forEach((position) => {
+                //                console.log("position: ", position);
+                // Instantiate a new Position
+                // Positions place themselves
+                let positionObj = new Position($fieldElm, position);
+              });
+            }).then(function () {
+              let myBlocking = new Blocking($("#FootballApp"));
+              myBlocking.handleShowBlockingAll();
+            });
+          });
+
+
+          break;
+
           // 110 Offense and Defense 
           // This requires some ajax calls in serial, i.e. Offense gets placed, then defense gets placed
         case '1100':
@@ -386,7 +415,7 @@
                     combinedBlockingAssignments.blockingCallName = blockingCall.blockingCallName;
                     combinedBlockingAssignments.playSide = playCall.playSide;
                     combinedBlockingAssignments.blockingAssignments = blockingFromBlockingCall.concat(blockingFromPlayCall);
-                    console.log("combinedBlockingAssignments: ", combinedBlockingAssignments);
+//                    console.log("combinedBlockingAssignments: ", combinedBlockingAssignments);
                     // Clear out existing Blocking stuff
                     //                    console.log("Clear out existing Blocking stuff");
                     $('.block-miss-wrapper, .offensive-blocking-identifier').remove();

@@ -30,7 +30,7 @@
       }, {
         "name": "destroy_nearest",
         "depth": ["defensive_los", "linebacker"],
-        "title": "Destroy (Playside)",
+        "title": "Destroy Left (Playside)",
 
         "description": "<strong>D</strong>estroy Playside: Is there anyone Down the playside? (the 'right' part of this call)"
       }]

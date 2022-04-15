@@ -1,3 +1,9 @@
+:root {
+  --clr-green-dark: #68BB59;
+  --clr-green-light: #ACDF87;
+  /*--clr-red: #922630;*/
+  --clr-red: red;
+}
 #FootballApp {
   width: 95vw;
   margin: 0 auto;
@@ -7,7 +13,7 @@
   font-size: clamp(1rem, 2rem, 3rem);
   /*  background-color: white;*/
   /*  height: 75vh;*/
-  background-color: #68BB59;
+  background-color: var(--clr-green-dark);
 }
 #defense, #los, #offense {
   display: grid;
@@ -22,7 +28,7 @@
 }
 /* Gaps */
 .grid-item-gap {
-  background-color: #ACDF87;
+  background-color: var(--clr-green-light);
 }
 #defense, #offense, #los {
   grid-column-start: 1;
@@ -106,7 +112,7 @@
 #ball {
   font-size: 2rem;
   font-weight: 900;
-  color: red;
+  color: var(--clr-red);
   text-shadow: 1px 1px white;
 }
 #field > div > div {
@@ -237,7 +243,7 @@
 }
 /* Dark Green */
 .depth--linebacker, .depth--off, .depth--deep {
-  /*  background-color: #68BB59;*/
+  /*  background-color: var(--clr-green-dark);*/
 }
 /**
 * Position Background Images (or not)
@@ -588,4 +594,10 @@ form label {
 }
 #huddle-call-wrapper {
   font-size: 1.25rem;
+}
+/******************/
+/** Instructions **/
+/******************/
+.instructions {
+  background-color:
 }
