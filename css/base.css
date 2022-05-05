@@ -625,3 +625,10 @@ form label {
   margin-block: 1rem;
   padding: 1em;
 }
+/** Help Toggle **/
+.body-wrapper {
+  display: none;
+}
+.body-wrapper.show-help {
+  display: block;
+}

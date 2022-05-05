@@ -67,26 +67,25 @@
             <input type="checkbox" id="show_block_nos" value="yes">
             <div style="display:inline-block;">Show Blocking Rule Progression</div>
             <div class="instructions">
-              <h2 class="label">Blocking Help</h2>
-              <div class="body dynamic">
-                <ul>
-                  <li>Instruct on G.O.O.D (and other blocking calls). </li>
-                </ul>
+              <h2 class="label"><a href="#" class="js-help-toggler">Blocking Help</a></h2>
+              <div class="body-wrapper">
+                <div class="body dynamic">
+                  <ul>
+                    <li>Instruct on G.O.O.D (and other blocking calls). </li>
+                  </ul>
+                </div>
+                <div class="body static">
+                  <p>The Blocking Call has two parts, the <em>Assignment</em> and the <em>Playside</em>. The <em>Assignment</em> tells you <strong>who</strong> to block.
+                    The <em>Playside</em> tells you <strong>which direction</strong> to block.</p>
+                  <p>The <em>Assignment</em> is an acronym, like G.O.O.D. or G.O.L.D. Each letter in the acronym represents an assignment to check - G for Gap (inside), O for On Me, etc... </p>
+                  <ul>
+                    <li>G.O. is always the base</li>
+                    <li>G. is always INSIDE gap (closest to the ball)</li>
+                    <li>Color Coding (more fun than teaching)</li>
+                  </ul>
+                </div>
+                <h3 class="label">Another Label</h3>
               </div>
-              <div class="body static">
-                <p>The Blocking Call has two parts, the <em>Assignment</em> and the <em>Playside</em>. The <em>Assignment</em> tells you <strong>who</strong> to block.
-                  The <em>Playside</em> tells you <strong>which direction</strong> to block.</p>
-                <p>The <em>Assignment</em> is an acronym, like G.O.O.D. or G.O.L.D. Each letter in the acronym represents an assignment to check - G for Gap (inside), O for On Me, etc... </p>
-				  
-				  <ul>
-                  <li>G.O. is always the base</li>
-                  <li>G. is always INSIDE gap (closest to the ball)</li>
-                  <li>Color Coding (more fun than teaching)</li>
-                </ul>
-              </div>
-				
-				<h3 class="label">Another Label</h3>
-				
             </div>
           </div>
           <!--
@@ -122,11 +121,13 @@
               <div class="swiper-button-prev"></div>
             </div>
             <div class="instructions">
-              <div class="label">Offense Help</div>
-              <div class="body">
-                <ul>
-                  <li>Instruct on Offensive stuff. </li>
-                </ul>
+              <h2 class="label"><a href="#" class="js-help-toggler">Offense Help</a></h2>
+              <div class="body-wrapper">
+                <div class="body">
+                  <ul>
+                    <li>Instruct on Offensive stuff. </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -166,11 +167,13 @@
               <div class="swiper-button-prev"></div>
             </div>
             <div class="instructions">
-              <div class="label">Play Call Help</div>
-              <div class="body">
-                <ul>
-                  <li>Instruct on Play Call stuff. </li>
-                </ul>
+              <h2 class="label"><a href="#" class="js-help-toggler">Play Help</a></h2>
+              <div class="body-wrapper">
+                <div class="body">
+                  <ul>
+                    <li>Instruct on Play Call stuff. </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -208,11 +211,13 @@
             </div>
             <div id="pick_offense_first" class="alert-danger" style="display:none;">Make sure an Offensive Formation is selected</div>
             <div class="instructions">
-              <div class="label">Defensive Help</div>
-              <div class="body">
-                <ul>
-                  <li>Instruct on Defensive stuff. </li>
-                </ul>
+              <h2 class="label"><a href="#" class="js-help-toggler">Defensive Help</a></h2>
+              <div class="body-wrapper">
+                <div class="body">
+                  <ul>
+                    <li>Instruct on Defensive stuff. </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -241,9 +246,11 @@
 			fieldApp.buildField($wrapper);
 			
 			var blocking = new Blocking($wrapper);
-			
+			new FieldSettings($wrapper);
 			// Triggering the picker will populate the field on page load
-$("#picker_offense_formation").trigger('change');
+			$("#picker_offense_formation").trigger('change');
+		
+			
 			
         });
 	
