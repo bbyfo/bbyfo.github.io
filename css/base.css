@@ -412,9 +412,9 @@ form label {
 * Right Tackle
 */
 .blocking-identifier--RT {
-  border: 2px dashed white;
+  border: 2px dashed rgb(173, 153, 93);
   background-color: rgb(170, 0, 0);
-  color: rgb(173, 153, 93);
+  color: white;
 }
 .blocking-identifier--RT.blocking-rule-icon {}
 /* 
