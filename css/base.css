@@ -619,11 +619,18 @@ form label {
 .instructions h3.label {
   font-size: clamp(.5em, 1.25em, 1.5em);
 }
-.col-md-3 {
+
+.builder__row{
+	display: flex;
+	flex-direction: column;
+}
+
+.builder__block {
   border: 1px solid rgba(91, 91, 91, 1.00);
   border-radius: 5px;
   margin-block: 1rem;
   padding: 1em;
+  max-width: 100%;
 }
 /** Help Toggle **/
 .body-wrapper {

@@ -21,22 +21,22 @@
     <div id="los"></div>
     <div id="offense"></div>
   </div>
-  <div id="descriptions" class="container-fluid">
-    <div class="row">
+  <div id="descriptions">
+    <div>
       <div id="huddle-call-wrapper"></div>
       <div id="bocking-rule-description-wrapper"></div>
     </div>
   </div>
   <div id="builder">
     <form>
-      <div class="container-fluid">
-        <div class="row"> 
+     
+        <div class="builder__row"> 
           <!--
 				///////////////////
 				// Blocking Call //
 				///////////////////
 			-->
-          <div class="col-md-3">
+          <div class="builder__block">
             <label>Blocking Call</label>
             <select id="picker_blocking_call" class="form-control" data-picker-type="blocking">
               <!--              <option value="--none--">Pick Blocking Call</option>-->
@@ -93,7 +93,7 @@
 				// Offensive Formation //
 				/////////////////////////
 			-->
-          <div class="col-md-3">
+          <div class="builder__block">
             <label for="picker_offense_formation">Pick Offensive Formation</label>
             <select id="picker_offense_formation" class="form-control" data-picker-type="offense">
               <!--              <option value="--none--">Pick Formation</option>-->
@@ -137,7 +137,7 @@
 				// Play Call //
 				///////////////
 			-->
-          <div class="col-md-3">
+          <div class="builder__block">
             <label>Play Call</label>
             <select id="picker_play_call" class="form-control" data-picker-type="play">
               <option value="--none--">Play Call</option>
@@ -183,7 +183,7 @@
 				// Defensive Package //
 				///////////////////////
 			-->
-          <div class="col-md-3">
+          <div class="builder__block">
             <label>Pick Defensive Formation</label>
             <select id="picker_defense_formation" class="form-control" data-picker-type="defense">
               <option value="--none--">Pick Defensive Formation</option>
@@ -222,7 +222,7 @@
             </div>
           </div>
         </div>
-      </div>
+     
     </form>
   </div>
 </div>
