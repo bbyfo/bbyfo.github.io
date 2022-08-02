@@ -1,0 +1,60 @@
+{
+  "playCallName": " -- Outside Run 18",
+  "playSide": "right",
+  "description": "The 1 back takes the snap and runs to the 8 hole. The 2, 3 and 4 backs make blocks. ",
+  "blockingAssignments": [{
+      "appliesTo": ["#RB"],
+      "rules": [{
+        "name": "last_outside",
+        "depth": "any",
+        "traverseFirst": "horizontal",
+        "title": "Last man outside",
+
+        "description": "Block the last man outside, on the playside."
+      }, {
+        "name": "destroy_nearest",
+        "depth": ["defensive_los", "linebacker"],
+        "title": "Destroy (Playside)",
+
+        "description": "<strong>D</strong>estroy Playside: Is there anyone Down the playside? (the 'right' part of this call)"
+      }]
+    },{
+      "appliesTo": ["#WR"],
+      "rules": [{
+        "name": "last_outside",
+        "depth": "any",
+        "traverseFirst": "horizontal",
+        "title": "Last man outside",
+
+        "description": "Block the last man outside, on the playside."
+      }, {
+        "name": "destroy_nearest",
+        "depth": ["defensive_los", "linebacker"],
+        "title": "Destroy (Playside)",
+
+        "description": "<strong>D</strong>estroy Playside: Is there anyone Down the playside? (the 'right' part of this call)"
+      }]
+    },
+    {
+      "appliesTo": ["#FB"],
+      "rules": [{
+        "name": "second_outside",
+        "depth": "any",
+        "title": "Second-to-last man outside",
+
+        "description": "Block the second-to-last man outside, on the playside."
+      }, {
+        "name": "destroy_nearest",
+        "depth": ["defensive_los", "linebacker"],
+        "title": "Destroy Right (Playside)",
+
+        "description": "<strong>D</strong>estroy Playside: Is there anyone Down the playside? (the 'right' part of this call)"
+      }]
+    }
+  ],
+  "ballCarrier": {
+    "appliesTo": "#QB",
+    "destination": "#D8",
+    "responsibility": "Take snap from C\n\nSecure the ball.\n\nRun to 8 hole."
+  }
+}

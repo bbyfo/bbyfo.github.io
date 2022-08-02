@@ -446,7 +446,7 @@
 "Ready -- BLOCK" -- (Lineman go line up)<br />
 <br />
 (Face the Backs)<br />
-<strong>${huddleCall.offensiveFormation} ${huddleCall.playCall}!!</strong> (x2)
+<strong>${huddleCall.offensiveFormation} ${huddleCall.playCall}!!</strong> (say twice)
 <br />
 "Ready -- BREAK" -- (Skill Positions go line up)`;
                     //                    console.log("huddleCallString: ", huddleCallString);
