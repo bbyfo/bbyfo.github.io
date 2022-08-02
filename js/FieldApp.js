@@ -440,13 +440,15 @@
                     //                    console.log("about to update huddleCall: ", huddleCall);
                     let huddleCallString = `
 <h2>Huddle Call</h2>
-<strong>${huddleCall.blocking}!!</strong> (x2)
+(Face the Linemen)<br />
+<strong>"${huddleCall.blocking}"!!</strong> (say twice)
 <br/> 
-(Lineman go line up)
+"Ready -- BLOCK" -- (Lineman go line up)<br />
 <br />
+(Face the Backs)<br />
 <strong>${huddleCall.offensiveFormation} ${huddleCall.playCall}!!</strong> (x2)
 <br />
-(Skill Positions go line up)`;
+"Ready -- BREAK" -- (Skill Positions go line up)`;
                     //                    console.log("huddleCallString: ", huddleCallString);
                     let $huddleCallWrapper = $("#huddle-call-wrapper");
 

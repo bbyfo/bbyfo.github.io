@@ -1,6 +1,6 @@
 {
   "blockingCallName": "G.O.O.D. Left",
-  "blockingCallHuddleCall": "Shields! GOOD LEFT",
+  "blockingCallHuddleCall": "GOOD LEFT",
   "playSide": "left",
   "blockingAssignments": [{
     "appliesTo": [".offensive-lineman", ".tight-end"],
